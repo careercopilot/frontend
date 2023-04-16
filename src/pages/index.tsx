@@ -1,5 +1,5 @@
 import Header from "@/components/general/Header";
-import { Hero } from "@/components/home";
+import { Hero, Features } from "@/components/home";
 
 import styles from "@/styles/Home.module.css";
 
@@ -9,6 +9,7 @@ export default function Home() {
       <main className={styles.main}>
         <Header />
         <Hero />
+        <Features />
       </main>
     </>
   );

@@ -1,3 +1,7 @@
+/** Interfaces */
+import CandidateProfile from "@/interfaces/CandidateProfile";
+import CandidateScores from "@/interfaces/CandidateScores";
+
 /** General Assets */
 import Logo from "@/assets/Logo.svg";
 import LogoIcon from "@/assets/LogoIcon.svg";
@@ -7,7 +11,13 @@ import IconChrome from "@/assets/icons/Chrome.svg";
 
 /** Home Page Assets */
 import HomeHeroCover from "@/assets/home/HeroCover.svg";
-import HeroBackground from "@/assets/home/HeroBackground.svg";
+import HomeHeroBackground from "@/assets/home/HeroBackground.svg";
+import HomeFeaturesSummaryImage from "@/assets/home/FeaturesSummaryImage.svg";
+import HomeFeaturesCompatibilityImage from "@/assets/home/FeaturesCompatibilityImage.svg";
+import HomeSkillIconsJavascript from "@/assets/home/skillIcons/Javascript.svg";
+import HomeSkillIconsNode from "@/assets/home/skillIcons/Node.svg";
+import HomeSkillIconsTypescript from "@/assets/home/skillIcons/Typescript.svg";
+import HomeSkillIconsAWS from "@/assets/home/skillIcons/AWS.svg";
 
 export const staticData = {
   pages: {
@@ -25,8 +35,76 @@ export const staticData = {
           alt: "Simplified hiring process",
         },
         background: {
-          src: HeroBackground,
-          alt: "Background"
+          src: HomeHeroBackground,
+          alt: "Background",
+        },
+      },
+      features: {
+        title: "Let Us Sreamline Your Candidate Selection Process",
+        subTitle: "Focus On Bigger Picture",
+        features: {
+          profileSummary: {
+            title: "Get Instant LinkedIn Profile Summary",
+            description:
+              "Our powerful tool provides a comprehensive and compelling summary of the Candidate's LinkedIn profile in the Blink of an eye.",
+          },
+          compatibilityScores: {
+            title: "Check Profile Compatibility with Position",
+            description:
+              "Evaluate the compatibility of a job applicant's profile with the requirements of a specific job position. By utilizing this feature, HR personnel can quickly and efficiently analyze a candidate's qualifications and identify any potential mismatches or gaps in their skills and experience",
+          },
+          more: {
+            title: "And Many More...",
+            description:
+              "Unleash your full potential - Get Started now and see the difference",
+          },
+          examplesData: {
+            profileSummary: {
+              _id: "",
+              firstName: "Zaire",
+              lastName: "Stanton",
+              position: "Full Stack Developer @XYZ",
+              summary:
+                "Lorem ipsum dolor sit amet consectetur. Facilisis nisl eget sagittis duis sollicitudin integer pellentesque purus. Dignissim bibendum elit sagittis morbi aliquam vel tempus commodo scelerisque. Dui nulla urna risus integer. Laoreet ultrices congue sit gravida eu enim eget euismod ultricies.",
+              image: HomeFeaturesSummaryImage,
+            } as CandidateProfile,
+            compatibilityScores: {
+              _id: "",
+              candidate: {
+                _id: "",
+                firstName: "Skylar",
+                lastName: "Dias",
+                image: HomeFeaturesCompatibilityImage,
+              },
+              position: "Backend Developer",
+              positionScore: 89,
+              skillScores: [
+                {
+                  skill: "JavaScript",
+                  score: 98,
+                  icon: HomeSkillIconsJavascript,
+                },
+                {
+                  skill: "Node.js",
+                  score: 92,
+                  icon: HomeSkillIconsNode,
+                },
+                {
+                  skill: "TypeScript",
+                  score: 94,
+                  icon: HomeSkillIconsTypescript,
+                },
+                {
+                  skill: "AWS",
+                  score: 75,
+                  icon: HomeSkillIconsAWS,
+                },
+              ],
+            } as CandidateScores,
+            more: {
+              button: "Get Started ->",
+            },
+          },
         },
       },
     },
