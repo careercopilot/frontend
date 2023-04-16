@@ -58,52 +58,57 @@ export const staticData = {
             description:
               "Unleash your full potential - Get Started now and see the difference",
           },
-          examplesData: {
-            profileSummary: {
+        } as {
+          [key: string]: {
+            title: string;
+            description: string;
+          };
+        },
+        examplesData: {
+          profileSummary: {
+            _id: "",
+            firstName: "Zaire",
+            lastName: "Stanton",
+            position: "Full Stack Developer @XYZ",
+            summary:
+              "Lorem ipsum dolor sit amet consectetur. Facilisis nisl eget sagittis duis sollicitudin integer pellentesque purus. Dignissim bibendum elit sagittis morbi aliquam vel tempus commodo scelerisque. Dui nulla urna risus integer. Laoreet ultrices congue sit gravida eu enim eget euismod ultricies.",
+            image: HomeFeaturesSummaryImage,
+          } as CandidateProfile,
+          compatibilityScores: {
+            _id: "",
+            candidate: {
               _id: "",
-              firstName: "Zaire",
-              lastName: "Stanton",
-              position: "Full Stack Developer @XYZ",
-              summary:
-                "Lorem ipsum dolor sit amet consectetur. Facilisis nisl eget sagittis duis sollicitudin integer pellentesque purus. Dignissim bibendum elit sagittis morbi aliquam vel tempus commodo scelerisque. Dui nulla urna risus integer. Laoreet ultrices congue sit gravida eu enim eget euismod ultricies.",
-              image: HomeFeaturesSummaryImage,
-            } as CandidateProfile,
-            compatibilityScores: {
-              _id: "",
-              candidate: {
-                _id: "",
-                firstName: "Skylar",
-                lastName: "Dias",
-                image: HomeFeaturesCompatibilityImage,
-              },
-              position: "Backend Developer",
-              positionScore: 89,
-              skillScores: [
-                {
-                  skill: "JavaScript",
-                  score: 98,
-                  icon: HomeSkillIconsJavascript,
-                },
-                {
-                  skill: "Node.js",
-                  score: 92,
-                  icon: HomeSkillIconsNode,
-                },
-                {
-                  skill: "TypeScript",
-                  score: 94,
-                  icon: HomeSkillIconsTypescript,
-                },
-                {
-                  skill: "AWS",
-                  score: 75,
-                  icon: HomeSkillIconsAWS,
-                },
-              ],
-            } as CandidateScores,
-            more: {
-              button: "Get Started ->",
+              firstName: "Skylar",
+              lastName: "Dias",
+              image: HomeFeaturesCompatibilityImage,
             },
+            position: "Backend Developer",
+            positionScore: 89,
+            skillScores: [
+              {
+                skill: "JavaScript",
+                score: 98,
+                icon: HomeSkillIconsJavascript,
+              },
+              {
+                skill: "Node.js",
+                score: 92,
+                icon: HomeSkillIconsNode,
+              },
+              {
+                skill: "TypeScript",
+                score: 94,
+                icon: HomeSkillIconsTypescript,
+              },
+              {
+                skill: "AWS",
+                score: 75,
+                icon: HomeSkillIconsAWS,
+              },
+            ],
+          } as CandidateScores,
+          more: {
+            button: "Get Started ->",
           },
         },
       },
