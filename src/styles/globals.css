@@ -28,6 +28,15 @@ body {
   --light-bg: #fffcf633;
   --background-fade: #f8f8f8;
 
+  /* Text-size styles */
+  /* base size: body (16px) */
+  --h1: 2.6rem;
+  --h2: 2rem;
+  --h3: 1.6rem;
+  --h4: 1.25rem;
+  --h5: 1.125rem;
+  --c1: 1rem;
+  --c2: 0.88rem;
   --general-box-border-radius: 0.8rem;
   --header-height: 4.25rem;
 
