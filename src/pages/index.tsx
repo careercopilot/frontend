@@ -1,4 +1,6 @@
 import Header from "@/components/general/Header";
+import { Hero } from "@/components/home";
+
 import styles from "@/styles/Home.module.css";
 
 export default function Home() {
@@ -6,6 +8,7 @@ export default function Home() {
     <>
       <main className={styles.main}>
         <Header />
+        <Hero />
       </main>
     </>
   );

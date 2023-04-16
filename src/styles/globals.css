@@ -28,22 +28,8 @@ body {
   --light-bg: #fffcf633;
   --background-fade: #f8f8f8;
 
-  /* Text-size styles */
-  /* base size: body (16px) */
-  --display: 3rem;
-  --headline: 2rem;
-  --title: 1.5rem;
-  --body: 1rem;
-  --small: 0.88rem;
-  --h1: 3.125rem;
-  --h2: 2rem;
-  --h3: 1.6rem;
-  --h4: 1.25rem;
-  --h5: 1.125rem;
-  --c1: 1rem;
-  --c2: 0.88rem;
   --general-box-border-radius: 0.8rem;
-  --header-height: 0;
+  --header-height: 4.25rem;
 
   /* Effect styles */
   --general-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
@@ -85,15 +71,20 @@ a {
 }
 
 /* Media Query for Tablet screens */
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
   html {
     font-size: 0.9rem;
   }
-}
+} */
 
 /* Media Query for Mobile screens */
-@media only screen and (max-width: 425px) {
+/* @media only screen and (max-width: 425px) {
   html {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
+} */
+
+h1,
+h2 {
+  letter-spacing: -0.045em;
 }

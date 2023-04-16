@@ -56,14 +56,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           defaultRadius: "var(--general-box-border-radius)",
           headings: {
             fontFamily: manropeFont.style.fontFamily,
-            sizes: {
-              h1: { fontSize: "var(--h1)", fontWeight: 600, lineHeight: 1.1 },
-              h2: { fontSize: "var(--h2)", fontWeight: 600, lineHeight: 1.1 },
-              h3: { fontSize: "var(--h3)", fontWeight: 600, lineHeight: 1.1 },
-              h4: { fontSize: "var(--h4)", fontWeight: 500, lineHeight: 1.1 },
-              h5: { fontSize: "var(--h5)", fontWeight: 500, lineHeight: 1.1 },
-              h6: { fontSize: "var(--h6)", fontWeight: 500, lineHeight: 1.1 },
-            },
           },
           fontSizes: {
             xs: "10",
