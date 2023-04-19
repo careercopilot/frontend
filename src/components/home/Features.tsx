@@ -11,7 +11,13 @@ const { icons: ICONS } = staticData.general;
 const FEATURE_DSIPLAY_COMPONENTS = {
   profileSummary: FeatureSummary,
   compatibilityScores: FeatureScores,
-  more: FeatureSummary,
+  more: () => (
+    <div>
+      <Button color="primary" size="lg">
+        {COMPONENT_DATA.examplesData.more.button}
+      </Button>
+    </div>
+  ),
 };
 
 function Features() {
