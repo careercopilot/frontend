@@ -49,8 +49,10 @@
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
   padding-bottom: 7.5rem;
-  gap: 3rem;
+  gap: 3.5rem;
 }
 
 .featureTitleSec {

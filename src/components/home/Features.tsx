@@ -2,9 +2,17 @@ import Image from "next/image";
 import { Button, Text, Title } from "@mantine/core";
 import styles from "./Features.module.css";
 import { staticData } from "@/utils/staticData";
+import FeatureSummary from "./Feature--Summary";
+import FeatureScores from "./Feature--Scores";
 
 const { features: COMPONENT_DATA } = staticData.pages.index;
 const { icons: ICONS } = staticData.general;
+
+const FEATURE_DSIPLAY_COMPONENTS = {
+  profileSummary: FeatureSummary,
+  compatibilityScores: FeatureScores,
+  more: FeatureSummary,
+};
 
 function Features() {
   return (
@@ -25,6 +33,10 @@ function Features() {
       </div>
       <div className={styles.featuresTimeline}>
         {Object.keys(COMPONENT_DATA.features).map((key: string, index) => {
+          const FeaturComponent =
+            FEATURE_DSIPLAY_COMPONENTS[
+              key as keyof typeof FEATURE_DSIPLAY_COMPONENTS
+            ];
           return (
             <div className={styles.feature} key={key}>
               <div className={styles.lineSec}>
@@ -46,6 +58,9 @@ function Features() {
                     {COMPONENT_DATA.features[key].description}
                   </Text>
                 </div>
+                <>
+                  <FeaturComponent />
+                </>
               </div>
             </div>
           );

@@ -7,7 +7,7 @@ interface CandidateScores {
   position: string;
   positionScore: number;
   skillScores: {
-    skill: string;
+    name: string;
     score: number;
     icon: StaticImageData | string;
   }[];

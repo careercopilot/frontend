@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  padding: 0 2rem;
+}
+
+.profileContainer {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  max-width: 5.5rem;
+  object-fit: contain;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 1.75rem;
+}
+
+.text {
+  letter-spacing: -0.025em;
+}

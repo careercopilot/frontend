@@ -86,27 +86,27 @@ export const staticData = {
             positionScore: 89,
             skillScores: [
               {
-                skill: "JavaScript",
+                name: "JavaScript",
                 score: 98,
                 icon: HomeSkillIconsJavascript,
               },
               {
-                skill: "Node.js",
+                name: "Node.js",
                 score: 92,
                 icon: HomeSkillIconsNode,
               },
               {
-                skill: "TypeScript",
+                name: "TypeScript",
                 score: 94,
                 icon: HomeSkillIconsTypescript,
               },
               {
-                skill: "AWS",
-                score: 75,
+                name: "AWS",
+                score: 74,
                 icon: HomeSkillIconsAWS,
               },
             ],
-          } as CandidateScores,
+          },
           more: {
             button: "Get Started ->",
           },
@@ -124,6 +124,12 @@ export const staticData = {
     navbar: {
       login: "Login",
       register: "Get Started",
+    },
+    anylysis: {
+      compatibilityScores: {
+        title: "Position Match",
+        scoreColors: ["orange", "yellow", "lime", "green"],
+      },
     },
   },
   general: {

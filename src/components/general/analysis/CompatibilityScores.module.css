@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 4rem;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.score {
+  font-size: 4.3rem;
+  font-weight: 600;
+}
+
+.scoreText {
+  font-size: 1.875rem;
+  font-weight: 500;
+  max-width: 8.1rem;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.skillScore {
+  display: grid;
+  grid-template-columns: 1fr 7.93fr 2.31fr;
+  align-items: center;
+  gap: 1.85rem;
+  width: 100%;
+  max-width: 23.675rem;
+}
+
+.icon {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+
+.skillScoreContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.scoreValue{
+font-size: 2rem;
+}
