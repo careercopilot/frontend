@@ -22,10 +22,12 @@ function Header() {
         className={styles.logoIcon}
       />
       <ul className={styles.buttons}>
-        <Button color="secondary" variant="subtle">
+        <Button color="secondary" variant="subtle" size="md">
           {COMPONENT_DATA.login}
         </Button>
-        <Button color="secondary">{COMPONENT_DATA.register}</Button>
+        <Button color="secondary" size="md">
+          {COMPONENT_DATA.register}
+        </Button>
       </ul>
     </nav>
   );

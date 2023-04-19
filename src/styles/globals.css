@@ -14,7 +14,7 @@ body {
   /* Color styles */
   /* --primary-color: #1c9a96; */
   /* --secondary-color: #05716d; */
-  --primary-color: #93d2c6;
+  --primary-color: #0f89f9;
   --secondary-color: #0c2d36;
   --black: #0a2942;
   --gray---default: #636b78;
@@ -31,8 +31,8 @@ body {
   /* Text-size styles */
   /* base size: body (16px) */
   --h1: 2.6rem;
-  --h2: 2rem;
-  --h3: 1.6rem;
+  --h2: 2.4rem;
+  --h3: 2.25rem;
   --h4: 1.25rem;
   --h5: 1.125rem;
   --c1: 1rem;
@@ -95,5 +95,9 @@ a {
 
 h1,
 h2 {
+  letter-spacing: -0.045em;
+}
+
+h3 {
   letter-spacing: -0.045em;
 }

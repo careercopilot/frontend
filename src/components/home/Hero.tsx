@@ -22,7 +22,7 @@ function Hero() {
             {COMPONENT_DATA.title}
           </Title>
           <Button
-            size="lg"
+            size="md"
             leftIcon={<Image src={ICONS.chrome.src} alt={ICONS.chrome.alt} />}
             className={styles.button}
           >
