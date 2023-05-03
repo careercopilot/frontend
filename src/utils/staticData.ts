@@ -19,6 +19,12 @@ import HomeSkillIconsNode from "@/assets/home/skillIcons/Node.svg";
 import HomeSkillIconsTypescript from "@/assets/home/skillIcons/Typescript.svg";
 import HomeSkillIconsAWS from "@/assets/home/skillIcons/AWS.svg";
 
+/** Footer Assets */
+import FooterEmailIcon from "@/assets/icons/footer/Email.svg";
+import FoooterLinkedinIcon from "@/assets/icons/footer/Linkedin.svg";
+import FooterPhoneIcon from "@/assets/icons/footer/Phone.svg";
+import FooterTwitterIcon from "@/assets/icons/footer/Twitter.svg";
+
 export const staticData = {
   pages: {
     index: {
@@ -40,8 +46,8 @@ export const staticData = {
         },
       },
       features: {
-        title: "Let Us Sreamline Your Candidate Selection Process",
-        subTitle: "Focus On Bigger Picture",
+        title: "Let Us Streamline Your Candidate Selection Process",
+        subTitle: "Focus on Bigger Picture",
         features: {
           profileSummary: {
             title: "Get Instant LinkedIn Profile Summary",
@@ -124,6 +130,16 @@ export const staticData = {
     navbar: {
       login: "Login",
       register: "Get Started",
+    },
+    footer: {
+      socialIcons: {
+        Email: FooterEmailIcon,
+        Linkedin: FoooterLinkedinIcon,
+        Phone: FooterPhoneIcon,
+        Twitter: FooterTwitterIcon,
+      } as {
+        [key: string]: string;
+      },
     },
     anylysis: {
       compatibilityScores: {

@@ -24,9 +24,9 @@ function Features() {
   return (
     <div className={styles.container}>
       <div className={styles.titleSec}>
-        <Title weight="500" order={4} align="center">
+        <Text weight="500" size="xxl" align="center">
           {COMPONENT_DATA.subTitle}
-        </Title>
+        </Text>
         <Title
           color="secondary"
           size="var(--h1)"

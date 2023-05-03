@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  padding: 1rem max(1.5rem, calc(50vw - 37.5rem));
+  justify-content: space-between;
+  align-items: center;
+  border-top: var(--general-seperator);
+}
+
+.buttons {
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+}
+
+.logo {
+  display: block;
+  height: 1.5rem;
+  width: fit-content;
+}
+.logoIcon {
+  display: none;
+  height: 1.5rem;
+  width: fit-content;
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+    display: none;
+  }
+  .logoIcon {
+    display: block;
+  }
+}

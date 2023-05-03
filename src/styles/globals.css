@@ -43,7 +43,7 @@ body {
   /* Effect styles */
   --general-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   --general-box-border: 0.5px solid #108cff;
-  --general-seperator: 0.5px solid #868686;
+  --general-seperator: 0.5px solid #eeeeee;
 
   /* Spacing styles */
   --general-box-margins: 1.5rem 1.4rem;

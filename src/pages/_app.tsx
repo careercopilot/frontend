@@ -83,6 +83,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             md: "1rem",
             lg: "1.125rem",
             xl: "1.25rem",
+            xxl: "1.5rem",
           },
         }}
       >
