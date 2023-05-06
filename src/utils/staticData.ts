@@ -119,6 +119,24 @@ export const staticData = {
           },
         },
       },
+      authModal: {
+        login: {
+          title: "Welcome Back",
+          subTitle:
+            "Continue your journey of the streamlining hiring process with us",
+        },
+        register: {
+          title: "Get Started with Us",
+          subTitle:
+            "it takes only 2 minutes to get started with us and Unleash your full potential",
+        },
+      },
+      modalAllowedRouteValues: {
+        login: true,
+        register: true,
+      } as {
+        [key: string]: boolean;
+      },
     },
   },
   components: {
