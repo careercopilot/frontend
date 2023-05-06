@@ -115,6 +115,7 @@ export const staticData = {
           },
           more: {
             button: "Get Started ->",
+            buttonLink: "register",
           },
         },
       },
@@ -128,8 +129,8 @@ export const staticData = {
       // const { categoriesList: COMPONENT_DATA } = staticData.components.index;
     },
     navbar: {
-      login: "Login",
-      register: "Get Started",
+      login: { name: "Login", path: "login" },
+      register: { name: "Get Started", path: "register" },
     },
     footer: {
       socialIcons: {

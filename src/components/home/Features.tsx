@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button, Text, Title } from "@mantine/core";
 import styles from "./Features.module.css";
 import { staticData } from "@/utils/staticData";
@@ -13,9 +14,17 @@ const FEATURE_DSIPLAY_COMPONENTS = {
   compatibilityScores: FeatureScores,
   more: () => (
     <div>
-      <Button color="primary" size="lg">
-        {COMPONENT_DATA.examplesData.more.button}
-      </Button>
+      <Link
+        href={{
+          query: {
+            modal: COMPONENT_DATA.examplesData.more.buttonLink,
+          },
+        }}
+      >
+        <Button color="primary" size="lg">
+          {COMPONENT_DATA.examplesData.more.button}
+        </Button>
+      </Link>
     </div>
   ),
 };
