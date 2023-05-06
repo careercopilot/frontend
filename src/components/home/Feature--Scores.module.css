@@ -30,3 +30,9 @@
 .text {
   letter-spacing: -0.025em;
 }
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+}

@@ -32,7 +32,7 @@
   display: grid;
   grid-template-columns: 1fr 7.93fr 2.31fr;
   align-items: center;
-  gap: 1.85rem;
+  gap: min(1.85rem, 5vw);
   width: 100%;
   max-width: 23.675rem;
 }
@@ -49,6 +49,32 @@
   gap: 0.25rem;
 }
 
-.scoreValue{
-font-size: 2rem;
+.scoreValue {
+  font-size: calc(1.5rem + 0.25vw);
+}
+
+.verticalDivider {
+  visibility: visible;
+}
+.horizontalDivider {
+  visibility: visible;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+
+  .verticalDivider {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 765px) {
+  .horizontalDivider {
+    display: none;
+  }
 }

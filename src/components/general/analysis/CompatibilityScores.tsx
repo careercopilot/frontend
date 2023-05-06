@@ -17,7 +17,9 @@ function CompatibilityScores({ scores }: { scores: CandidateScores }) {
           {COMPONENT_DATA.title}
         </Text>
       </div>
-      <Divider orientation="vertical" />
+
+      <Divider orientation="horizontal" className={styles.horizontalDivider} />
+      <Divider orientation="vertical" className={styles.verticalDivider} />
       <div className={styles.right}>
         {scores.skillScores.map((skill, index) => (
           <div key={index} className={styles.skillScore}>
