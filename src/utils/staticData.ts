@@ -133,12 +133,19 @@ export const staticData = {
     },
     footer: {
       socialIcons: {
-        Email: FooterEmailIcon,
-        Linkedin: FoooterLinkedinIcon,
-        Phone: FooterPhoneIcon,
-        Twitter: FooterTwitterIcon,
-      } as {
-        [key: string]: string;
+        Phone: { src: FooterPhoneIcon, href: "tel:+919374548784" },
+        Email: {
+          src: FooterEmailIcon,
+          href: "mailto:business@careercopilot.in",
+        },
+        Linkedin: {
+          src: FoooterLinkedinIcon,
+          href: "https://www.linkedin.com/company/careercopilot",
+        },
+        Twitter: {
+          src: FooterTwitterIcon,
+          href: "https://twitter.com/_careercopilot",
+        },
       },
     },
     anylysis: {

@@ -29,8 +29,23 @@ function Footer() {
               color="primary.2"
               variant="outline"
               radius="xl"
+              component="a"
+              href={
+                COMPONENT_DATA.socialIcons[
+                  key as keyof typeof COMPONENT_DATA.socialIcons
+                ].href
+              }
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Image src={COMPONENT_DATA.socialIcons[key]} alt={key} />
+              <Image
+                src={
+                  COMPONENT_DATA.socialIcons[
+                    key as keyof typeof COMPONENT_DATA.socialIcons
+                  ].src
+                }
+                alt={key}
+              />
             </ActionIcon>
           </li>
         ))}
