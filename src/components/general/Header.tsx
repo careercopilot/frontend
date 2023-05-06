@@ -15,6 +15,7 @@ function Header() {
         src={generalData.logo.src}
         alt={generalData.logo.alt}
         className={styles.logo}
+        loader={({ src }) => src}
       />
       <Image
         src={generalData.logoIcon.src}
@@ -22,12 +23,16 @@ function Header() {
         className={styles.logoIcon}
       />
       <ul className={styles.buttons}>
-        <Button color="secondary" variant="subtle" size="md">
-          {COMPONENT_DATA.login}
-        </Button>
-        <Button color="secondary" size="md">
-          {COMPONENT_DATA.register}
-        </Button>
+        <li>
+          <Button color="secondary" variant="subtle" size="md">
+            {COMPONENT_DATA.login}
+          </Button>
+        </li>
+        <li>
+          <Button color="secondary" size="md">
+            {COMPONENT_DATA.register}
+          </Button>
+        </li>
       </ul>
     </nav>
   );

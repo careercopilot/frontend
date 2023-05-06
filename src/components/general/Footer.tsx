@@ -23,15 +23,16 @@ function Footer() {
       />
       <ul className={styles.buttons}>
         {Object.keys(COMPONENT_DATA.socialIcons).map((key) => (
-          <ActionIcon
-            size="lg"
-            color="primary.2"
-            key={key}
-            variant="outline"
-            radius="xl"
-          >
-            <Image src={COMPONENT_DATA.socialIcons[key]} alt={key} />
-          </ActionIcon>
+          <li key={key}>
+            <ActionIcon
+              size="lg"
+              color="primary.2"
+              variant="outline"
+              radius="xl"
+            >
+              <Image src={COMPONENT_DATA.socialIcons[key]} alt={key} />
+            </ActionIcon>
+          </li>
         ))}
       </ul>
     </footer>
