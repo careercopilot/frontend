@@ -15,7 +15,7 @@ function Header() {
         src={generalData.logo.src}
         alt={generalData.logo.alt}
         className={styles.logo}
-        loader={({ src }) => src}
+        loading="eager"
       />
       <Image
         src={generalData.logoIcon.src}
