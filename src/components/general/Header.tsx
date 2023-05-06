@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@mantine/core";
 import { staticData } from "@/utils/staticData";
 
@@ -24,14 +25,30 @@ function Header() {
       />
       <ul className={styles.buttons}>
         <li>
-          <Button color="secondary" variant="subtle" size="md">
-            {COMPONENT_DATA.login}
-          </Button>
+          <Link
+            href={{
+              query: {
+                modal: COMPONENT_DATA.login.path,
+              },
+            }}
+          >
+            <Button color="secondary" variant="subtle" size="md">
+              {COMPONENT_DATA.login.name}
+            </Button>
+          </Link>
         </li>
         <li>
-          <Button color="secondary" size="md">
-            {COMPONENT_DATA.register}
-          </Button>
+          <Link
+            href={{
+              query: {
+                modal: COMPONENT_DATA.register.path,
+              },
+            }}
+          >
+            <Button color="secondary" size="md">
+              {COMPONENT_DATA.register.name}
+            </Button>
+          </Link>
         </li>
       </ul>
     </nav>
