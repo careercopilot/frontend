@@ -3,6 +3,11 @@ import { Button, Title } from "@mantine/core";
 import styles from "./Hero.module.css";
 import { staticData } from "@/utils/staticData";
 
+const toBase64 = (str: string) =>
+  typeof window === "undefined"
+    ? Buffer.from(str).toString("base64")
+    : window.btoa(str);
+
 const { hero: COMPONENT_DATA } = staticData.pages.index;
 const { icons: ICONS } = staticData.general;
 
@@ -14,6 +19,7 @@ function Hero() {
           src={COMPONENT_DATA.background.src}
           alt={COMPONENT_DATA.background.alt}
           fill
+          loading="eager"
         />
       </div>
       <div className={styles.content}>
@@ -33,6 +39,7 @@ function Hero() {
           src={COMPONENT_DATA.cover.src}
           alt={COMPONENT_DATA.cover.alt}
           className={styles.cover}
+          loading="eager"
         />
       </div>
     </div>
