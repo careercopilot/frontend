@@ -3,11 +3,6 @@ import { Button, Title } from "@mantine/core";
 import styles from "./Hero.module.css";
 import { staticData } from "@/utils/staticData";
 
-const toBase64 = (str: string) =>
-  typeof window === "undefined"
-    ? Buffer.from(str).toString("base64")
-    : window.btoa(str);
-
 const { hero: COMPONENT_DATA } = staticData.pages.index;
 const { icons: ICONS } = staticData.general;
 
