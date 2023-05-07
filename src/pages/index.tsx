@@ -2,7 +2,7 @@ import { Modal } from "@mantine/core";
 import { useRouter } from "next/router";
 import Header from "@/components/general/Header";
 import Footer from "@/components/general/Footer";
-import { Hero, Features } from "@/components/home";
+import { Hero, Features, AuthModal } from "@/components/home";
 
 import styles from "@/styles/Home.module.css";
 
@@ -24,13 +24,20 @@ export default function Home() {
       <main className={styles.main}>
         <Modal
           opened={
-            PAGE_DATA.modalAllowedRouteValues[router.query.modal as string] === true
+            Object.keys(PAGE_DATA.modalAllowedRouteValues).includes(
+              router.query.modal as string
+            ) || false
           }
           onClose={handleCloseModal}
-          title="Authentication"
+          withCloseButton={false}
           centered
         >
-          {router.query.modal}
+          <AuthModal
+            variant={
+              router.query
+                .modal as keyof typeof PAGE_DATA.modalAllowedRouteValues
+            }
+          />
         </Modal>
         <Header />
         <Hero />
