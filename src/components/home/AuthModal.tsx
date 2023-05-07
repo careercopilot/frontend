@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Button, Title, Text, TextInput } from "@mantine/core";
+import { useForm, UseFormReturnType } from "@mantine/form";
 import styles from "./AuthModal.module.css";
 import { staticData } from "@/utils/staticData";
 import Link from "next/link";
@@ -17,12 +18,44 @@ const InputComponent = {
 
 function AuthModal({ variant }: { variant: string }) {
   const [currentVariant, setCurrentVariant] = React.useState<string>(variant);
+  const mForm: UseFormReturnType<any> = useForm({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+
+    validate: {
+      email: (value: string) =>
+        /^\S+@\S+$/.test(value) ? null : "Invalid email",
+      password: (value: string) =>
+        value.length >= 6 ? null : "Password should be at least 6 characters",
+      confirmPassword: (value: string) =>
+        value === mForm.values.password || currentVariant === "login"
+          ? null
+          : "Passwords should match",
+      firstName: (value: string) =>
+        value.length > 0 || currentVariant === "login"
+          ? null
+          : "First name is required",
+      lastName: (value: string) =>
+        value.length > 0 || currentVariant === "login"
+          ? null
+          : "Last name is required",
+    },
+  });
 
   React.useEffect(() => {
     if (Object.keys(COMPONENT_DATA.titles).includes(variant)) {
       setCurrentVariant(variant);
     }
   }, [variant]);
+
+  const handleSubmit = (values: {}) => {
+    console.log("values", values);
+  };
 
   return (
     <div className={styles.container}>
@@ -34,7 +67,7 @@ function AuthModal({ variant }: { variant: string }) {
           </Text>
         </div>
         <div className={styles.body}>
-          <div className={styles.form}>
+          <form className={styles.form} onSubmit={mForm.onSubmit(handleSubmit)}>
             {COMPONENT_DATA.inputs
               .filter((input) => input.for.includes(currentVariant))
               .map((input, index) => {
@@ -42,11 +75,13 @@ function AuthModal({ variant }: { variant: string }) {
                   InputComponent[input.type as keyof typeof InputComponent];
                 return (
                   <Component
-                    data-autoFocus={index === 0}
+                    data-autofocus={index === 0}
                     type={input.type}
                     placeholder={input.placeholder}
                     name={input.name}
                     key={input.name}
+                    autoComplete={input.autoComplete}
+                    {...mForm.getInputProps(input.name)}
                   />
                 );
               })}
@@ -55,10 +90,11 @@ function AuthModal({ variant }: { variant: string }) {
               size="md"
               fullWidth
               className={styles.submitBtn}
+              type="submit"
             >
               {COMPONENT_DATA.buttons.submit.label}
             </Button>
-          </div>
+          </form>
           <Text align="center"> {GENERAL_CONTENT.or} </Text>
           <Button
             color="primary"

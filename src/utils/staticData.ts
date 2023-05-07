@@ -147,6 +147,7 @@ export const staticData = {
             placeholder: "Enter your first name",
             required: true,
             for: ["register"],
+            autoComplete: "given-name",
           },
           {
             name: "lastName",
@@ -155,6 +156,7 @@ export const staticData = {
             placeholder: "Enter your last name",
             required: true,
             for: ["register"],
+            autoComplete: "family-name",
           },
           {
             name: "email",
@@ -163,6 +165,7 @@ export const staticData = {
             placeholder: "Enter your email",
             required: true,
             for: ["register", "login"],
+            autoComplete: "email",
           },
           {
             name: "password",
@@ -171,6 +174,7 @@ export const staticData = {
             placeholder: "Enter your password",
             required: true,
             for: ["register", "login"],
+            autoComplete: "current-password",
           },
           {
             name: "confirmPassword",
@@ -179,6 +183,7 @@ export const staticData = {
             placeholder: "Confirm your password",
             required: true,
             for: ["register"],
+            autoComplete: "new-password",
           },
         ],
         buttons: {
