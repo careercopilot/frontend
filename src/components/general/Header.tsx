@@ -41,8 +41,6 @@ function Header() {
           color="secondary"
           component={Link}
           href={"/profile"}
-
-
         >
           {userData.image ? null : userData.fName[0] + userData.lName[0]}
         </Avatar>

@@ -231,6 +231,11 @@ export const staticData = {
         register: true,
       },
     },
+    profile: {
+      profileIno: {
+        title: "Your Profile",
+      },
+    },
   },
   components: {
     index: {
