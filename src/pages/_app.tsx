@@ -6,6 +6,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { DefaultSeo } from "next-seo";
 import { Manrope } from "next/font/google";
 import SEO from "../next-seo.config";
+import Header from "@/components/general/Header";
+import Footer from "@/components/general/Footer";
 
 const manropeFont = Manrope({ subsets: ["latin"] });
 
@@ -88,7 +90,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         }}
       >
         <Notifications />
+        <Header />
         <Component {...pageProps} />
+        <Footer />
         <Analytics />
       </MantineProvider>
     </>

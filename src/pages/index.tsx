@@ -1,7 +1,5 @@
 import { Modal } from "@mantine/core";
 import { useRouter } from "next/router";
-import Header from "@/components/general/Header";
-import Footer from "@/components/general/Footer";
 import { Hero, Features, AuthModal } from "@/components/home";
 
 import styles from "@/styles/Home.module.css";
@@ -43,10 +41,8 @@ export default function Home() {
             }
           />
         </Modal>
-        <Header />
         <Hero />
         <Features />
-        <Footer />
       </main>
     </>
   );
