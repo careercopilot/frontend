@@ -20,6 +20,7 @@ const FEATURE_DSIPLAY_COMPONENTS = {
             modal: COMPONENT_DATA.examplesData.more.buttonLink,
           },
         }}
+        tabIndex={-1}
       >
         <Button color="primary" size="lg">
           {COMPONENT_DATA.examplesData.more.button}

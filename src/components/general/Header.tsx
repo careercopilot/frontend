@@ -33,6 +33,7 @@ function Header() {
                 modal: COMPONENT_DATA.login.path,
               },
             }}
+            tabIndex={-1}
           >
             <Button color="secondary" variant="subtle" size="md">
               {COMPONENT_DATA.login.name}
@@ -46,6 +47,7 @@ function Header() {
                 modal: COMPONENT_DATA.register.path,
               },
             }}
+            tabIndex={-1}
           >
             <Button color="secondary" size="md">
               {COMPONENT_DATA.register.name}
