@@ -13,8 +13,8 @@ function Hero() {
         <Image
           src={COMPONENT_DATA.background.src}
           alt={COMPONENT_DATA.background.alt}
-          fill
           loading="eager"
+          priority
         />
       </div>
       <div className={styles.content}>
@@ -35,6 +35,7 @@ function Hero() {
           alt={COMPONENT_DATA.cover.alt}
           className={styles.cover}
           loading="eager"
+          priority
         />
       </div>
     </div>

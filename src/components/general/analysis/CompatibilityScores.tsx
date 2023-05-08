@@ -39,6 +39,10 @@ function CompatibilityScores({ scores }: { scores: CandidateScores }) {
                     )
                   ]
                 }
+                aria-label={COMPONENT_DATA.accessibility.ariaLabel}
+                aria-valuemin={COMPONENT_DATA.accessibility.ariaValueMin}
+                aria-valuemax={COMPONENT_DATA.accessibility.ariaValueMax}
+                aria-valuenow={skill.score}
               />
             </div>
             <Text className={styles.scoreValue} color="black.4" weight={"600"}>

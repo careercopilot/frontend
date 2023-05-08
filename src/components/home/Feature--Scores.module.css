@@ -15,6 +15,7 @@
 .image {
   width: 100%;
   max-width: 5.5rem;
+  height: auto;
   object-fit: contain;
 }
 

@@ -264,6 +264,11 @@ export const staticData = {
       compatibilityScores: {
         title: "Position Match",
         scoreColors: ["orange", "yellow", "lime", "green"],
+        accessibility: {
+          ariaLabel: "Skill Compatibility Score",
+          ariaValueMin: 0,
+          ariaValueMax: 100,
+        },
       },
     },
   },
