@@ -15,6 +15,7 @@ function Hero() {
           alt={COMPONENT_DATA.background.alt}
           loading="eager"
           priority
+          fill
         />
       </div>
       <div className={styles.content}>
