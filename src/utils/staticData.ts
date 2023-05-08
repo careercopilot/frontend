@@ -232,9 +232,12 @@ export const staticData = {
       },
     },
     profile: {
-      profileIno: {
+      profileInfo: {
         title: "Your Profile",
       },
+      history: {
+        title:"History"
+      }
     },
   },
   components: {

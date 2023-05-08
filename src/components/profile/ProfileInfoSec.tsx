@@ -4,7 +4,7 @@ import styles from "./ProfileInfoSec.module.css";
 import { staticData } from "@/utils/staticData";
 import User from "@/interfaces/User";
 
-const { profileIno: COMPONENT_DATA } = staticData.pages.profile;
+const { profileInfo: COMPONENT_DATA } = staticData.pages.profile;
 
 function ProfileInfoSec() {
   /** TODO: Fetched Data */
