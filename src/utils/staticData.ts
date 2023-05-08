@@ -236,8 +236,8 @@ export const staticData = {
         title: "Your Profile",
       },
       history: {
-        title:"History"
-      }
+        title: "History",
+      },
     },
   },
   components: {
@@ -279,6 +279,16 @@ export const staticData = {
         },
       },
     },
+    getExtension: {
+      // title: "Career Copilot is Better with Extension",
+      title: "Take your Hiring process to the Next level",
+      description:
+        "Career Copilot is directly integrated into LinkedIn to seamlessly provide you with a comprehensive overview of a candidate's skills, experience, and potential fit for your organization",
+      cta: {
+        label: "Get Chrome Extension Now",
+        href: "https://chrome.gooogle.com",
+      },
+    },
   },
   general: {
     logo: {
@@ -293,6 +303,8 @@ export const staticData = {
       chrome: {
         src: IconChrome,
         alt: "Chrome",
+        height: 26,
+        width: 26,
       },
       google: {
         src: IconGoogle,

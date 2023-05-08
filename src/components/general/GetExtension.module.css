@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+  align-items: center;
+  padding: calc(4rem + 3vw) 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 55rem;
+}
