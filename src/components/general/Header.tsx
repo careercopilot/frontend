@@ -12,17 +12,19 @@ const generalData = staticData.general;
 function Header() {
   return (
     <nav className={styles.container}>
-      <Image
-        src={generalData.logo.src}
-        alt={generalData.logo.alt}
-        className={styles.logo}
-        loading="eager"
-      />
-      <Image
-        src={generalData.logoIcon.src}
-        alt={generalData.logoIcon.alt}
-        className={styles.logoIcon}
-      />
+      <Link href="/">
+        <Image
+          src={generalData.logo.src}
+          alt={generalData.logo.alt}
+          className={styles.logo}
+          loading="eager"
+        />
+        <Image
+          src={generalData.logoIcon.src}
+          alt={generalData.logoIcon.alt}
+          className={styles.logoIcon}
+        />
+      </Link>
       <ul className={styles.buttons}>
         <li>
           <Link
