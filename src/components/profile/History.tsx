@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Title, Text, Avatar, ActionIcon } from "@mantine/core";
 import styles from "./History.module.css";
 import HistoryItem from "@/interfaces/HistoryItem";
@@ -6,21 +6,23 @@ import HistoryItem from "@/interfaces/HistoryItem";
 import { staticData } from "@/utils/staticData";
 const { history: COMPONENT_DATA } = staticData.pages.profile;
 
+const TMP_SEARCH_HISTORY = new Array(5).fill(0).map(() => ({
+  user: {
+    fName: "Zaire",
+    lName: "Stanton",
+    avatar:
+      Math.random() > 0.5
+        ? "https://avatars.githubusercontent.com/u/56592200?v=4"
+        : undefined,
+    position: "Senior Developer",
+    organization: "Google",
+  },
+  timestamp: new Date().toLocaleDateString(),
+}));
+
 function ProfileInfoSec() {
   /** TODO: Fetched Data */
-  const searchHistory: HistoryItem[] = new Array(5).fill(0).map(() => ({
-    user: {
-      fName: "Zaire",
-      lName: "Stanton",
-      avatar:
-        Math.random() > 0.5
-          ? "https://avatars.githubusercontent.com/u/56592200?v=4"
-          : undefined,
-      position: "Senior Developer",
-      organization: "Google",
-    },
-    timestamp: new Date().toLocaleDateString(),
-  }));
+  const [searchHistory] = useState<HistoryItem[]>(TMP_SEARCH_HISTORY);
 
   return (
     <div className={styles.container}>
