@@ -14,7 +14,6 @@ export default function Home() {
 
   const handleCloseModal = () => {
     router.push({
-      pathname: "/",
       query: {},
     });
   };
@@ -23,6 +22,11 @@ export default function Home() {
     <>
       <main className={styles.main}>
         <Modal
+          size="auto"
+          classNames={{
+            body: styles.modal,
+            content: styles.modalContent,
+          }}
           opened={
             Object.keys(PAGE_DATA.modalAllowedRouteValues).includes(
               router.query.modal as string

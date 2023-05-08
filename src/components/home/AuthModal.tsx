@@ -61,8 +61,10 @@ function AuthModal({ variant }: { variant: string }) {
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.header}>
-          <Title order={2}>{COMPONENT_DATA.titles[currentVariant].title}</Title>
-          <Text size="lg">
+          <Title order={3} className={styles.title}>
+            {COMPONENT_DATA.titles[currentVariant].title}
+          </Title>
+          <Text size="sm" color="black.8">
             {COMPONENT_DATA.titles[currentVariant].subTitle}
           </Text>
         </div>
@@ -81,6 +83,7 @@ function AuthModal({ variant }: { variant: string }) {
                     name={input.name}
                     key={input.name}
                     autoComplete={input.autoComplete}
+                    size="md"
                     {...mForm.getInputProps(input.name)}
                   />
                 );
@@ -95,7 +98,9 @@ function AuthModal({ variant }: { variant: string }) {
               {COMPONENT_DATA.buttons.submit.label}
             </Button>
           </form>
-          <Text align="center"> {GENERAL_CONTENT.or} </Text>
+          <Text size="sm" align="center" color="secondary">
+            {GENERAL_CONTENT.or}
+          </Text>
           <Button
             color="primary"
             variant="light"
@@ -136,6 +141,7 @@ function AuthModal({ variant }: { variant: string }) {
           alt={COMPONENT_DATA.cover.alt}
           width={COMPONENT_DATA.cover.width}
           height={COMPONENT_DATA.cover.height}
+          className={styles.cover}
         />
       </div>
     </div>
