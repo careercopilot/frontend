@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ActionIcon, Button } from "@mantine/core";
 import { staticData } from "@/utils/staticData";
 
@@ -11,16 +12,18 @@ const generalData = staticData.general;
 function Footer() {
   return (
     <footer className={styles.container}>
-      <Image
-        src={generalData.logo.src}
-        alt={generalData.logo.alt}
-        className={styles.logo}
-      />
-      <Image
-        src={generalData.logoIcon.src}
-        alt={generalData.logoIcon.alt}
-        className={styles.logoIcon}
-      />
+      <Link href="/">
+        <Image
+          src={generalData.logo.src}
+          alt={generalData.logo.alt}
+          className={styles.logo}
+        />
+        <Image
+          src={generalData.logoIcon.src}
+          alt={generalData.logoIcon.alt}
+          className={styles.logoIcon}
+        />
+      </Link>
       <ul className={styles.buttons}>
         {Object.keys(COMPONENT_DATA.socialIcons).map((key) => (
           <li key={key}>
