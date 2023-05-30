@@ -5,6 +5,7 @@ import { useForm, UseFormReturnType } from "@mantine/form";
 import styles from "./AuthModal.module.css";
 import { staticData } from "@/utils/staticData";
 import Link from "next/link";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const { authModal: COMPONENT_DATA } = staticData.pages.index;
 const { content: GENERAL_CONTENT } = staticData.general;
@@ -56,6 +57,12 @@ function AuthModal({ variant }: { variant: string }) {
   const handleSubmit = (values: {}) => {
     console.log("values", values);
   };
+
+  const handleGoogleAuth = useGoogleLogin({
+    onSuccess: (codeResponse) => console.log("CODE", codeResponse.code),
+    onError: () => console.log("Google login failed", "error"),
+    flow: "auth-code",
+  });
 
   return (
     <div className={styles.container}>
@@ -114,6 +121,7 @@ function AuthModal({ variant }: { variant: string }) {
             }
             fullWidth
             size="md"
+            onClick={handleGoogleAuth}
           >
             {COMPONENT_DATA.buttons.google.label}
           </Button>
