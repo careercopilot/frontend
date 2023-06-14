@@ -224,6 +224,16 @@ export const staticData = {
           width: 371,
           height: 274,
         },
+        messages: {
+          login: {
+            title: "Login Successful",
+            description: null,
+          },
+          register: {
+            title: "Registered Successfuly",
+            description: null,
+          },
+        },
       },
 
       modalAllowedRouteValues: {

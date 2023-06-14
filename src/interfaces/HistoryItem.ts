@@ -1,7 +1,7 @@
 interface HistoryItem {
   user: {
-    fName: string;
-    lName: string;
+    firstName: string;
+    lastName: string;
     position: string;
     organization: string;
     avatar?: string;

@@ -1,6 +1,7 @@
 import { Modal } from "@mantine/core";
 import { useRouter } from "next/router";
 import { Hero, Features, AuthModal } from "@/components/home";
+import { useCookies } from "react-cookie";
 
 import styles from "@/styles/Home.module.css";
 
@@ -39,6 +40,7 @@ export default function Home() {
               router.query
                 .modal as keyof typeof PAGE_DATA.modalAllowedRouteValues
             }
+            closeModal={handleCloseModal}
           />
         </Modal>
         <Hero />

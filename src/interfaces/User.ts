@@ -1,9 +1,8 @@
-
 interface User {
   _id: string;
-  fName: string;
-  lName: string;
-  image?: string;
+  firstName: string;
+  lastName: string;
+  avatar?: string;
   email: string;
 }
 

@@ -10,8 +10,8 @@ function ProfileInfoSec() {
   /** TODO: Fetched Data */
   const userData: User = {
     _id: "random",
-    fName: "Raj",
-    lName: "Varsani",
+    firstName: "Raj",
+    lastName: "Varsani",
     email: "zairestanton@gmail.com",
   };
 
@@ -22,17 +22,17 @@ function ProfileInfoSec() {
       </Title>
       <div className={styles.info}>
         <Avatar
-          src={userData.image}
-          alt={userData.fName + " " + userData.lName}
+          src={userData.avatar}
+          alt={userData.firstName + " " + userData.lastName}
           color="primary"
           size={80}
           radius={25}
         >
-          {userData.image ? null : userData.fName[0] + userData.lName[0]}
+          {userData.avatar ? null : userData.firstName[0] + userData.lastName[0]}
         </Avatar>
         <div className={styles.infoText}>
           <Title size={30} weight={700} order={3}>
-            {userData.fName} {userData.lName}
+            {userData.firstName} {userData.lastName}
           </Title>
           <Text size="md" color="primary" weight={500}>
             {userData.email}

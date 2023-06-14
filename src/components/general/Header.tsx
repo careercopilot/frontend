@@ -1,23 +1,24 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Avatar } from "@mantine/core";
-import { staticData } from "@/utils/staticData";
+import { Button, Avatar, Skeleton } from "@mantine/core";
+import useSWR from "swr";
+import User from "@/interfaces/User";
+import userService from "@/services/user.service";
+import API_CONSTANTS from "@/utils/apiConstants";
 
 import styles from "./Header.module.css";
-import User from "@/interfaces/User";
 
+import { staticData } from "@/utils/staticData";
 const { navbar: COMPONENT_DATA } = staticData.components;
 const generalData = staticData.general;
 
 function Header() {
-  /** TODO: Fetched Data */
-  const userData: User | null = {
-    _id: "random",
-    fName: "Raj",
-    lName: "Varsani",
-    email: "zairestanton@gmail.com",
-  };
+  const {
+    data: userData,
+    error,
+    isLoading,
+  } = useSWR(API_CONSTANTS.GET_USER, userService.getUserData);
 
   return (
     <nav className={styles.container}>
@@ -34,15 +35,21 @@ function Header() {
           className={styles.logoIcon}
         />
       </Link>
-      {userData ? (
+      {isLoading ? (
+        <Skeleton height={38} circle />
+      ) : !error ? (
         <Avatar
           src={userData.image}
-          alt={userData.fName + " " + userData.lName}
+          alt={userData.firstName + " " + userData.lastName}
           color="secondary"
           component={Link}
           href={"/profile"}
         >
-          {userData.image ? null : userData.fName[0] + userData.lName[0]}
+          {userData.image
+            ? null
+            : (userData.firstName?.[0] + userData.lastName?.[0])
+                .toString()
+                .toUpperCase()}
         </Avatar>
       ) : (
         <ul className={styles.buttons}>

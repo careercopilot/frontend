@@ -6,6 +6,11 @@ import styles from "./AuthModal.module.css";
 import { staticData } from "@/utils/staticData";
 import Link from "next/link";
 import { useGoogleLogin } from "@react-oauth/google";
+import authService from "@/services/auth.service";
+import notificationManager from "@/components/helpers/NotificationManager";
+import { useCookies } from "react-cookie";
+import { mutate } from "swr";
+import API_CONSTANTS from "@/utils/apiConstants";
 
 const { authModal: COMPONENT_DATA } = staticData.pages.index;
 const { content: GENERAL_CONTENT } = staticData.general;
@@ -17,7 +22,14 @@ const InputComponent = {
   password: TextInput,
 };
 
-function AuthModal({ variant }: { variant: string }) {
+function AuthModal({
+  variant,
+  closeModal,
+}: {
+  variant: string;
+  closeModal: () => void;
+}) {
+  const [cookies, setCookie] = useCookies();
   const [currentVariant, setCurrentVariant] = React.useState<string>(variant);
   const mForm: UseFormReturnType<any> = useForm({
     initialValues: {
@@ -54,8 +66,35 @@ function AuthModal({ variant }: { variant: string }) {
     }
   }, [variant]);
 
-  const handleSubmit = (values: {}) => {
-    console.log("values", values);
+  const handleSubmit = async (values: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    confirmPassword: string;
+  }) => {
+    try {
+      let token = null;
+      if (currentVariant === "login") {
+        token = await authService.login(values);
+      } else {
+        token = await authService.signUp(values);
+      }
+
+      setCookie("token", token);
+
+      const messageContents =
+        COMPONENT_DATA.messages[
+          currentVariant as keyof typeof COMPONENT_DATA.messages
+        ];
+      notificationManager.showSuccess(
+        messageContents.title,
+        messageContents.description
+      );
+
+      mutate(API_CONSTANTS.GET_USER);
+      closeModal();
+    } catch (err) {}
   };
 
   const handleGoogleAuth = useGoogleLogin({

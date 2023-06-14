@@ -8,8 +8,8 @@ const { history: COMPONENT_DATA } = staticData.pages.profile;
 
 const TMP_SEARCH_HISTORY = new Array(5).fill(0).map(() => ({
   user: {
-    fName: "Zaire",
-    lName: "Stanton",
+    firstName: "Zaire",
+    lastName: "Stanton",
     avatar:
       Math.random() > 0.5
         ? "https://avatars.githubusercontent.com/u/56592200?v=4"
@@ -34,18 +34,18 @@ function ProfileInfoSec() {
           <div key={index} className={styles.item} tabIndex={0}>
             <Avatar
               src={item.user.avatar}
-              alt={`${item.user.fName} ${item.user.lName}`}
+              alt={`${item.user.firstName} ${item.user.lastName}`}
               radius="xl"
               size={50}
               color="primary"
             >
               {item.user.avatar
                 ? null
-                : item.user.fName[0] + item.user.lName[0]}
+                : item.user.firstName[0] + item.user.lastName[0]}
             </Avatar>
             <div className={styles.itemInfo}>
               <Title size={18} weight={600} order={5}>
-                {`${item.user.fName} ${item.user.lName}`}
+                {`${item.user.firstName} ${item.user.lastName}`}
               </Title>
               <Text size="sm" weight={500} color="black.8">
                 {`${item.user.position} @${item.user.organization}`}
