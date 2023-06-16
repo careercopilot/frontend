@@ -233,6 +233,10 @@ export const staticData = {
             title: "Registered Successfuly",
             description: null,
           },
+          google: {
+            title: "Google Authentication Successful",
+            description: null,
+          },
         },
       },
 

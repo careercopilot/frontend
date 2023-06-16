@@ -1,3 +1,4 @@
+import axios from "axios";
 import Image from "next/image";
 import React from "react";
 import { Button, Title, Text, TextInput } from "@mantine/core";
@@ -11,6 +12,7 @@ import notificationManager from "@/components/helpers/NotificationManager";
 import { useCookies } from "react-cookie";
 import { mutate } from "swr";
 import API_CONSTANTS from "@/utils/apiConstants";
+import { getErrorMessage } from "@/utils/helpers/errorSelector";
 
 const { authModal: COMPONENT_DATA } = staticData.pages.index;
 const { content: GENERAL_CONTENT } = staticData.general;
@@ -66,6 +68,20 @@ function AuthModal({
     }
   }, [variant]);
 
+  const handleAuthSuccess = async (
+    token: string,
+    messageContents: (typeof COMPONENT_DATA.messages)[keyof typeof COMPONENT_DATA.messages]
+  ) => {
+    setCookie("token", token);
+    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    mutate(API_CONSTANTS.GET_USER);
+
+    notificationManager.showSuccess(
+      messageContents.title,
+      messageContents.description
+    );
+  };
+
   const handleSubmit = async (values: {
     email: string;
     password: string;
@@ -80,25 +96,29 @@ function AuthModal({
       } else {
         token = await authService.signUp(values);
       }
-
-      setCookie("token", token);
-
-      const messageContents =
+      handleAuthSuccess(
+        token,
         COMPONENT_DATA.messages[
           currentVariant as keyof typeof COMPONENT_DATA.messages
-        ];
-      notificationManager.showSuccess(
-        messageContents.title,
-        messageContents.description
+        ]
       );
-
-      mutate(API_CONSTANTS.GET_USER);
       closeModal();
-    } catch (err) {}
+    } catch (err: any) {
+      console.log(err);
+      notificationManager.showError(err);
+    }
   };
 
   const handleGoogleAuth = useGoogleLogin({
-    onSuccess: (codeResponse) => console.log("CODE", codeResponse.code),
+    onSuccess: async (codeResponse) => {
+      try {
+        let token = await authService.googleLogin(codeResponse.code);
+        handleAuthSuccess(token, COMPONENT_DATA.messages.google);
+      } catch (err: any) {
+        console.log(err);
+        notificationManager.showError(err);
+      }
+    },
     onError: () => console.log("Google login failed", "error"),
     flow: "auth-code",
   });

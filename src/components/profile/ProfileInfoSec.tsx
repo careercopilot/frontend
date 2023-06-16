@@ -2,13 +2,13 @@ import React from "react";
 import { Title, Text, Avatar } from "@mantine/core";
 import styles from "./ProfileInfoSec.module.css";
 import { staticData } from "@/utils/staticData";
-import User from "@/interfaces/User";
+import IUser from "@/interfaces/User";
 
 const { profileInfo: COMPONENT_DATA } = staticData.pages.profile;
 
 function ProfileInfoSec() {
   /** TODO: Fetched Data */
-  const userData: User = {
+  const userData: IUser = {
     _id: "random",
     firstName: "Raj",
     lastName: "Varsani",

@@ -27,15 +27,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     axios.defaults.headers.common["Authorization"] = "Bearer " + token;
   }
 
-  const [cookies] = useCookies();
-
-  useEffect(() => {
-    if (cookies.token) {
-      axios.defaults.headers.common["Authorization"] =
-        "Bearer " + cookies.token;
-    }
-  }, [cookies]);
-
   return (
     <>
       <style jsx global>{`

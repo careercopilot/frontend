@@ -26,6 +26,16 @@ class AuthService {
       throw err;
     }
   }
+
+  async googleLogin(code: string) {
+    try {
+      const { data } = await axios.post(API_CONSTANTS.GOOGLE_LOGIN, { code });
+      return data;
+    } catch (err: any) {
+      console.log("Error Logging In", err);
+      throw err;
+    }
+  }
 }
 
 const authService = new AuthService();

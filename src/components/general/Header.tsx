@@ -2,10 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Avatar, Skeleton } from "@mantine/core";
-import useSWR from "swr";
-import User from "@/interfaces/User";
-import userService from "@/services/user.service";
-import API_CONSTANTS from "@/utils/apiConstants";
+import { useUser } from "@/hooks/user.swr";
 
 import styles from "./Header.module.css";
 
@@ -14,11 +11,7 @@ const { navbar: COMPONENT_DATA } = staticData.components;
 const generalData = staticData.general;
 
 function Header() {
-  const {
-    data: userData,
-    error,
-    isLoading,
-  } = useSWR(API_CONSTANTS.GET_USER, userService.getUserData);
+  const { userData, isUserDataLoading, error } = useUser();
 
   return (
     <nav className={styles.container}>
@@ -35,17 +28,17 @@ function Header() {
           className={styles.logoIcon}
         />
       </Link>
-      {isLoading ? (
+      {isUserDataLoading ? (
         <Skeleton height={38} circle />
-      ) : !error ? (
+      ) : userData ? (
         <Avatar
-          src={userData.image}
+          src={userData.avatar}
           alt={userData.firstName + " " + userData.lastName}
           color="secondary"
           component={Link}
           href={"/profile"}
         >
-          {userData.image
+          {userData.avatar
             ? null
             : (userData.firstName?.[0] + userData.lastName?.[0])
                 .toString()
