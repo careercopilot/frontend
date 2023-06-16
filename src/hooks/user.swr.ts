@@ -12,6 +12,6 @@ export function useUser() {
   return {
     userData: data as IUser,
     isUserDataLoading: isLoading as boolean,
-    error,
+    errorFetchingUserData: error,
   };
 }

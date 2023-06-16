@@ -11,7 +11,7 @@ const { navbar: COMPONENT_DATA } = staticData.components;
 const generalData = staticData.general;
 
 function Header() {
-  const { userData, isUserDataLoading, error } = useUser();
+  const { userData, isUserDataLoading, errorFetchingUserData } = useUser();
 
   return (
     <nav className={styles.container}>
@@ -28,7 +28,7 @@ function Header() {
           className={styles.logoIcon}
         />
       </Link>
-      {error ? (
+      {errorFetchingUserData ? (
         <ul className={styles.buttons}>
           <li>
             <Link
