@@ -28,23 +28,7 @@ function Header() {
           className={styles.logoIcon}
         />
       </Link>
-      {isUserDataLoading ? (
-        <Skeleton height={38} circle />
-      ) : userData ? (
-        <Avatar
-          src={userData.avatar}
-          alt={userData.firstName + " " + userData.lastName}
-          color="secondary"
-          component={Link}
-          href={"/profile"}
-        >
-          {userData.avatar
-            ? null
-            : (userData.firstName?.[0] + userData.lastName?.[0])
-                .toString()
-                .toUpperCase()}
-        </Avatar>
-      ) : (
+      {error ? (
         <ul className={styles.buttons}>
           <li>
             <Link
@@ -75,6 +59,22 @@ function Header() {
             </Link>
           </li>
         </ul>
+      ) : isUserDataLoading ? (
+        <Skeleton height={38} circle />
+      ) : (
+        <Avatar
+          src={userData.avatar}
+          alt={userData.firstName + " " + userData.lastName}
+          color="secondary"
+          component={Link}
+          href={"/profile"}
+        >
+          {userData.avatar
+            ? null
+            : (userData.firstName?.[0] + userData.lastName?.[0])
+                .toString()
+                .toUpperCase()}
+        </Avatar>
       )}
     </nav>
   );

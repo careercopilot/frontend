@@ -31,7 +31,7 @@ function AuthModal({
   variant: string;
   closeModal: () => void;
 }) {
-  const [cookies, setCookie] = useCookies();
+  const [, setCookie] = useCookies();
   const [currentVariant, setCurrentVariant] = React.useState<string>(variant);
   const mForm: UseFormReturnType<any> = useForm({
     initialValues: {
@@ -74,12 +74,13 @@ function AuthModal({
   ) => {
     setCookie("token", token);
     axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    mutate(API_CONSTANTS.GET_USER);
 
     notificationManager.showSuccess(
       messageContents.title,
       messageContents.description
     );
+
+    mutate(API_CONSTANTS.GET_USER);
   };
 
   const handleSubmit = async (values: {
