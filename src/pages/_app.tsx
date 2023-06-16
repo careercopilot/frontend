@@ -1,5 +1,4 @@
 import "@/styles/globals.css";
-import { useEffect } from "react";
 import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
@@ -12,7 +11,7 @@ import Footer from "@/components/general/Footer";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import config from "@/utils/config";
 import { CookiesProvider } from "react-cookie";
-import { useCookies, Cookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 
 import axios from "axios";
 
