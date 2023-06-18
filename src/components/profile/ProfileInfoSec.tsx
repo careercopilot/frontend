@@ -8,7 +8,7 @@ import { staticData } from "@/utils/staticData";
 const { profileInfo: COMPONENT_DATA } = staticData.pages.profile;
 
 function ProfileInfoSec() {
-  const { userData } = useUser();
+  const { userData, errorFetchingUserData, isUserDataLoading } = useUser();
 
   return (
     <div className={styles.container}>

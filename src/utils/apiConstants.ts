@@ -9,7 +9,7 @@ class APIConstants {
 
   /** Auth Endpoints */
   LOGIN = this.AUTH + "/login";
-  SIGN_UP = this.AUTH + "/signup";
+  REGISTER = this.AUTH + "/signup";
   GOOGLE_LOGIN = this.AUTH + "/google-login";
 
   /** User Endpoints */

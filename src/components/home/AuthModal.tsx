@@ -1,19 +1,21 @@
 import axios from "axios";
 import Image from "next/image";
 import React from "react";
+import { mutate } from "swr";
+import useSWRMutation from "swr/mutation";
+import Link from "next/link";
 import { Button, Title, Text, TextInput } from "@mantine/core";
 import { useForm, UseFormReturnType } from "@mantine/form";
-import styles from "./AuthModal.module.css";
-import { staticData } from "@/utils/staticData";
-import Link from "next/link";
 import { useGoogleLogin } from "@react-oauth/google";
-import authService from "@/services/auth.service";
+
 import notificationManager from "@/components/helpers/NotificationManager";
 import { useCookies } from "react-cookie";
-import { mutate } from "swr";
 import API_CONSTANTS from "@/utils/apiConstants";
-import { getErrorMessage } from "@/utils/helpers/errorSelector";
+import { authenticationFetcher } from "@/hooks/auth.swr";
 
+import styles from "./AuthModal.module.css";
+
+import { staticData } from "@/utils/staticData";
 const { authModal: COMPONENT_DATA } = staticData.pages.index;
 const { content: GENERAL_CONTENT } = staticData.general;
 const { icons: ICONS } = staticData.general;
@@ -62,6 +64,11 @@ function AuthModal({
     },
   });
 
+  const { trigger: authenticate } = useSWRMutation(
+    "authenticate",
+    authenticationFetcher
+  );
+
   React.useEffect(() => {
     if (Object.keys(COMPONENT_DATA.titles).includes(variant)) {
       setCurrentVariant(variant);
@@ -81,6 +88,7 @@ function AuthModal({
     );
 
     mutate(API_CONSTANTS.GET_USER);
+    closeModal();
   };
 
   const handleSubmit = async (values: {
@@ -91,19 +99,16 @@ function AuthModal({
     confirmPassword: string;
   }) => {
     try {
-      let token = null;
-      if (currentVariant === "login") {
-        token = await authService.login(values);
-      } else {
-        token = await authService.signUp(values);
-      }
+      let token = await authenticate({
+        authType: currentVariant,
+        data: values,
+      });
       handleAuthSuccess(
         token,
         COMPONENT_DATA.messages[
           currentVariant as keyof typeof COMPONENT_DATA.messages
         ]
       );
-      closeModal();
     } catch (err: any) {
       console.log(err);
       notificationManager.showError(err);
@@ -113,7 +118,11 @@ function AuthModal({
   const handleGoogleAuth = useGoogleLogin({
     onSuccess: async (codeResponse) => {
       try {
-        let token = await authService.googleLogin(codeResponse.code);
+        let token = await authenticate({
+          authType: "google",
+          data: codeResponse.code,
+        });
+
         handleAuthSuccess(token, COMPONENT_DATA.messages.google);
       } catch (err: any) {
         console.log(err);
