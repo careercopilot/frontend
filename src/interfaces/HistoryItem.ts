@@ -6,7 +6,7 @@ interface HistoryItem {
     organization: string;
     avatar?: string;
   };
-  timestamp: string;
+  timestamp: Date;
 }
 
 export default HistoryItem;

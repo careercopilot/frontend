@@ -17,7 +17,7 @@ const TMP_SEARCH_HISTORY = new Array(5).fill(0).map(() => ({
     position: "Senior Developer",
     organization: "Google",
   },
-  timestamp: new Date().toLocaleDateString(),
+  timestamp: new Date(),
 }));
 
 function ProfileInfoSec() {
@@ -53,7 +53,7 @@ function ProfileInfoSec() {
             </div>
             <div className={styles.itemDate}>
               <Text size="sm" weight={500} color="black.8">
-                {new Date(item.timestamp).toLocaleDateString()}
+                {new Date(item.timestamp).toDateString()}
               </Text>
             </div>
             <div className={styles.itemAction}>

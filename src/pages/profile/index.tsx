@@ -8,9 +8,25 @@ export default function Home() {
     <>
       <main className={styles.main}>
         <ProfileInfoSec />
-        <History />
+        {/* <History /> */}
         <GetExtension />
       </main>
     </>
   );
 }
+
+export const getServerSideProps = async (ctx: any) => {
+  const { req, res } = ctx;
+
+  const cookie = req.headers.cookie;
+
+  if (!cookie) {
+    res.writeHead(302, { Location: "/" });
+    res.end();
+    return { props: {} };
+  }
+
+  return {
+    props: {},
+  };
+};
