@@ -264,6 +264,10 @@ export const staticData = {
     navbar: {
       login: { name: "Login", path: "login" },
       register: { name: "Get Started", path: "register" },
+      menuOptions: {
+        profile: { key : "profile", name: "Profile", path: "/profile" },
+        logout: { key : "logout", name: "Logout" },
+      },
     },
     footer: {
       socialIcons: {

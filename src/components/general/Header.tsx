@@ -1,17 +1,55 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Avatar, Skeleton } from "@mantine/core";
+import { Button, Avatar, Skeleton, Menu, UnstyledButton } from "@mantine/core";
 import { useUser } from "@/hooks/user.swr";
+import { IconUser, IconLogout } from "@tabler/icons-react";
 
 import styles from "./Header.module.css";
 
 import { staticData } from "@/utils/staticData";
+import { useCookies } from "react-cookie";
+import { mutate } from "swr";
+import notificationManager from "../helpers/NotificationManager";
+import API_CONSTANTS from "@/utils/apiConstants";
+import axios from "axios";
 const { navbar: COMPONENT_DATA } = staticData.components;
 const generalData = staticData.general;
 
+const MenuIcons = {
+  profile: IconUser,
+  logout: IconLogout,
+};
+
+interface CustomAvatarProps extends React.ComponentPropsWithoutRef<"button"> {
+  avatar?: string;
+  firstName: string;
+  lastName: string;
+}
+
+// eslint-disable-next-line react/display-name
+const CustomAvatarTrigger = forwardRef<HTMLButtonElement, CustomAvatarProps>(
+  ({ avatar, firstName, lastName, ...others }: CustomAvatarProps, ref) => (
+    <UnstyledButton ref={ref} {...others}>
+      <Avatar src={avatar} alt={firstName + " " + lastName} color="secondary">
+        {avatar
+          ? null
+          : (firstName?.[0] + lastName?.[0]).toString().toUpperCase()}
+      </Avatar>
+    </UnstyledButton>
+  )
+);
+
 function Header() {
   const { userData, isUserDataLoading, errorFetchingUserData } = useUser();
+  const [, setCookie, removeCookie] = useCookies();
+
+  const handleLogout = async () => {
+    removeCookie("token");
+    axios.defaults.headers.common["Authorization"] = null;
+    mutate(API_CONSTANTS.GET_USER);
+    notificationManager.showSuccess("Logged out successfully");
+  };
 
   return (
     <nav className={styles.container}>
@@ -62,19 +100,32 @@ function Header() {
       ) : isUserDataLoading ? (
         <Skeleton height={38} circle />
       ) : (
-        <Avatar
-          src={userData.avatar}
-          alt={userData.firstName + " " + userData.lastName}
-          color="secondary"
-          component={Link}
-          href={"/profile"}
-        >
-          {userData.avatar
-            ? null
-            : (userData.firstName?.[0] + userData.lastName?.[0])
-                .toString()
-                .toUpperCase()}
-        </Avatar>
+        <Menu shadow="md" width={200} position="top-end">
+          <Menu.Target>
+            <CustomAvatarTrigger
+              avatar={userData.avatar}
+              firstName={userData.firstName}
+              lastName={userData.lastName}
+            />
+          </Menu.Target>
+
+          <Menu.Dropdown>
+            <Menu.Item
+              icon={<MenuIcons.profile size={14} />}
+              component={Link}
+              href={COMPONENT_DATA.menuOptions.profile.path}
+            >
+              {COMPONENT_DATA.menuOptions.profile.name}
+            </Menu.Item>
+            <Menu.Item
+              color="red"
+              icon={<MenuIcons.logout size={14} />}
+              onClick={handleLogout}
+            >
+              {COMPONENT_DATA.menuOptions.logout.name}
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
       )}
     </nav>
   );

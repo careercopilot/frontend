@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <main className={styles.main}>
         <ProfileInfoSec />
-        {/* <History /> */}
+        <History />
         <GetExtension />
       </main>
     </>
