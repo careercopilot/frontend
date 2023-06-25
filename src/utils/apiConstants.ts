@@ -14,7 +14,9 @@ class APIConstants {
 
   /** User Endpoints */
   GET_USER = this.USER + "/";
+  GET_USER_HISTORY = this.USER + "/history";
 }
 
 const API_CONSTANTS = new APIConstants();
+
 export default API_CONSTANTS;

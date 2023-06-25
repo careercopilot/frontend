@@ -1,71 +1,97 @@
 import React, { useState } from "react";
-import { Title, Text, Avatar, ActionIcon } from "@mantine/core";
+import {
+  Title,
+  Text,
+  Avatar,
+  ActionIcon,
+  Pagination,
+  Skeleton,
+} from "@mantine/core";
 import styles from "./History.module.css";
 import HistoryItem from "@/interfaces/HistoryItem";
 
 import { staticData } from "@/utils/staticData";
+import { useUserHistory } from "@/hooks/user.swr";
 const { history: COMPONENT_DATA } = staticData.pages.profile;
 
-const TMP_SEARCH_HISTORY = new Array(5).fill(0).map(() => ({
-  user: {
-    firstName: "Zaire",
-    lastName: "Stanton",
-    avatar:
-      Math.random() > 0.5
-        ? "https://avatars.githubusercontent.com/u/56592200?v=4"
-        : undefined,
-    position: "Senior Developer",
-    organization: "Google",
-  },
-  timestamp: new Date(),
-}));
-
 function ProfileInfoSec() {
-  /** TODO: Fetched Data */
-  const [searchHistory] = useState<HistoryItem[]>(TMP_SEARCH_HISTORY);
+  const [activePage, setPage] = useState(1);
+  const { userHistory, isUserHistoryLoading, errorFetchingUserHistory } =
+    useUserHistory(activePage, 10);
 
   return (
     <div className={styles.container}>
       <Title size={22} order={3} weight={600}>
         {COMPONENT_DATA.title}
       </Title>
-      <div className={styles.info}>
-        {searchHistory.map((item, index) => (
-          <div key={index} className={styles.item} tabIndex={0}>
-            <Avatar
-              src={item.user.avatar}
-              alt={`${item.user.firstName} ${item.user.lastName}`}
-              radius="xl"
-              size={50}
-              color="primary"
-            >
-              {item.user.avatar
-                ? null
-                : item.user.firstName[0] + item.user.lastName[0]}
-            </Avatar>
-            <div className={styles.itemInfo}>
-              <Title size={18} weight={600} order={5}>
-                {`${item.user.firstName} ${item.user.lastName}`}
-              </Title>
-              <Text size="sm" weight={500} color="black.8">
-                {`${item.user.position} @${item.user.organization}`}
-              </Text>
-            </div>
-            <div className={styles.itemDate}>
-              <Text size="sm" weight={500} color="black.8">
-                {new Date(item.timestamp).toDateString()}
-              </Text>
-            </div>
-            <div className={styles.itemAction}>
-              <ActionIcon variant="transparent" color="primary" tabIndex={-1}>
-                <Text size={28} weight={300}>
-                  {">"}
+
+      {errorFetchingUserHistory ? (
+        <Text size="lg" weight={500} color="black.8">
+          {COMPONENT_DATA.error}
+        </Text>
+      ) : isUserHistoryLoading ? (
+        <>
+          <Skeleton height={200} />
+        </>
+      ) : (
+        <div className={styles.info}>
+          {userHistory.map((item, index) => (
+            <div key={index} className={styles.item} tabIndex={0}>
+              <Avatar
+                src={item.profile.image}
+                alt={item.profile.name}
+                radius="xl"
+                size={50}
+                color="primary"
+              >
+                {item.profile.image
+                  ? null
+                  : item.profile.name
+                      ?.split(" ")
+                      .map((name) => name[0])
+                      .join("")}
+              </Avatar>
+              <div className={styles.itemInfo}>
+                <Title size={18} weight={600} order={5}>
+                  {item.profile.name}
+                </Title>
+                <Text size="sm" weight={500} color="black.8">
+                  {item.profile.headline}
                 </Text>
-              </ActionIcon>
+              </div>
+              <div className={styles.itemDate}>
+                <Text size="sm" weight={500} color="black.8">
+                  {new Date(item.createdAt).toDateString()}
+                </Text>
+              </div>
+              <div className={styles.itemAction}>
+                <ActionIcon variant="transparent" color="primary" tabIndex={-1}>
+                  <Text size={28} weight={300}>
+                    {">"}
+                  </Text>
+                </ActionIcon>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+
+          {userHistory.length === 0 ? (
+            <>
+              <div className={styles.empty}>
+                <Text
+                  size="lg"
+                  weight={500}
+                  color="black.8"
+                  className={styles.emptyText}
+                >
+                  {COMPONENT_DATA.empty}
+                </Text>
+              </div>
+            </>
+          ) : (
+            <Pagination total={10} />
+          )}
+        </div>
+      )}
     </div>
   );
 }

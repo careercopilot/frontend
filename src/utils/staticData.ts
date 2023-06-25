@@ -251,6 +251,10 @@ export const staticData = {
       },
       history: {
         title: "History",
+        pageSize: 10,
+        error:
+          "Something went wrong while fetching your history. Please try again later",
+        empty: "No history found",
       },
     },
   },
@@ -265,8 +269,8 @@ export const staticData = {
       login: { name: "Login", path: "login" },
       register: { name: "Get Started", path: "register" },
       menuOptions: {
-        profile: { key : "profile", name: "Profile", path: "/profile" },
-        logout: { key : "logout", name: "Logout" },
+        profile: { key: "profile", name: "Profile", path: "/profile" },
+        logout: { key: "logout", name: "Logout" },
       },
     },
     footer: {

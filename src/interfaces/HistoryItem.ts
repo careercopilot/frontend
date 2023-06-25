@@ -1,12 +1,10 @@
 interface HistoryItem {
-  user: {
-    firstName: string;
-    lastName: string;
-    position: string;
-    organization: string;
-    avatar?: string;
+  profile: {
+    name: string;
+    headline: string;
+    image?: string;
   };
-  timestamp: Date;
+  createdAt: string;
 }
 
 export default HistoryItem;

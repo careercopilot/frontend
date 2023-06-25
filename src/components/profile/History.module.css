@@ -47,3 +47,7 @@
   display: none;
   margin-left: auto;
 }
+
+.emptyText {
+  margin: 2rem 1rem;
+}
