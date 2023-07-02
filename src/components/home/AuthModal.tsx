@@ -35,6 +35,8 @@ function AuthModal({
 }) {
   const [, setCookie] = useCookies();
   const [currentVariant, setCurrentVariant] = React.useState<string>(variant);
+  const [googleAccountFetching, setGoogleAccountFetching] =
+    React.useState<boolean>(false);
   const mForm: UseFormReturnType<any> = useForm({
     initialValues: {
       firstName: "",
@@ -64,7 +66,7 @@ function AuthModal({
     },
   });
 
-  const { trigger: authenticate } = useSWRMutation(
+  const { trigger: authenticate, isMutating } = useSWRMutation(
     "authenticate",
     authenticationFetcher
   );
@@ -128,10 +130,19 @@ function AuthModal({
         console.log(err);
         notificationManager.showError(err);
       }
+      setGoogleAccountFetching(false);
     },
-    onError: () => console.log("Google login failed", "error"),
+    onError: (error) => {
+      console.log("Google login failed", error);
+      notificationManager.showError(error);
+      setGoogleAccountFetching(false);
+    },
     flow: "auth-code",
   });
+  const loginWithGoogle = async () => {
+    setGoogleAccountFetching(true);
+    handleGoogleAuth();
+  };
 
   return (
     <div className={styles.container}>
@@ -170,6 +181,7 @@ function AuthModal({
               fullWidth
               className={styles.submitBtn}
               type="submit"
+              disabled={isMutating}
             >
               {COMPONENT_DATA.buttons.submit.label}
             </Button>
@@ -180,6 +192,7 @@ function AuthModal({
           <Button
             color="primary"
             variant="light"
+            disabled={isMutating || googleAccountFetching}
             leftIcon={
               <Image
                 src={ICONS.google.src}
@@ -190,7 +203,7 @@ function AuthModal({
             }
             fullWidth
             size="md"
-            onClick={handleGoogleAuth}
+            onClick={loginWithGoogle}
           >
             {COMPONENT_DATA.buttons.google.label}
           </Button>
