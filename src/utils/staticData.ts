@@ -79,9 +79,9 @@ export const staticData = {
             _id: "",
             firstName: "Zaire",
             lastName: "Stanton",
-            position: "Full Stack Developer @XYZ",
+            position: "Graphic Designer @Pinterest",
             summary:
-              "Lorem ipsum dolor sit amet consectetur. Facilisis nisl eget sagittis duis sollicitudin integer pellentesque purus. Dignissim bibendum elit sagittis morbi aliquam vel tempus commodo scelerisque. Dui nulla urna risus integer. Laoreet ultrices congue sit gravida eu enim eget euismod ultricies.",
+              "Creative Graphic Designer with a passion for visual storytelling. Expertise in brand identity, digital and print design. Seeking new opportunities to create captivating visuals that inspire and engage audiences.",
             image: HomeFeaturesSummaryImage,
           } as CandidateProfile,
           compatibilityScores: {
