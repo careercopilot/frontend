@@ -24,7 +24,8 @@ export function useUserHistory(page = 1, limit = 10) {
   );
 
   return {
-    userHistory: data as HistoryItem[],
+    userHistory: data?.history as HistoryItem[],
+    userHistoryCount: data?.total as number,
     isUserHistoryLoading: isLoading as boolean,
     errorFetchingUserHistory: error,
   };

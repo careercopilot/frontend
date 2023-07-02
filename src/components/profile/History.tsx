@@ -16,8 +16,20 @@ const { history: COMPONENT_DATA } = staticData.pages.profile;
 
 function ProfileInfoSec() {
   const [activePage, setPage] = useState(1);
-  const { userHistory, isUserHistoryLoading, errorFetchingUserHistory } =
-    useUserHistory(activePage, 10);
+  const {
+    userHistory,
+    userHistoryCount,
+    isUserHistoryLoading,
+    errorFetchingUserHistory,
+  } = useUserHistory(activePage, COMPONENT_DATA.pageSize);
+
+  const [totalPages, setTotalPages] = useState(0);
+
+  React.useEffect(() => {
+    if (userHistoryCount !== undefined && userHistoryCount !== null) {
+      setTotalPages(Math.ceil(userHistoryCount / COMPONENT_DATA.pageSize));
+    }
+  }, [userHistoryCount]);
 
   return (
     <div className={styles.container}>
@@ -35,7 +47,7 @@ function ProfileInfoSec() {
         </>
       ) : (
         <div className={styles.info}>
-          {userHistory.map((item, index) => (
+          {userHistory?.map((item, index) => (
             <div key={index} className={styles.item} tabIndex={0}>
               <Avatar
                 src={item.profile.image}
@@ -74,7 +86,7 @@ function ProfileInfoSec() {
             </div>
           ))}
 
-          {userHistory.length === 0 ? (
+          {userHistory?.length === 0 && (
             <>
               <div className={styles.empty}>
                 <Text
@@ -87,11 +99,11 @@ function ProfileInfoSec() {
                 </Text>
               </div>
             </>
-          ) : (
-            <Pagination total={10} />
           )}
         </div>
       )}
+
+      <Pagination total={totalPages} value={activePage} onChange={setPage} />
     </div>
   );
 }

@@ -255,7 +255,7 @@ export const staticData = {
       },
       history: {
         title: "History",
-        pageSize: 10,
+        pageSize: 5,
         error:
           "Something went wrong while fetching your history. Please try again later",
         empty: "No history found",
