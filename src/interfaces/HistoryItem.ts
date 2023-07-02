@@ -4,6 +4,10 @@ interface HistoryItem {
     headline: string;
     image?: string;
   };
+  meta: {
+    source: string;
+    url: string;
+  };
   createdAt: string;
 }
 

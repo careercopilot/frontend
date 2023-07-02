@@ -48,7 +48,13 @@ function ProfileInfoSec() {
       ) : (
         <div className={styles.info}>
           {userHistory?.map((item, index) => (
-            <div key={index} className={styles.item} tabIndex={0}>
+            <a
+              key={index}
+              className={styles.item}
+              tabIndex={0}
+              href={item.meta.url}
+              target="_blank"
+            >
               <Avatar
                 src={item.profile.image}
                 alt={item.profile.name}
@@ -83,7 +89,7 @@ function ProfileInfoSec() {
                   </Text>
                 </ActionIcon>
               </div>
-            </div>
+            </a>
           ))}
 
           {userHistory?.length === 0 && (
