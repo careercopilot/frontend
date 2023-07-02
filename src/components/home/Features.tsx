@@ -1,36 +1,54 @@
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
-import { Button, Text, Title } from "@mantine/core";
+import { Button, Loader, Text, Title } from "@mantine/core";
 import styles from "./Features.module.css";
-import { staticData } from "@/utils/staticData";
 import FeatureSummary from "./Feature--Summary";
 import FeatureScores from "./Feature--Scores";
+import { useUser } from "@/hooks/user.swr";
 
+import { staticData } from "@/utils/staticData";
 const { features: COMPONENT_DATA } = staticData.pages.index;
-const { icons: ICONS } = staticData.general;
-
-const FEATURE_DSIPLAY_COMPONENTS = {
-  profileSummary: FeatureSummary,
-  compatibilityScores: FeatureScores,
-  more: () => (
-    <div>
-      <Link
-        href={{
-          query: {
-            modal: COMPONENT_DATA.examplesData.more.buttonLink,
-          },
-        }}
-        tabIndex={-1}
-      >
-        <Button color="primary" size="lg">
-          {COMPONENT_DATA.examplesData.more.button}
-        </Button>
-      </Link>
-    </div>
-  ),
-};
 
 function Features() {
+  const { userData, isUserDataLoading, errorFetchingUserData } = useUser();
+
+  const FEATURE_DSIPLAY_COMPONENTS = React.useMemo(() => {
+    return {
+      profileSummary: FeatureSummary,
+      compatibilityScores: FeatureScores,
+      more: () => (
+        <div>
+          {isUserDataLoading ? (
+            <Loader />
+          ) : userData && !errorFetchingUserData ? (
+            <Button
+              color="primary"
+              size="lg"
+              component="a"
+              href={COMPONENT_DATA.examplesData.more.loggedInButtonLink}
+              target="_blank"
+            >
+              {COMPONENT_DATA.examplesData.more.loggedInButton}
+            </Button>
+          ) : (
+            <Link
+              href={{
+                query: {
+                  modal: COMPONENT_DATA.examplesData.more.buttonLink,
+                },
+              }}
+              tabIndex={-1}
+            >
+              <Button color="primary" size="lg">
+                {COMPONENT_DATA.examplesData.more.button}
+              </Button>
+            </Link>
+          )}
+        </div>
+      ),
+    };
+  }, [userData, isUserDataLoading, errorFetchingUserData]);
+
   return (
     <div className={styles.container}>
       <div className={styles.titleSec}>

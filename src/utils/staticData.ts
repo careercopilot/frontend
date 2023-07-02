@@ -27,6 +27,8 @@ import FoooterLinkedinIcon from "@/assets/icons/footer/Linkedin.svg";
 import FooterPhoneIcon from "@/assets/icons/footer/Phone.svg";
 import FooterTwitterIcon from "@/assets/icons/footer/Twitter.svg";
 
+export const LINKEDIN_BASE_URL = "https://www.linkedin.com/in/";
+
 export const staticData = {
   pages: {
     index: {
@@ -118,6 +120,8 @@ export const staticData = {
           more: {
             button: "Get Started ->",
             buttonLink: "register",
+            loggedInButton: "Explore on LinkedIn ->",
+            loggedInButtonLink: LINKEDIN_BASE_URL,
           },
         },
       },
