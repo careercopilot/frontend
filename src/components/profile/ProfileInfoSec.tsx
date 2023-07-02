@@ -37,7 +37,10 @@ function ProfileInfoSec() {
             >
               {userData.avatar
                 ? null
-                : (userData.firstName?.[0] + userData.lastName?.[0])
+                : (
+                    (userData.firstName || "")?.charAt(0).toUpperCase() +
+                    (userData.lastName || "")?.charAt(0).toUpperCase()
+                  )
                     .toString()
                     .toUpperCase()}
             </Avatar>

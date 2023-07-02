@@ -29,12 +29,16 @@ interface CustomAvatarProps extends React.ComponentPropsWithoutRef<"button"> {
 
 // eslint-disable-next-line react/display-name
 const CustomAvatarTrigger = forwardRef<HTMLButtonElement, CustomAvatarProps>(
-  ({ avatar, firstName, lastName, ...others }: CustomAvatarProps, ref) => (
+  (
+    { avatar, firstName = "", lastName = "", ...others }: CustomAvatarProps,
+    ref
+  ) => (
     <UnstyledButton ref={ref} {...others}>
       <Avatar src={avatar} alt={firstName + " " + lastName} color="secondary">
         {avatar
           ? null
-          : (firstName?.[0] + lastName?.[0]).toString().toUpperCase()}
+          : firstName?.charAt(0).toUpperCase() +
+            lastName?.charAt(0).toUpperCase()}
       </Avatar>
     </UnstyledButton>
   )
