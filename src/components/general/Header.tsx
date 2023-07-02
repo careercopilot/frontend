@@ -34,7 +34,14 @@ const CustomAvatarTrigger = forwardRef<HTMLButtonElement, CustomAvatarProps>(
     ref
   ) => (
     <UnstyledButton ref={ref} {...others}>
-      <Avatar src={avatar} alt={firstName + " " + lastName} color="secondary">
+      <Avatar
+        src={avatar}
+        alt={firstName + " " + lastName}
+        color="secondary"
+        imageProps={{
+          referrerPolicy: "no-referrer",
+        }}
+      >
         {avatar
           ? null
           : firstName?.charAt(0).toUpperCase() +
