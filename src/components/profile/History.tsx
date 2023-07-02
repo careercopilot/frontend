@@ -55,7 +55,7 @@ function ProfileInfoSec() {
                 <Title size={18} weight={600} order={5}>
                   {item.profile.name}
                 </Title>
-                <Text size="sm" weight={500} color="black.8">
+                <Text size="sm" weight={500} color="black.8" lineClamp={1}>
                   {item.profile.headline}
                 </Text>
               </div>
