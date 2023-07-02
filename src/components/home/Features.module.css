@@ -62,6 +62,6 @@
 }
 
 .featureDescription {
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   max-width: 42rem;
 }
