@@ -13,7 +13,8 @@
 }
 
 .item {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1rem;
   padding: 1rem 1rem;
@@ -41,6 +42,7 @@
 .itemDate {
   margin-left: auto;
   display: block;
+  width: fit-content;
 }
 
 .itemAction {
