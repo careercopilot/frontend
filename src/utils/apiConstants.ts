@@ -18,5 +18,6 @@ class APIConstants {
 }
 
 const API_CONSTANTS = new APIConstants();
+console.log(API_CONSTANTS.BASE_URL);
 
 export default API_CONSTANTS;

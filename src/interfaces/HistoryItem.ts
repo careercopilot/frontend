@@ -9,6 +9,8 @@ interface HistoryItem {
     url: string;
   };
   createdAt: string;
+  position: string;
+  linkedinUrl: string;
 }
 
 export default HistoryItem;

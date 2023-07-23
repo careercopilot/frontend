@@ -52,7 +52,7 @@ function ProfileInfoSec() {
               key={index}
               className={styles.item}
               tabIndex={0}
-              href={item.meta.url}
+              href={item.linkedinUrl}
               target="_blank"
             >
               <Avatar
@@ -70,8 +70,10 @@ function ProfileInfoSec() {
                       .join("")}
               </Avatar>
               <div className={styles.itemInfo}>
-                <Title size={18} weight={600} order={5}>
+                <Title size={18} weight={600} order={5} lineClamp={1}>
                   {item.profile.name}
+                  {" • "}
+                  {item.position}
                 </Title>
                 <Text size="sm" weight={500} color="black.8" lineClamp={1}>
                   {item.profile.headline}
