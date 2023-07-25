@@ -38,9 +38,10 @@ import { DefaultSeoProps } from "next-seo";
 // <meta property="twitter:image" content="/og.png"></meta>
 
 const config: DefaultSeoProps = {
-  title: "Career Copilot : Revolutionize your hiring process with AI",
+  title:
+    "Career Copilot : #1 AI Hiring Tool, Speed Up Your Hiring With AI, Candidate Screening with AI",
   description:
-    "Our AI-based solution provides comprehensive profile analysis and comparison for hiring managers, making recruitment faster, smarter, and more efficient. Our platform helps companies evaluate candidates more objectively, reducing the risk of human bias and ensuring the best fit for their teams",
+    "Our AI-based solution provides advanced profile analysis and comparison for hiring managers, making recruitment faster, smarter, and more efficient. 4X your productivity with career copilot. Our platform helps companies evaluate candidates more objectively, reducing the risk of human bias and ensuring the best fit for their teams",
   canonical: "https://www.careercopilot.in/",
   themeColor: "#0F89F9",
   openGraph: {

@@ -27,6 +27,9 @@ function Hero() {
             size="md"
             leftIcon={<Image src={ICONS.chrome.src} alt={ICONS.chrome.alt} />}
             className={styles.button}
+            component="a"
+            href={COMPONENT_DATA.ctaLink}
+            target="_blank"
           >
             {COMPONENT_DATA.cta}
           </Button>

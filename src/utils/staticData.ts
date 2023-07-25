@@ -28,6 +28,8 @@ import FooterPhoneIcon from "@/assets/icons/footer/Phone.svg";
 import FooterTwitterIcon from "@/assets/icons/footer/Twitter.svg";
 
 export const LINKEDIN_BASE_URL = "https://www.linkedin.com/in/";
+export const CHROME_EXTENSION_URL =
+  "https://chrome.google.com/webstore/detail/career-copilot/ifpbcfpkdpfkblkfnefmkngnkkkieckm";
 
 export const staticData = {
   pages: {
@@ -40,6 +42,7 @@ export const staticData = {
         title:
           "Revolutionize your hiring process with AI-driven profile insights",
         cta: "Get Chrome Extension Now",
+        ctaLink: CHROME_EXTENSION_URL,
         cover: {
           src: HomeHeroCover,
           alt: "Simplified hiring process",
