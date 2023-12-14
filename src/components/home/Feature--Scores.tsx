@@ -20,16 +20,16 @@ function FeatureScores() {
           <div className={styles.titles}>
             <Title
               order={4}
-              color="secondary"
-              weight={700}
+              c="secondary"
+              fw={700}
               className={styles.title}
             >
               {COMPONENT_DATA.candidate.firstName}{" "}
               {COMPONENT_DATA.candidate.lastName}
             </Title>
             <Text
-              color="black.6"
-              weight="500"
+              c="black.6"
+              fw="500"
               size="md"
               className={styles.text}
             >

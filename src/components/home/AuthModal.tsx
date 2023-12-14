@@ -151,7 +151,7 @@ function AuthModal({
           <Title order={3} className={styles.title}>
             {COMPONENT_DATA.titles[currentVariant].title}
           </Title>
-          <Text size="sm" color="black.8">
+          <Text size="sm" c="black.8">
             {COMPONENT_DATA.titles[currentVariant].subTitle}
           </Text>
         </div>
@@ -186,14 +186,14 @@ function AuthModal({
               {COMPONENT_DATA.buttons.submit.label}
             </Button>
           </form>
-          <Text size="sm" align="center" color="secondary">
+          <Text size="sm" ta="center" c="secondary">
             {GENERAL_CONTENT.or}
           </Text>
           <Button
             color="primary"
             variant="light"
             disabled={isMutating || googleAccountFetching}
-            leftIcon={
+            leftSection={
               <Image
                 src={ICONS.google.src}
                 alt={ICONS.google.alt}
@@ -209,7 +209,7 @@ function AuthModal({
           </Button>
         </div>
         <div className={styles.footer}>
-          <Text align="center" inline>
+          <Text ta="center" inline>
             {COMPONENT_DATA.changeMode[currentVariant].label}{" "}
             <Link
               href={{
@@ -218,7 +218,7 @@ function AuthModal({
                 },
               }}
             >
-              <Text color="primary" component="span">
+              <Text c="primary" component="span">
                 {COMPONENT_DATA.changeMode[currentVariant].button.label}
               </Text>
             </Link>

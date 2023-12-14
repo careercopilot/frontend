@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { Button, Text, Title } from "@mantine/core";
-import styles from "./Feature--Summary.module.css";
 import { staticData } from "@/utils/staticData";
+import { Text, Title } from "@mantine/core";
+import Image from "next/image";
+import styles from "./Feature--Summary.module.css";
 
 const { profileSummary: COMPONENT_DATA } =
   staticData.pages.index.features.examplesData;
@@ -16,19 +16,14 @@ function FeatureSummary() {
       />
       <div className={styles.content}>
         <div className={styles.titles}>
-          <Title
-            order={4}
-            color="secondary"
-            weight={700}
-            className={styles.title}
-          >
+          <Title order={4} c="secondary" fw={700} className={styles.title}>
             {COMPONENT_DATA.firstName} {COMPONENT_DATA.lastName}
           </Title>
-          <Text color="primary" weight="500" size="md" className={styles.text}>
+          <Text c="primary" fw="500" size="md" className={styles.text}>
             {COMPONENT_DATA.position}
           </Text>
         </div>
-        <Text size={"lg"} color="black.4" className={styles.text}>
+        <Text size={"lg"} c="black.4" className={styles.text}>
           {COMPONENT_DATA.summary}
         </Text>
       </div>

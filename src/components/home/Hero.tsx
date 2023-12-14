@@ -20,12 +20,14 @@ function Hero() {
       </div>
       <div className={styles.content}>
         <div className={styles.titleSec}>
-          <Title order={1} weight={800} align="center">
+          <Title order={1} fw={800} ta="center">
             {COMPONENT_DATA.title}
           </Title>
           <Button
             size="md"
-            leftIcon={<Image src={ICONS.chrome.src} alt={ICONS.chrome.alt} />}
+            leftSection={
+              <Image src={ICONS.chrome.src} alt={ICONS.chrome.alt} />
+            }
             className={styles.button}
             component="a"
             href={COMPONENT_DATA.ctaLink}

@@ -1,0 +1,167 @@
+import Footer from "@/components/general/Footer";
+import Header from "@/components/general/Header";
+import "@/styles/globals.css";
+import config from "@/utils/config";
+import { ColorSchemeScript, MantineProvider, createTheme } from "@mantine/core";
+import "@mantine/core/styles.css";
+import { Notifications } from "@mantine/notifications";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
+import ClinetProvider from "./clinetProvider";
+
+const manropeFont = Manrope({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title:
+    "Career Copilot : #1 AI Hiring Tool, Speed Up Your Hiring With AI, Candidate Screening with AI",
+  description:
+    "Our AI-based solution provides advanced profile analysis and comparison for hiring managers, making recruitment faster, smarter, and more efficient. 4X your productivity with career copilot. Our platform helps companies evaluate candidates more objectively, reducing the risk of human bias and ensuring the best fit for their teams",
+  themeColor: "#0F89F9",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.careercopilot.in/",
+    siteName: "Career Copilot",
+    title: "Career Copilot : Revolutionize your hiring process with AI",
+    description:
+      "Our AI-based solution provides comprehensive profile analysis and comparison for hiring managers, making recruitment faster, smarter, and more efficient. Our platform helps companies evaluate candidates more objectively, reducing the risk of human bias and ensuring the best fit for their teams",
+    images: [
+      {
+        url: "/og.png",
+        width: 800,
+        height: 600,
+        alt: "Career Copilot",
+        type: "image/png",
+      },
+      {
+        url: "/twitter-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Career Copilot",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    site: "@_careercopilot",
+    card: "summary_large_image",
+    creator: "@_careercopilot",
+    creatorId: "https://twitter.com/_careercopilot",
+    images: [
+      {
+        url: "/twitter-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Career Copilot",
+        type: "image/png",
+      },
+    ],
+  },
+  keywords:
+    "Career Copilot, Hiring Copilot, AI Profile Insights, AI candidate Insights, AI candidate evaluation, AI, Artificial Intelligence, Hiring, Recruitment, Hiring Process, Hiring Platform, Hiring Software, AI Profile Comparison, AI Hiring, AI Hiring Platform, AI Hiring Software",
+};
+
+export default function RootLayout({ children }: { children: any }) {
+  return (
+    <html lang="en">
+      <head>
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
+        <style jsx global>{`
+          * {
+            font-family: ${manropeFont.style.fontFamily};
+          }
+        `}</style>
+        <ColorSchemeScript
+          forceColorScheme="light"
+          defaultColorScheme="light"
+        />
+      </head>
+
+      <body>
+        <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
+          <MantineProvider
+            theme={createTheme({
+              /** Mantine theme override here */
+
+              colors: {
+                primary: [
+                  "#E5F4FF",
+                  "#A8D9FF",
+                  "#72C2FF",
+                  "#43ADFF",
+                  "#1E9AFF",
+                  "#0F89F9",
+                  "#0078F4",
+                  "#0069DA",
+                  "#005BBD",
+                  "#004FA5",
+                ],
+                secondary: [
+                  "#EDEEF6",
+                  "#5F6EBB",
+                  "#29377C",
+                  "#131C4E",
+                  "#070E32",
+                  "#010620",
+                  "#00010A",
+                  "#000003",
+                  "#000001",
+                  "#000107",
+                ],
+                black: [
+                  "#000000",
+                  "#111111",
+                  "#222222",
+                  "#333333",
+                  "#444444",
+                  "#555555",
+                  "#666666",
+                  "#777777",
+                  "#888888",
+                  "#999999",
+                ],
+              },
+              primaryShade: 5,
+              primaryColor: "primary",
+              fontFamily: manropeFont.style.fontFamily,
+              defaultRadius: "var(--general-box-border-radius)",
+              headings: {
+                fontFamily: manropeFont.style.fontFamily,
+                sizes: {
+                  h1: { fontSize: "var(--h1)" },
+                  h2: { fontSize: "var(--h2)" },
+                  h3: { fontSize: "var(--h3)" },
+                  h4: { fontSize: "var(--h4)" },
+                  h5: { fontSize: "var(--h5)" },
+                  h6: { fontSize: "var(--h6)" },
+                },
+              },
+              fontSizes: {
+                xs: "0.625rem",
+                sm: "0.875rem",
+                md: "1rem",
+                lg: "1.125rem",
+                xl: "1.25rem",
+                xxl: "1.5rem",
+              },
+            })}
+          >
+            <ClinetProvider>
+              <Notifications />
+              <Header />
+              {children}
+              <Footer />
+              <Analytics />
+            </ClinetProvider>
+          </MantineProvider>
+        </GoogleOAuthProvider>
+      </body>
+    </html>
+  );
+}

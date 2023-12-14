@@ -52,15 +52,15 @@ function Features() {
   return (
     <div className={styles.container}>
       <div className={styles.titleSec}>
-        <Text weight="500" size="xxl" align="center">
+        <Text fw="500" size="xxl" ta="center">
           {COMPONENT_DATA.subTitle}
         </Text>
         <Title
-          color="secondary"
+          c="secondary"
           size="var(--h1)"
-          weight={700}
+          fw={700}
           order={2}
-          align="center"
+          ta="center"
         >
           {COMPONENT_DATA.title}
         </Title>
@@ -81,12 +81,12 @@ function Features() {
               </div>
               <div className={styles.content}>
                 <div className={styles.featureTitleSec}>
-                  <Title order={3} color="secondary" weight={700}>
+                  <Title order={3} c="secondary" fw={700}>
                     {COMPONENT_DATA.features[key].title}
                   </Title>
                   <Text
                     size={"lg"}
-                    color="black.4"
+                    c="black.4"
                     className={styles.featureDescription}
                   >
                     {COMPONENT_DATA.features[key].description}

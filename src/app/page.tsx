@@ -1,5 +1,7 @@
+"use client";
+
 import { Modal } from "@mantine/core";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Hero, Features, AuthModal } from "@/components/home";
 import { useCookies } from "react-cookie";
 
@@ -10,11 +12,10 @@ const PAGE_DATA = staticData.pages.index;
 
 export default function Home() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleCloseModal = () => {
-    router.push({
-      query: {},
-    });
+    router.push("/");
   };
 
   return (
@@ -28,7 +29,7 @@ export default function Home() {
           }}
           opened={
             Object.keys(PAGE_DATA.modalAllowedRouteValues).includes(
-              router.query.modal as string
+              searchParams.get("modal") as string
             ) || false
           }
           onClose={handleCloseModal}
@@ -37,8 +38,9 @@ export default function Home() {
         >
           <AuthModal
             variant={
-              router.query
-                .modal as keyof typeof PAGE_DATA.modalAllowedRouteValues
+              searchParams.get(
+                "modal"
+              ) as keyof typeof PAGE_DATA.modalAllowedRouteValues
             }
             closeModal={handleCloseModal}
           />

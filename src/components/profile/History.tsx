@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+"use client";
+
+import { useUserHistory } from "@/hooks/user.swr";
+import { staticData } from "@/utils/staticData";
 import {
-  Title,
-  Text,
-  Avatar,
   ActionIcon,
+  Avatar,
   Pagination,
   Skeleton,
+  Text,
+  Title,
 } from "@mantine/core";
+import React, { useState } from "react";
 import styles from "./History.module.css";
-import HistoryItem from "@/interfaces/HistoryItem";
-
-import { staticData } from "@/utils/staticData";
-import { useUserHistory } from "@/hooks/user.swr";
 const { history: COMPONENT_DATA } = staticData.pages.profile;
 
 function ProfileInfoSec() {
@@ -33,12 +33,12 @@ function ProfileInfoSec() {
 
   return (
     <div className={styles.container}>
-      <Title size={22} order={3} weight={600}>
+      <Title size={22} order={3} fw={600}>
         {COMPONENT_DATA.title}
       </Title>
 
       {errorFetchingUserHistory ? (
-        <Text size="lg" weight={500} color="black.8">
+        <Text size="lg" fw={500} c="black.8">
           {COMPONENT_DATA.error}
         </Text>
       ) : isUserHistoryLoading ? (
@@ -70,37 +70,36 @@ function ProfileInfoSec() {
                       .join("")}
               </Avatar>
               <div className={styles.itemInfo}>
-                <Title size={18} weight={600} order={5} lineClamp={1}>
+                <Title size={18} fw={600} order={5} lineClamp={1}>
                   {item.profile.name}
                   {" • "}
                   {item.position}
                 </Title>
-                <Text size="sm" weight={500} color="black.8" lineClamp={1}>
+                <Text size="sm" fw={500} c="black.8" lineClamp={1}>
                   {item.profile.headline}
                 </Text>
               </div>
               <div className={styles.itemDate}>
-                <Text size="sm" weight={500} color="black.8">
+                <Text size="sm" fw={500} c="black.8">
                   {new Date(item.createdAt).toDateString()}
                 </Text>
               </div>
               <div className={styles.itemAction}>
-                <ActionIcon variant="transparent" color="primary" tabIndex={-1}>
-                  <Text size={28} weight={300}>
+                <ActionIcon variant="transparent" c="primary" tabIndex={-1}>
+                  <Text fz={28} fw={300}>
                     {">"}
                   </Text>
                 </ActionIcon>
               </div>
             </a>
           ))}
-
           {userHistory?.length === 0 && (
             <>
               <div className={styles.empty}>
                 <Text
                   size="lg"
-                  weight={500}
-                  color="black.8"
+                  fw={500}
+                  c="black.8"
                   className={styles.emptyText}
                 >
                   {COMPONENT_DATA.empty}

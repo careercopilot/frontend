@@ -1,11 +1,12 @@
-import React from "react";
-import { Title, Text, Avatar, Skeleton } from "@mantine/core";
-import { useRouter } from "next/router";
-import { useUser } from "@/hooks/user.swr";
+"use client";
 
+import { useUser } from "@/hooks/user.swr";
+import { staticData } from "@/utils/staticData";
+import { Avatar, Skeleton, Text, Title } from "@mantine/core";
+import { useRouter } from "next/navigation";
+import React from "react";
 import styles from "./ProfileInfoSec.module.css";
 
-import { staticData } from "@/utils/staticData";
 const { profileInfo: COMPONENT_DATA } = staticData.pages.profile;
 
 function ProfileInfoSec() {
@@ -21,7 +22,7 @@ function ProfileInfoSec() {
   return (
     <>
       <div className={styles.container}>
-        <Title size={28} order={2} weight="bold">
+        <Title fz={28} order={2} fw="bold">
           {COMPONENT_DATA.title}
         </Title>
         <div className={styles.info}>
@@ -54,10 +55,10 @@ function ProfileInfoSec() {
               </>
             ) : (
               <>
-                <Title size={30} weight={700} order={3}>
+                <Title size={30} fw={700} order={3}>
                   {userData.firstName} {userData.lastName}
                 </Title>
-                <Text size="md" color="primary" weight={500}>
+                <Text size="md" c="primary" fw={500}>
                   {userData.email}
                 </Text>
               </>

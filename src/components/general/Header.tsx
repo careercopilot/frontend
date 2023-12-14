@@ -1,18 +1,18 @@
-import React, { forwardRef } from "react";
+"use client";
+
+import { useUser } from "@/hooks/user.swr";
+import API_CONSTANTS from "@/utils/apiConstants";
+import { staticData } from "@/utils/staticData";
+import { Avatar, Button, Menu, Skeleton, UnstyledButton } from "@mantine/core";
+import { IconLogout, IconUser } from "@tabler/icons-react";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Avatar, Skeleton, Menu, UnstyledButton } from "@mantine/core";
-import { useUser } from "@/hooks/user.swr";
-import { IconUser, IconLogout } from "@tabler/icons-react";
-
-import styles from "./Header.module.css";
-
-import { staticData } from "@/utils/staticData";
+import React, { forwardRef } from "react";
 import { useCookies } from "react-cookie";
 import { mutate } from "swr";
 import notificationManager from "../helpers/NotificationManager";
-import API_CONSTANTS from "@/utils/apiConstants";
-import axios from "axios";
+import styles from "./Header.module.css";
 const { navbar: COMPONENT_DATA } = staticData.components;
 const generalData = staticData.general;
 
@@ -122,15 +122,15 @@ function Header() {
 
           <Menu.Dropdown>
             <Menu.Item
-              icon={<MenuIcons.profile size={14} />}
+              leftSection={<MenuIcons.profile size={14} />}
               component={Link}
               href={COMPONENT_DATA.menuOptions.profile.path}
             >
               {COMPONENT_DATA.menuOptions.profile.name}
             </Menu.Item>
             <Menu.Item
-              color="red"
-              icon={<MenuIcons.logout size={14} />}
+              c="red"
+              leftSection={<MenuIcons.logout size={14} />}
               onClick={handleLogout}
             >
               {COMPONENT_DATA.menuOptions.logout.name}

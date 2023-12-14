@@ -1,9 +1,9 @@
-import React from "react";
+"use client";
+
+import { staticData } from "@/utils/staticData";
+import { ActionIcon } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
-import { ActionIcon, Button } from "@mantine/core";
-import { staticData } from "@/utils/staticData";
-
 import styles from "./Footer.module.css";
 
 const { footer: COMPONENT_DATA } = staticData.components;
@@ -29,7 +29,7 @@ function Footer() {
           <li key={key}>
             <ActionIcon
               size="lg"
-              color="primary.2"
+              c="primary.2"
               variant="outline"
               radius="xl"
               component="a"
