@@ -25,6 +25,7 @@
     "eslint-config-next": "latest",
     "next": "latest",
     "react": "latest",
+    "react-cookie": "^6.1.1",
     "react-dom": "latest",
     "swr": "^2.2.4",
     "typescript": "5.3.3"
