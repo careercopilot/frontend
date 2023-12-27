@@ -8,6 +8,7 @@ import { Notifications } from "@mantine/notifications";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
+import { Viewport } from "next";
 import { Manrope } from "next/font/google";
 import ClinetProvider from "./clinetProvider";
 
@@ -18,7 +19,6 @@ export const metadata: Metadata = {
     "Career Copilot : #1 AI Hiring Tool, Speed Up Your Hiring With AI, Candidate Screening with AI",
   description:
     "Our AI-based solution provides advanced profile analysis and comparison for hiring managers, making recruitment faster, smarter, and more efficient. 4X your productivity with career copilot. Our platform helps companies evaluate candidates more objectively, reducing the risk of human bias and ensuring the best fit for their teams",
-  themeColor: "#0F89F9",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -61,6 +61,11 @@ export const metadata: Metadata = {
   },
   keywords:
     "Career Copilot, Hiring Copilot, AI Profile Insights, AI candidate Insights, AI candidate evaluation, AI, Artificial Intelligence, Hiring, Recruitment, Hiring Process, Hiring Platform, Hiring Software, AI Profile Comparison, AI Hiring, AI Hiring Platform, AI Hiring Software",
+  metadataBase: new URL("https://www.careercopilot.in/"),
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0F89F9",
 };
 
 export default function RootLayout({ children }: { children: any }) {
