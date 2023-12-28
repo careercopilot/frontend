@@ -1,6 +1,5 @@
 /** Interfaces */
 import CandidateProfile from "@/interfaces/CandidateProfile";
-import CandidateScores from "@/interfaces/CandidateScores";
 
 /** General Assets */
 import Logo from "@/assets/Logo.svg";
@@ -11,15 +10,18 @@ import IconChrome from "@/assets/icons/Chrome.svg";
 import IconGoogle from "@/assets/icons/Google.svg";
 
 /** Home Page Assets */
-import HomeHeroCover from "@/assets/home/HeroCover.svg";
-import HomeHeroBackground from "@/assets/home/HeroBackground.svg";
-import HomeFeaturesSummaryImage from "@/assets/home/FeaturesSummaryImage.svg";
+import AuthModalImage from "@/assets/home/AuthModalImage.svg";
 import HomeFeaturesCompatibilityImage from "@/assets/home/FeaturesCompatibilityImage.svg";
+import HomeFeaturesSummaryImage from "@/assets/home/FeaturesSummaryImage.svg";
+import HomeHeroBackground from "@/assets/home/HeroBackground.svg";
+import HomeHeroCover from "@/assets/home/HeroCover.svg";
+import HomeSkillIconsAWS from "@/assets/home/skillIcons/AWS.svg";
 import HomeSkillIconsJavascript from "@/assets/home/skillIcons/Javascript.svg";
 import HomeSkillIconsNode from "@/assets/home/skillIcons/Node.svg";
 import HomeSkillIconsTypescript from "@/assets/home/skillIcons/Typescript.svg";
-import HomeSkillIconsAWS from "@/assets/home/skillIcons/AWS.svg";
-import AuthModalImage from "@/assets/home/AuthModalImage.svg";
+import PricingPlanIcon1 from "@/assets/home/pricing/PlanIcon-1.svg";
+import PricingPlanIcon2 from "@/assets/home/pricing/PlanIcon-2.svg";
+import PricingPlanIcon3 from "@/assets/home/pricing/PlanIcon-3.svg";
 
 /** Footer Assets */
 import FooterEmailIcon from "@/assets/icons/footer/Email.svg";
@@ -41,7 +43,8 @@ export const staticData = {
       hero: {
         title:
           "Revolutionize your hiring process with AI-driven profile insights",
-        cta: "Get Chrome Extension Now",
+        cta: "Get Started Now ->",
+        chip: "Get Chrome Extension for LinkedIn",
         ctaLink: CHROME_EXTENSION_URL,
         cover: {
           src: HomeHeroCover,
@@ -51,6 +54,70 @@ export const staticData = {
           src: HomeHeroBackground,
           alt: "Background",
         },
+      },
+      pricing: {
+        title: "Our pricing plans",
+        badge: "pricing",
+        features: "What's included?",
+        monthly: "/ month",
+        plans: [
+          {
+            scale: 0.95,
+            title: "Free",
+            badge: "For Trial",
+            icon: PricingPlanIcon1,
+            description:
+              "Get experience of AI models to assist you in hiring right talent faster",
+            features: [
+              "All analytics features",
+              "Complete Application Tracking",
+              "Up to 10 Candidates",
+              "Up to 2 Roles",
+            ],
+            price: "0",
+            priceUnit: "month",
+          },
+          {
+            scale: 1,
+            title: "Pro",
+            badge: "For SMEs",
+            icon: PricingPlanIcon2,
+            description:
+              "Get the best out of our App and Unleash your full potential",
+            features: [
+              "All analytics features",
+              "Complete Application Tracking",
+              "2K Applications then .25$/profile",
+              "Unlimited Roles",
+            ],
+            price: "499",
+            priceUnit: "month",
+            highlight: true,
+            popular: true,
+          },
+          {
+            scale: 0.95,
+            title: "Enterprise",
+            badge: "Custom",
+            icon: PricingPlanIcon3,
+            description: "Need something customized for your organization?",
+            features: [
+              "All analytics features",
+              "Complete Application Tracking",
+              "5k Applications then .2$/profile",
+              "Up to 50 team members",
+            ],
+            price: "999",
+            priceUnit: "",
+            additionalButtons: {
+              contact: {
+                label: "Contact Us",
+                href: "mailto:",
+              },
+            },
+          },
+        ],
+        getStarted: "Get Started",
       },
       features: {
         title: "Let Us Streamline Your Candidate Selection Process",
@@ -246,7 +313,6 @@ export const staticData = {
           },
         },
       },
-
       modalAllowedRouteValues: {
         login: true,
         register: true,
@@ -274,7 +340,7 @@ export const staticData = {
     },
     navbar: {
       login: { name: "Login", path: "login" },
-      register: { name: "Get Started", path: "register" },
+      register: { name: "Schedule a Demo", path: "register" },
       menuOptions: {
         profile: { key: "profile", name: "Profile", path: "/profile" },
         logout: { key: "logout", name: "Logout" },
@@ -342,6 +408,7 @@ export const staticData = {
     },
     content: {
       or: "or",
+      popular: "Popular",
     },
   },
 };

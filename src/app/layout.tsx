@@ -12,7 +12,7 @@ import { Viewport } from "next";
 import { Manrope } from "next/font/google";
 import ClinetProvider from "./clinetProvider";
 
-const manropeFont = Manrope({ subsets: ["latin"] });
+const manropeFont = Manrope({ subsets: ["latin-ext"] });
 
 export const metadata: Metadata = {
   title:
@@ -83,12 +83,11 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
 
-      <body>
+      <body className={manropeFont.className}>
         <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
           <MantineProvider
             theme={createTheme({
               /** Mantine theme override here */
-
               colors: {
                 primary: [
                   "#E5F4FF",

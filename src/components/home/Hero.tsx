@@ -20,18 +20,33 @@ function Hero() {
       </div>
       <div className={styles.content}>
         <div className={styles.titleSec}>
+          <Button
+            size="compact-md"
+            leftSection={
+              <Image
+                src={ICONS.chrome.src}
+                alt={ICONS.chrome.alt}
+                width={20}
+                height={20}
+              />
+            }
+            component="a"
+            href={COMPONENT_DATA.ctaLink}
+            target="_blank"
+            variant="outline"
+          >
+            {COMPONENT_DATA.chip}
+          </Button>
           <Title order={1} fw={800} ta="center">
             {COMPONENT_DATA.title}
           </Title>
           <Button
             size="md"
-            leftSection={
-              <Image src={ICONS.chrome.src} alt={ICONS.chrome.alt} />
-            }
             className={styles.button}
             component="a"
             href={COMPONENT_DATA.ctaLink}
             target="_blank"
+            mt={20}
           >
             {COMPONENT_DATA.cta}
           </Button>

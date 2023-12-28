@@ -57,7 +57,7 @@ function Features() {
         </Text>
         <Title
           c="secondary"
-          size="var(--h1)"
+          // size="var(--h1)"
           fw={700}
           order={2}
           ta="center"

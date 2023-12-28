@@ -1,13 +1,12 @@
 "use client";
 
+import { AuthModal, Features, Hero } from "@/components/home";
+import styles from "@/styles/Home.module.css";
 import { Modal } from "@mantine/core";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Hero, Features, AuthModal } from "@/components/home";
-import { useCookies } from "react-cookie";
-
-import styles from "@/styles/Home.module.css";
 
 import { staticData } from "@/utils/staticData";
+import Pricing from "@/components/home/Pricing";
 const PAGE_DATA = staticData.pages.index;
 
 export default function Home() {
@@ -46,6 +45,7 @@ export default function Home() {
           />
         </Modal>
         <Hero />
+        <Pricing />
         <Features />
       </main>
     </>
