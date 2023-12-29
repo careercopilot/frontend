@@ -7,6 +7,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { staticData } from "@/utils/staticData";
 import Pricing from "@/components/home/Pricing";
+import Header from "@/components/general/Header";
+import Footer from "@/components/general/Footer";
 const PAGE_DATA = staticData.pages.index;
 
 export default function Home() {
@@ -19,6 +21,7 @@ export default function Home() {
 
   return (
     <>
+      <Header />
       <main className={styles.main}>
         <Modal
           size="auto"
@@ -48,6 +51,7 @@ export default function Home() {
         <Pricing />
         <Features />
       </main>
+      <Footer />
     </>
   );
 }

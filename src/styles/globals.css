@@ -14,6 +14,7 @@ body {
 body * {
   padding: 0;
   margin: 0;
+  letter-spacing: 0em;
 }
 
 :root {
@@ -43,7 +44,7 @@ body * {
   --h5: 1.125rem;
   --c1: 1rem;
   --c2: 0.88rem;
-  --general-box-border-radius: 0.8rem;
+  --general-box-border-radius: 1rem;
   --header-height: 4.25rem;
 
   /* Effect styles */

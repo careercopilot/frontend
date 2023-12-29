@@ -90,7 +90,7 @@ export default function RootLayout({ children }: { children: any }) {
               /** Mantine theme override here */
               colors: {
                 primary: [
-                  "#E5F4FF",
+                  "#EBF3FF",
                   "#A8D9FF",
                   "#72C2FF",
                   "#43ADFF",
@@ -149,13 +149,31 @@ export default function RootLayout({ children }: { children: any }) {
                 xl: "1.25rem",
                 xxl: "1.5rem",
               },
+              other: {
+                box: {
+                  primary: {
+                    boxShadow: "0px 4px 25px 0px rgba(5, 102, 192, 0.20)",
+                    borderRadius: "var(--general-box-border-radius)",
+                    backgroundColor: "white",
+                  },
+                },
+                sizes: {
+                  shell: {
+                    spacing: 12,
+                    header: {
+                      height: 64,
+                    },
+                    navbar: {
+                      width: 64,
+                    },
+                  },
+                },
+              },
             })}
           >
             <ClinetProvider>
               <Notifications />
-              <Header />
               {children}
-              <Footer />
               <Analytics />
             </ClinetProvider>
           </MantineProvider>

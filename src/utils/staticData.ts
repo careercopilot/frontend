@@ -28,6 +28,12 @@ import FooterEmailIcon from "@/assets/icons/footer/Email.svg";
 import FoooterLinkedinIcon from "@/assets/icons/footer/Linkedin.svg";
 import FooterPhoneIcon from "@/assets/icons/footer/Phone.svg";
 import FooterTwitterIcon from "@/assets/icons/footer/Twitter.svg";
+import {
+  IconAffiliate,
+  IconFileDescription,
+  IconLayoutDashboard,
+  IconSettings,
+} from "@tabler/icons-react";
 
 export const LINKEDIN_BASE_URL = "https://www.linkedin.com/in/";
 export const CHROME_EXTENSION_URL =
@@ -382,6 +388,44 @@ export const staticData = {
       cta: {
         label: "Get Chrome Extension Now",
         href: "https://chrome.gooogle.com",
+      },
+    },
+    appShell: {
+      header: {
+        links: [
+          {
+            label: "Chrome Extension",
+            href: "/app/chrome-extension",
+          },
+          {
+            label: "Contact us",
+            href: "/app/contact-us",
+          },
+        ],
+      },
+      navbar: {
+        links: [
+          {
+            Icon: IconLayoutDashboard,
+            href: "/app",
+            isActive: (path: string) => path === "/app",
+          },
+          {
+            Icon: IconFileDescription,
+            href: "/app/openings",
+            isActive: (path: string) => path.startsWith("/app/openings"),
+          },
+          {
+            Icon: IconAffiliate,
+            href: "/app/add-opening",
+            isActive: (path: string) => path.startsWith("/app/add-opening"),
+          },
+        ],
+        settings: {
+          Icon: IconSettings,
+          href: "/app/settings",
+          isActive: (path: string) => path.startsWith("/app/settings"),
+        },
       },
     },
   },
