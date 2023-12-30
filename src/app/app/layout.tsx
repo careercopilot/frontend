@@ -137,10 +137,12 @@ export default function Layout({ children }: { children: any }) {
             h={28}
             pos="absolute"
             left={0}
-            top={activeIndex * (28 + 20)}
+            top={Math.max(activeIndex, 0) * (28 + 20)}
             style={{
               borderRadius: 12,
-              transition: "top .5s cubic-bezier(0.4, 1.51, 0.47, 1.02)",
+              transition:
+                "top .5s cubic-bezier(0.4, 1.51, 0.47, 1.02), opacity .15s ease-out",
+              opacity: activeIndex === -1 ? 0 : 1,
             }}
             className={styles.navbarLinksActive}
           />

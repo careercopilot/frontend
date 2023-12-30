@@ -15,23 +15,32 @@ import HomeFeaturesCompatibilityImage from "@/assets/home/FeaturesCompatibilityI
 import HomeFeaturesSummaryImage from "@/assets/home/FeaturesSummaryImage.svg";
 import HomeHeroBackground from "@/assets/home/HeroBackground.svg";
 import HomeHeroCover from "@/assets/home/HeroCover.svg";
+import PricingPlanIcon1 from "@/assets/home/pricing/PlanIcon-1.svg";
+import PricingPlanIcon2 from "@/assets/home/pricing/PlanIcon-2.svg";
+import PricingPlanIcon3 from "@/assets/home/pricing/PlanIcon-3.svg";
 import HomeSkillIconsAWS from "@/assets/home/skillIcons/AWS.svg";
 import HomeSkillIconsJavascript from "@/assets/home/skillIcons/Javascript.svg";
 import HomeSkillIconsNode from "@/assets/home/skillIcons/Node.svg";
 import HomeSkillIconsTypescript from "@/assets/home/skillIcons/Typescript.svg";
-import PricingPlanIcon1 from "@/assets/home/pricing/PlanIcon-1.svg";
-import PricingPlanIcon2 from "@/assets/home/pricing/PlanIcon-2.svg";
-import PricingPlanIcon3 from "@/assets/home/pricing/PlanIcon-3.svg";
 
 /** Footer Assets */
 import FooterEmailIcon from "@/assets/icons/footer/Email.svg";
 import FoooterLinkedinIcon from "@/assets/icons/footer/Linkedin.svg";
 import FooterPhoneIcon from "@/assets/icons/footer/Phone.svg";
 import FooterTwitterIcon from "@/assets/icons/footer/Twitter.svg";
+
+/** Tabler Icons */
 import {
   IconAffiliate,
+  IconBriefcase,
+  IconChartDots3,
+  IconChecklist,
+  IconFileAlert,
   IconFileDescription,
   IconLayoutDashboard,
+  IconListDetails,
+  IconLoader3,
+  IconReportAnalytics,
   IconSettings,
 } from "@tabler/icons-react";
 
@@ -44,7 +53,7 @@ export const staticData = {
     index: {
       // This is an example of data that is used in the index page.
       // The data can be accessed in the page using the following syntax:
-      // import { staticData } from "[RELATIVE_PATH_TO_THIS_FILE]";
+      // import { staticData } from "@/utils/staticData";
       // const { index: PAGE_DATA } = staticData.pages;
       hero: {
         title:
@@ -336,12 +345,90 @@ export const staticData = {
         empty: "No history found",
       },
     },
+    dashboard: {
+      greetings: (name?: string) => `Hello, ${name || "there"} 👋!`,
+      buttons: {
+        addOpening: {
+          label: "Add Opening",
+          path: "/app/add-opening",
+        },
+        viewOpenings: {
+          label: "Add Applications",
+          path: "/app/openings/add-applications",
+        },
+      },
+      insights: [
+        {
+          label: "Total Resumes Screened this Week",
+          key: "totalResumesScreened",
+          Icon: IconChecklist,
+        },
+        {
+          label: "Job Openings Added this Week",
+          key: "jobOpeningsAdded",
+          Icon: IconBriefcase,
+        },
+        {
+          label: "Currently Open Positions",
+          key: "openPositions",
+          Icon: IconListDetails,
+        },
+        {
+          label: "Week's Average Matching Score",
+          key: "averageMatchingScore",
+          Icon: IconChartDots3,
+        },
+      ],
+      recentActivity: {
+        title: "Recent Activity",
+      },
+      openPositions: {
+        title: "Open Positions",
+        filled: ({ filled, total }: { filled: number; total: number }) =>
+          `${filled} of ${total} Filled`,
+        stats: [
+          {
+            Icon: IconReportAnalytics,
+            key: "success",
+            color: "green",
+            label: "Successfully processed",
+          },
+          {
+            Icon: IconLoader3,
+            key: "processing",
+            color: "primary",
+            label: "Currently processing",
+          },
+          {
+            Icon: IconFileAlert,
+            key: "error",
+            color: "red",
+            label: "Profiles with errors",
+          },
+          {
+            Icon: IconFileDescription,
+            key: "total",
+            color: "yellow",
+            label: "Total Profiles uploaded",
+          },
+        ],
+        empty: "No Open Positions",
+        error:
+          "Something went wrong while fetching your open positions. Please try again later",
+      },
+      topCandidates: {
+        title: "Top Candidates",
+        empty: "No Top Candidates",
+        error:
+          "Something went wrong while fetching your top candidates. Please try again later",
+      },
+    },
   },
   components: {
     index: {
       // This is an example of data that is used in the home's components.
       // The data can be accessed in the component using the following syntax:
-      // import { staticData } from "[RELATIVE_PATH_TO_THIS_FILE]";
+      // import { staticData } from "@/utils/staticData";
       // const { categoriesList: COMPONENT_DATA } = staticData.components.index;
     },
     navbar: {

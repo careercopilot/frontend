@@ -45,6 +45,7 @@ body * {
   --c1: 1rem;
   --c2: 0.88rem;
   --general-box-border-radius: 1rem;
+  --general-seconday-box-border-radius: 0.75rem;
   --header-height: 4.25rem;
 
   /* Effect styles */

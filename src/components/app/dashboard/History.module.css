@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-fade);
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1rem;
+  background-color: transparent;
+  border-radius: 1rem;
+  transition: background-color 0.1s ease-out;
+  cursor: pointer;
+}
+
+.item:hover,
+.item:active {
+  background-color: white;
+}
+
+.item:hover .itemDate,
+.item:active .itemDate {
+  display: none;
+}
+
+.item:hover .itemAction,
+.item:active .itemAction {
+  display: block;
+}
+
+.itemDate {
+  margin-left: auto;
+  display: block;
+  width: fit-content;
+}
+
+.itemAction {
+  display: none;
+  margin-left: auto;
+}
+
+.emptyText {
+  margin: 2rem 1rem;
+}
