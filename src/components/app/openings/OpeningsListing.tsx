@@ -17,7 +17,7 @@ import {
   Title,
   Tooltip,
 } from "@mantine/core";
-import { IconDots, IconPlus } from "@tabler/icons-react";
+import { IconDots, IconExternalLink, IconPlus } from "@tabler/icons-react";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -75,9 +75,21 @@ function OpeningCard({ data }: { data: Opening }) {
           </Flex>
           <Flex direction="column" gap={4}>
             <Flex direction="column">
-              <Title order={5} fz={"lg"} c="dark" fw={600}>
-                {data.title}
-              </Title>
+              <Link href={"openings/" + data._id}>
+                <Flex align="center" gap={4}>
+                  <Title order={5} fz={"lg"} c="dark" fw={600}>
+                    {data.title}
+                  </Title>
+                  <ThemeIcon
+                    variant="transparent"
+                    p={0}
+                    h="fit-content"
+                    w="fit-content"
+                  >
+                    <IconExternalLink size={18} />
+                  </ThemeIcon>
+                </Flex>
+              </Link>
               <Text fz="sm" c="dimmed">
                 {`${data.skills.length} skills | ${
                   data.requiredExperience.min || 0
