@@ -13,7 +13,7 @@ function SecondaryContainer({
 } & BoxProps) {
   const theme = useMantineTheme();
   const containerProps = {
-    p: 20,
+    p: 16,
     ...props,
     style: {
       ...(transperent ? {} : theme.other.box.secondary),

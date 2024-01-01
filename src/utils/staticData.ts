@@ -352,7 +352,7 @@ export const staticData = {
           label: "Add Opening",
           path: "/app/add-opening",
         },
-        viewOpenings: {
+        addApplications: {
           label: "Add Applications",
           path: "/app/openings/add-applications",
         },
@@ -381,11 +381,14 @@ export const staticData = {
       ],
       recentActivity: {
         title: "Recent Activity",
+        // more: (count: number) => `+${count} more`,
+        // toShow: 10,
+        close: "Close All",
       },
       openPositions: {
         title: "Open Positions",
         filled: ({ filled, total }: { filled: number; total: number }) =>
-          `${filled} of ${total} Filled`,
+          `${filled}/${total}`,
         stats: [
           {
             Icon: IconReportAnalytics,

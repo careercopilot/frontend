@@ -15,7 +15,10 @@ function PrimaryContainer({
 } & (BoxProps | ScrollAreaProps)) {
   const theme = useMantineTheme();
   const containerProps = {
-    p: 20,
+    // p: 20,
+    // h: `calc(100vh - ${theme.other.sizes.shell.spacing * 3} - ${
+    //   theme.other.sizes.shell.header.height
+    // })`,
     ...props,
     style: {
       ...(transperent ? {} : theme.other.box.primary),
@@ -24,10 +27,18 @@ function PrimaryContainer({
   };
 
   if (scroll) {
-    return <ScrollArea {...containerProps}>{children}</ScrollArea>;
+    return (
+      <ScrollArea {...containerProps}>
+        <Box p={20}>{children}</Box>
+      </ScrollArea>
+    );
   }
 
-  return <Box {...containerProps}>{children}</Box>;
+  return (
+    <Box p={20} {...containerProps}>
+      {children}
+    </Box>
+  );
 }
 
 export default PrimaryContainer;

@@ -22,3 +22,45 @@ export function useInsights() {
     errorLoadingInsights: false,
   };
 }
+
+export function useRecentActivity() {
+  return {
+    recentActivity: [
+      {
+        id: 1,
+        title: "Processed 10 resumes",
+        description: "intiated by John Doe",
+        color: "green",
+      },
+      {
+        id: 2,
+        title: "Add Full Stack Developer Job Opening",
+        description: "by John Doe",
+        link: "/openings/123",
+      },
+      {
+        id: 3,
+        title: "Error Processing 2 resumes",
+        description: "intiated by John Doe",
+        link: "/openings/123?error=true",
+        color: "red",
+      },
+      {
+        id: 4,
+        title: "Processed 10 resumes",
+        description: "intiated by John Doe",
+        link: "/dashboard",
+        color: "green",
+      },
+      {
+        id: 5,
+        title: "Processed 10 resumes",
+        description: "intiated by John Doe",
+        link: "/dashboard",
+        color: "green",
+      },
+    ],
+    isRecentActivityLoading: false,
+    errorLoadingRecentActivity: false,
+  };
+}

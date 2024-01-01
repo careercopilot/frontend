@@ -171,10 +171,6 @@ export default function Layout({ children }: { children: any }) {
       </Flex>
 
       {children}
-
-      {/* <ScrollArea mih={"100%"} w="100%" bg="green">
-        <Skeleton mih={"100%"} w={"100%"} />
-      </ScrollArea> */}
     </Box>
   );
 }

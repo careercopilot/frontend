@@ -22,8 +22,8 @@ function Insights() {
       {COMPONENT_DATA.map((item) => (
         <SecondaryContainer key={item.key} p={20}>
           <Flex direction="column" gap={16}>
-            <ThemeIcon variant="light" p={16} h="fit-content" w="fit-content">
-              <item.Icon size={24} />
+            <ThemeIcon variant="light" p={12} h="fit-content" w="fit-content">
+              <item.Icon size={20} />
             </ThemeIcon>
             <Flex direction="column" gap={0}>
               {isInsightsLoading || errorLoadingInsights ? (
@@ -45,8 +45,8 @@ function Insights() {
                     variant="light"
                     color={
                       insights[item.key as keyof typeof insights].change > 0
-                        ? "red"
-                        : "teal"
+                        ? "teal"
+                        : "red"
                     }
                   >
                     {insights[item.key as keyof typeof insights].change.toFixed(
