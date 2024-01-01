@@ -10,7 +10,9 @@ import {
   Badge,
   Box,
   Button,
+  Divider,
   Flex,
+  Grid,
   Progress,
   Skeleton,
   Text,
@@ -27,7 +29,7 @@ import {
 } from "@tabler/icons-react";
 import dayjs from "dayjs";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { create } from "zustand";
 
@@ -51,7 +53,7 @@ const useCandidateSelection = create<Store>()((set, get) => ({
     }),
 }));
 
-function CandidateScoreCard({ data }: { data: CandidateScores }) {
+function CandicateScoreOverview({ data }: { data: CandidateScores }) {
   const theme = useMantineTheme();
   const { selectedCandidates, updateCandidateSelection } =
     useCandidateSelection();
@@ -60,97 +62,174 @@ function CandidateScoreCard({ data }: { data: CandidateScores }) {
     data.skillScores.reduce((acc, curr) => acc + curr.score, 0) /
     data.skillScores.length;
   const scoreColor =
-    COMPONENT_DATA.applicatins.scoreColors[
+    COMPONENT_DATA.applications.scoreColors[
       Math.floor(
-        (overallScore / 100) * COMPONENT_DATA.applicatins.scoreColors.length
+        (overallScore / 100) * COMPONENT_DATA.applications.scoreColors.length
       )
     ];
 
   return (
-    <Accordion.Item value={data._id} key={data._id}>
-      <Accordion.Control>
-        <Flex gap={20} p={6}>
-          <Avatar
-            size={64}
-            color={scoreColor}
-            src={data.candidate.image?.toString()}
-            alt={data.candidate.firstName}
-            style={{
-              borderWidth: selectedCandidates[data._id] ? 5 : 0,
-              borderStyle: "solid",
-              borderColor: selectedCandidates[data._id]
-                ? theme.colors.primary[5]
-                : theme.colors.dark[3],
-              transition: "all 0.15s ease-out",
+    <Flex gap={20} p={6}>
+      <Avatar
+        size={64}
+        color={scoreColor}
+        src={data.candidate.image?.toString()}
+        alt={data.candidate.firstName}
+        style={{
+          borderWidth: selectedCandidates[data._id] ? 5 : 0,
+          borderStyle: "solid",
+          borderColor: selectedCandidates[data._id]
+            ? theme.colors.primary[5]
+            : theme.colors.dark[3],
+          transition: "all 0.15s ease-out",
+        }}
+      >
+        {!data.candidate.image && data.candidate.firstName[0]}
+      </Avatar>
+      <Flex direction="column" gap={4}>
+        <Flex direction="row" align="center" gap={12}>
+          <Text size="md" fw={600}>
+            {data.candidate.firstName + " " + data.candidate.lastName}
+          </Text>
+          <Button
+            size="compact-sm"
+            variant={selectedCandidates[data._id] ? "filled" : "light"}
+            leftSection={
+              selectedCandidates[data._id] ? (
+                <IconSquareRoundedMinus size={14} />
+              ) : (
+                <IconPlus size={14} />
+              )
+            }
+            onClick={(e) => {
+              e.stopPropagation();
+              updateCandidateSelection(data._id, !selectedCandidates[data._id]);
             }}
           >
-            {!data.candidate.image && data.candidate.firstName[0]}
-          </Avatar>
-          <Flex direction="column" gap={4}>
-            <Flex direction="row" align="center" gap={12}>
-              <Text size="md" fw={600}>
-                {data.candidate.firstName + " " + data.candidate.lastName}
-              </Text>
-              <Button
-                size="compact-sm"
-                variant={selectedCandidates[data._id] ? "filled" : "light"}
-                leftSection={
-                  selectedCandidates[data._id] ? (
-                    <IconSquareRoundedMinus size={14} />
-                  ) : (
-                    <IconPlus size={14} />
-                  )
-                }
-                onClick={(e) => {
-                  e.stopPropagation();
-                  updateCandidateSelection(
-                    data._id,
-                    !selectedCandidates[data._id]
-                  );
-                }}
-              >
-                {selectedCandidates[data._id]
-                  ? COMPONENT_DATA.applicatins.selection.selected
-                  : COMPONENT_DATA.applicatins.selection.select}
-              </Button>
-            </Flex>
-            {/* <Text c="dimmed">{data.candidate.position}</Text> */}
-            <Badge
-              leftSection={
-                data.candidate.source === "linkedin" ? (
-                  <IconBrandLinkedin size={20} />
-                ) : (
-                  <IconFileDownload size={20} />
-                )
-              }
-              color={data.candidate.source === "resume" ? "green" : "blue"}
-              variant="transparent"
-              p={0}
-            >
-              {data.candidate.source}
-            </Badge>{" "}
-            <Flex align="center" gap={8}>
-              <Progress
-                w={200}
-                value={overallScore}
-                size={8}
-                radius="xl"
-                color={scoreColor}
-                aria-label={COMPONENT_DATA.applicatins.accessibility.ariaLabel}
-                aria-valuemin={
-                  COMPONENT_DATA.applicatins.accessibility.ariaValueMin
-                }
-                aria-valuemax={
-                  COMPONENT_DATA.applicatins.accessibility.ariaValueMax
-                }
-                aria-valuenow={overallScore}
-              />
-              <Text>{`${overallScore}%`}</Text>
-            </Flex>
-          </Flex>
+            {selectedCandidates[data._id]
+              ? COMPONENT_DATA.applications.selection.selected
+              : COMPONENT_DATA.applications.selection.select}
+          </Button>
         </Flex>
+        {/* <Text c="dimmed">{data.candidate.position}</Text> */}
+        <Badge
+          leftSection={
+            data.candidate.source === "linkedin" ? (
+              <IconBrandLinkedin size={20} />
+            ) : (
+              <IconFileDownload size={20} />
+            )
+          }
+          color={data.candidate.source === "resume" ? "green" : "blue"}
+          variant="transparent"
+          p={0}
+        >
+          {data.candidate.source}
+        </Badge>{" "}
+        <Flex align="center" gap={8}>
+          <Progress
+            w={200}
+            value={overallScore}
+            size={8}
+            radius="xl"
+            color={scoreColor}
+            aria-label={COMPONENT_DATA.applications.accessibility.ariaLabel}
+            aria-valuemin={
+              COMPONENT_DATA.applications.accessibility.ariaValueMin
+            }
+            aria-valuemax={
+              COMPONENT_DATA.applications.accessibility.ariaValueMax
+            }
+            aria-valuenow={overallScore}
+          />
+          <Text>{`${overallScore}%`}</Text>
+        </Flex>
+      </Flex>
+    </Flex>
+  );
+}
+
+function CandidateScoreResults({ data }: { data: CandidateScores }) {
+  return (
+    <Flex
+      direction="row"
+      gap={20}
+      p={20}
+      bg="primary.0"
+      style={{
+        borderRadius: 10,
+      }}
+    >
+      <Flex direction="column" gap={12}>
+        {data.skillScores.map((skill, index) => (
+          <Grid columns={3} key={index} align="center">
+            <Grid.Col span="content">
+              <Avatar
+                src={skill.icon?.toString()}
+                alt={skill.name}
+                size={30}
+                radius={6}
+              />
+            </Grid.Col>
+            <Grid.Col span="content">
+              <Flex direction="column" gap={4}>
+                <Title order={4} size={"md"} fw={600} c="secondary">
+                  {skill.name}
+                </Title>
+                <Progress
+                  w={200}
+                  value={skill.score}
+                  size={8}
+                  radius="xl"
+                  color={
+                    COMPONENT_DATA.applications.scoreColors[
+                      Math.floor(
+                        (skill.score / 100) *
+                          COMPONENT_DATA.applications.scoreColors.length
+                      )
+                    ]
+                  }
+                  aria-label={
+                    COMPONENT_DATA.applications.accessibility.ariaLabel
+                  }
+                  aria-valuemin={
+                    COMPONENT_DATA.applications.accessibility.ariaValueMin
+                  }
+                  aria-valuemax={
+                    COMPONENT_DATA.applications.accessibility.ariaValueMax
+                  }
+                  aria-valuenow={skill.score}
+                />
+              </Flex>
+            </Grid.Col>
+            <Grid.Col span="content">
+              <Text c="black.4" fw={"600"}>
+                {skill.score}%
+              </Text>
+            </Grid.Col>
+          </Grid>
+        ))}
+      </Flex>
+      <Divider orientation="vertical" />
+      <Flex direction="column" gap={10}>
+        <Title order={6}>{COMPONENT_DATA.applications.summary}</Title>
+        <Text maw={300} size="sm" color="dark.2">
+          {data.summary}
+        </Text>
+      </Flex>
+    </Flex>
+  );
+}
+
+function CandidateScoreAccordianItem({ data }: { data: CandidateScores }) {
+  return (
+    <Accordion.Item value={data._id} key={data._id}> ̰
+      <Accordion.Control>
+        <CandicateScoreOverview data={data} />
       </Accordion.Control>
-      <Accordion.Panel></Accordion.Panel>
+      <Accordion.Panel>
+        <CandidateScoreResults data={data} />
+      </Accordion.Panel>
     </Accordion.Item>
   );
 }
@@ -232,9 +311,9 @@ function OpeningDetails() {
       <Flex direction="column" gap={12} maw={1000}>
         <Flex justify="space-between" align="center" gap={12}>
           <Flex align="center" gap={20}>
-            <Title order={5}>{COMPONENT_DATA.applicatins.title}</Title>
+            <Title order={5}>{COMPONENT_DATA.applications.title}</Title>
             <Flex align="center" gap={12}>
-              {COMPONENT_DATA.applicatins.stats.map((item, index) => (
+              {COMPONENT_DATA.applications.stats.map((item, index) => (
                 <Flex key={index} gap={0} align="center">
                   <ThemeIcon
                     variant="transparent"
@@ -255,10 +334,10 @@ function OpeningDetails() {
           </Flex>
           <Button
             component={Link}
-            href={COMPONENT_DATA.applicatins.add.href}
+            href={COMPONENT_DATA.applications.add.href}
             leftSection={<IconPlus size={16} />}
           >
-            {COMPONENT_DATA.applicatins.add.label}
+            {COMPONENT_DATA.applications.add.label}
           </Button>
         </Flex>
         <Box
@@ -293,7 +372,7 @@ function OpeningDetails() {
             ) : (
               <>
                 {candidates.map((item) => (
-                  <CandidateScoreCard data={item} key={item._id} />
+                  <CandidateScoreAccordianItem data={item} key={item._id} />
                 ))}
               </>
             )}

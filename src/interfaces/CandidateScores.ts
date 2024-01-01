@@ -12,6 +12,7 @@ interface CandidateScores {
     score: number;
     icon: StaticImageData | string;
   }[];
+  summary: string;
 }
 
 export default CandidateScores;

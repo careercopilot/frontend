@@ -507,7 +507,7 @@ export const staticData = {
         filled: ({ filled, total }: { filled: number; total: number }) =>
           `${filled}/${total} sortlisted`,
       },
-      applicatins: {
+      applications: {
         title: "Applications",
         stats: [
           {
@@ -549,7 +549,7 @@ export const staticData = {
           ariaValueMin: 0,
           ariaValueMax: 100,
         },
-
+        summary: "Quick Summary",
       },
     },
   },
