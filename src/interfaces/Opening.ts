@@ -1,4 +1,5 @@
 interface Opening {
+  _id: string;
   title: string;
   companyDepartment: string;
   type: string;

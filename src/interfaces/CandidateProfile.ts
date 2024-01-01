@@ -6,7 +6,8 @@ interface CandidateProfile {
   lastName: string;
   position: string;
   summary: string;
-  image: string | StaticImageData;
+  image?: string | StaticImageData;
+  source: "linkedin" | "resume";
 }
 
 export default CandidateProfile;

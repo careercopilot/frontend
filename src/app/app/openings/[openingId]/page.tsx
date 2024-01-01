@@ -1,11 +1,11 @@
 import PrimaryContainer from "@/components/app/general/PrimaryContainer";
-import OpeningsListing from "@/components/app/openings/OpeningsListing";
+import OpeningDetails from "@/components/app/openings/OpeningDetails";
 
 export default function Home() {
   return (
     <>
-      <PrimaryContainer scroll transperent>
-        <OpeningsListing />
+      <PrimaryContainer scroll>
+        <OpeningDetails />
       </PrimaryContainer>
     </>
   );

@@ -46,6 +46,7 @@ import {
   IconSettings,
   IconTrash,
 } from "@tabler/icons-react";
+import Opening from "@/interfaces/Opening";
 
 export const LINKEDIN_BASE_URL = "https://www.linkedin.com/in/";
 export const CHROME_EXTENSION_URL =
@@ -483,6 +484,73 @@ export const staticData = {
       empty: "No Openings",
       error:
         "Something went wrong while fetching your openings. Please try again later",
+    },
+    openingDetails: {
+      overview: [
+        {
+          label: "Company/Department",
+          renderValue: (data: Opening) => data.companyDepartment,
+        },
+        { label: "Type", renderValue: (data: Opening) => data.type },
+        {
+          label: "YOE",
+          renderValue: (data: Opening) =>
+            `${data.requiredExperience.min} - ${data.requiredExperience.max} YOE`,
+        },
+        {
+          label: "Skills",
+          renderValue: (data: Opening) => `${data.skills.length} Skills`,
+        },
+      ],
+      progress: {
+        label: "Progress",
+        filled: ({ filled, total }: { filled: number; total: number }) =>
+          `${filled}/${total} sortlisted`,
+      },
+      applicatins: {
+        title: "Applications",
+        stats: [
+          {
+            Icon: IconReportAnalytics,
+            key: "success",
+            color: "green",
+            label: "processed",
+          },
+          {
+            Icon: IconLoader3,
+            key: "processing",
+            color: "primary",
+            label: "in progress",
+          },
+          {
+            Icon: IconFileAlert,
+            key: "error",
+            color: "red",
+            label: "with issues",
+          },
+          {
+            Icon: IconFileDescription,
+            key: "total",
+            color: "yellow",
+            label: "uploaded",
+          },
+        ],
+        selection: {
+          selected: "Selected",
+          select: "select",
+        },
+        add: {
+          label: "Add applications",
+          href: "/app/openings/add-applications",
+        },
+        scoreColors: ["orange", "yellow", "lime", "green"],
+        accessibility: {
+          ariaLabel: "Skill Compatibility Score",
+          ariaValueMin: 0,
+          ariaValueMax: 100,
+        },
+
+      },
     },
   },
   components: {
