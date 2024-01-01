@@ -36,7 +36,7 @@ function TopCandidateCard({ data }: { data: CandidateScores }) {
             }
             size="md"
             color="green"
-            w={225}
+            w={180}
           />
           <Text>
             {data.skillScores.reduce((acc, curr) => acc + curr.score, 0) /
