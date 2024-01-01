@@ -223,7 +223,7 @@ function CandidateScoreResults({ data }: { data: CandidateScores }) {
 
 function CandidateScoreAccordianItem({ data }: { data: CandidateScores }) {
   return (
-    <Accordion.Item value={data._id} key={data._id}> ̰
+    <Accordion.Item value={data._id} key={data._id}>
       <Accordion.Control>
         <CandicateScoreOverview data={data} />
       </Accordion.Control>
