@@ -35,13 +35,16 @@ import {
   IconBriefcase,
   IconChartDots3,
   IconChecklist,
+  IconEdit,
   IconFileAlert,
+  IconFileCheck,
   IconFileDescription,
   IconLayoutDashboard,
   IconListDetails,
   IconLoader3,
   IconReportAnalytics,
   IconSettings,
+  IconTrash,
 } from "@tabler/icons-react";
 
 export const LINKEDIN_BASE_URL = "https://www.linkedin.com/in/";
@@ -425,6 +428,61 @@ export const staticData = {
         error:
           "Something went wrong while fetching your top candidates. Please try again later",
       },
+    },
+    openigs: {
+      title: "Openings",
+      filled: ({ filled, total }: { filled: number; total: number }) =>
+        `${filled}/${total}`,
+      stats: [
+        {
+          Icon: IconReportAnalytics,
+          key: "success",
+          color: "green",
+          label: "Successfully processed",
+        },
+        {
+          Icon: IconLoader3,
+          key: "processing",
+          color: "primary",
+          label: "Currently processing",
+        },
+        {
+          Icon: IconFileAlert,
+          key: "error",
+          color: "red",
+          label: "Profiles with errors",
+        },
+        {
+          Icon: IconFileDescription,
+          key: "total",
+          color: "yellow",
+          label: "Total Profiles uploaded",
+        },
+      ],
+      add: {
+        label: "Add Opening",
+        href: "/app/add-opening",
+      },
+      menu: {
+        markAsClosed: {
+          label: "Mark as Closed",
+          Icon: IconFileCheck,
+          color: "teal",
+        },
+        edit: {
+          label: "Edit",
+          Icon: IconEdit,
+          color: "yellow",
+        },
+        delete: {
+          label: "Delete",
+          Icon: IconTrash,
+          color: "red",
+        },
+      },
+      empty: "No Openings",
+      error:
+        "Something went wrong while fetching your openings. Please try again later",
     },
   },
   components: {

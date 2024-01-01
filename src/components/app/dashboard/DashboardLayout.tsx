@@ -19,12 +19,6 @@ function DashboardLayout() {
   const { push } = useRouter();
   const { userData, errorFetchingUserData, isUserDataLoading } = useUser();
 
-  React.useEffect(() => {
-    if (errorFetchingUserData) {
-      push("/");
-    }
-  }, [errorFetchingUserData, push]);
-
   return (
     <Box w="100%" className={styles.main}>
       <Flex justify="space-between" align="center" gap={20}>

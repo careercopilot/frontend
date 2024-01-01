@@ -12,6 +12,7 @@ interface Opening {
     name: string;
     link: string;
   }[];
+  status: "open" | "closed";
   createdAt: string;
   stats: {
     success: number;
