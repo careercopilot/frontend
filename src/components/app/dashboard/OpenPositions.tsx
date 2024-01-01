@@ -22,7 +22,7 @@ function OpenPositionCard({ data }: { data: Opening }) {
     <Flex justify="space-between" gap={10}>
       <Flex direction="column" gap={4}>
         <Flex direction="column">
-          <Title fz={"lg"} c="dark" fw={600}>
+          <Title order={5} fz={"lg"} c="dark" fw={600}>
             {data.title}
           </Title>
           <Text fz="sm" c="dimmed">
