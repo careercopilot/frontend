@@ -46,8 +46,8 @@ function TopCandidateCard({ data }: { data: CandidateScores }) {
         </Flex>
       </Flex>
       <Flex align="center" gap={8}>
-        <ActionIcon variant="transparent">
-          <IconExternalLink />
+        <ActionIcon variant="subtle">
+          <IconExternalLink size={20}/>
         </ActionIcon>
       </Flex>
     </Flex>
