@@ -1,47 +1,31 @@
 "use client";
 
+import notificationManager from "@/components/helpers/NotificationManager";
 import { useOpenings } from "@/hooks/openings.swr";
-import Opening from "@/interfaces/Opening";
 import { CHROME_EXTENSION_URL, staticData } from "@/utils/staticData";
 import {
   ActionIcon,
   Anchor,
-  Badge,
   Button,
   Flex,
-  Group,
   Loader,
-  Menu,
-  Progress,
   Select,
-  SimpleGrid,
-  Skeleton,
   Text,
   ThemeIcon,
   Title,
-  Tooltip,
 } from "@mantine/core";
+import { Dropzone, FileWithPath } from "@mantine/dropzone";
 import {
   IconBulb,
   IconChevronLeft,
-  IconDots,
-  IconExternalLink,
   IconFileInvoice,
   IconFileTypePdf,
-  IconPdf,
-  IconPlus,
   IconUpload,
+  IconX,
 } from "@tabler/icons-react";
-import dayjs from "dayjs";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import SecondaryContainer from "../general/SecondaryContainer";
-import { Dropzone, FileWithPath, PDF_MIME_TYPE } from "@mantine/dropzone";
-import { IconX } from "@tabler/icons-react";
-import { IconPhoto } from "@tabler/icons-react";
 import { useState } from "react";
-import { useListState } from "@mantine/hooks";
-import notificationManager from "@/components/helpers/NotificationManager";
 import styles from "./AddApplications.module.css";
 
 const { addApplications: COMPONENT_DATA } = staticData.pages;
