@@ -28,8 +28,8 @@ const { openigs: COMPONENT_DATA } = staticData.pages;
 function OpeningCard({ data }: { data: Opening }) {
   return (
     <SecondaryContainer>
-      <Flex direction="column" justify="space-between" gap={16}>
-        <Flex direction="column" justify="space-between" gap={10}>
+      <Flex direction="column" justify="space-between" gap={16} h="100%">
+        <Flex direction="column" gap={10}>
           <Flex justify="space-between" gap={16}>
             <Badge color={data.status === "open" ? "green" : "yellow"}>
               {data.status}
@@ -160,7 +160,7 @@ function OpeningsListing() {
           </Button>
         </Flex>
       </Flex>
-      <SimpleGrid cols={{ base: 1, md: 2, lg: 4 }} spacing={12}>
+      <SimpleGrid cols={{ base: 1, md: 2, lg: 4, xl: 5 }} spacing={12}>
         {isLoadingOpenings || errorLoadingOpenings ? (
           <>
             {new Array(5).fill(0).map((_, index) => (

@@ -552,6 +552,30 @@ export const staticData = {
         summary: "Quick Summary",
       },
     },
+    addApplications: {
+      title: "Add Applications",
+      select: {
+        label: "Opening",
+        placeholder: "Select opening",
+      },
+      upload: {
+        title: "Upload Candidate Resumes",
+        description:
+          "Please upload resumes in PDF format.You can upload multiple files at once up to 100 Maximum file size: 10MB per resume.",
+        submit: "Submit ->",
+        input: {
+          title: "Drag & drop Resume or Browse",
+          subtitle: "Supported formats: PDF",
+          selected: "Selected files",
+          count: (count: number) => `${count} selected`,
+        },
+        tip: [
+          "Tip: You can also use our ",
+          "Chrome extension",
+          " for quick screening through LinkedIn profiles.",
+        ],
+      },
+    },
   },
   components: {
     index: {
