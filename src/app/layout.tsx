@@ -1,16 +1,19 @@
 import "@/styles/globals.css";
-import config from "@/utils/config";
-import { ColorSchemeScript, MantineProvider, createTheme } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
-import { Notifications } from "@mantine/notifications";
-import '@mantine/notifications/styles.css';
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { Analytics } from "@vercel/analytics/react";
-import type { Metadata } from "next";
+import "@mantine/notifications/styles.css";
+
 import { Viewport } from "next";
 import { Manrope } from "next/font/google";
+
+import config from "@/utils/config";
+import { ColorSchemeScript, MantineProvider, createTheme } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Analytics } from "@vercel/analytics/react";
 import ClinetProvider from "./clinetProvider";
+
+import type { Metadata } from "next";
 
 const manropeFont = Manrope({ subsets: ["latin-ext"] });
 
