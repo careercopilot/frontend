@@ -2,7 +2,7 @@ interface Opening {
   _id: string;
   title: string;
   companyDepartment: string;
-  type: string;
+  type: "Full Time" | "Part Time" | "Internship" | "Contract" | string;
   total: number;
   requiredExperience: {
     min: number;

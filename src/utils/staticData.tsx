@@ -576,6 +576,38 @@ export const staticData = {
         ],
       },
     },
+    addOpening: {
+      title: "Add Opening",
+      inputs: {
+        title: {
+          label: "Title",
+          placeholder: "Add Opening",
+        },
+        companyDepartment: {
+          label: "For Company/Department",
+          placeholder: "Alphabet / ML Engineer",
+        },
+        type: {
+          label: "Position Type",
+          suggestions: ["Full Time", "Part Time", "Internship", "Contract"],
+        },
+        total: {
+          label: "No of postions",
+          default: 5,
+        },
+        experience: {
+          label: "Required Experience",
+          range: [0, 20],
+        },
+        skill: {
+          title: "Skills",
+          placeholder: "Add Skill",
+          nothingFound: "No Skills Found for the given keyword",
+          searchPlaceholder: "Search Skills by Keyword",
+        },
+      },
+      submit: "Continue",
+    },
   },
   components: {
     index: {
