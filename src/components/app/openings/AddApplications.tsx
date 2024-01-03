@@ -14,7 +14,7 @@ import {
   ThemeIcon,
   Title,
 } from "@mantine/core";
-import { Dropzone, FileWithPath } from "@mantine/dropzone";
+import { Dropzone, FileWithPath, PDF_MIME_TYPE } from "@mantine/dropzone";
 import {
   IconBulb,
   IconChevronLeft,
@@ -88,7 +88,7 @@ function AddApplications() {
             )
           }
           maxSize={10 * 1024 ** 2}
-          // accept={PDF_MIME_TYPE}
+          accept={PDF_MIME_TYPE}
           w="fit-content"
           maxFiles={100}
           style={{
