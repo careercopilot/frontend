@@ -608,6 +608,17 @@ export const staticData = {
       },
       submit: "Continue",
     },
+    chromeExtension: {
+      title: ["Screening using ", "LinkedIn", "?"],
+      description:
+        "Career Copilot is directly integrated into LinkedIn to Quickly and seamlessly provide you with a comprehensive overview of a candidate's skills, experience, and potential fit for your organization ",
+      cta: "Get Chrome Extension Now",
+      benefits: [
+        "One-Click Candidate Evaluation",
+        "Seamless Integration",
+        "Smart Candidate Ranking",
+      ],
+    },
   },
   components: {
     index: {
