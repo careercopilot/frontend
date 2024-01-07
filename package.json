@@ -27,6 +27,7 @@
     "eslint": "8.55.0",
     "eslint-config-next": "latest",
     "next": "latest",
+    "nextjs-toploader": "^1.6.4",
     "react": "latest",
     "react-cookie": "^6.1.1",
     "react-dom": "latest",

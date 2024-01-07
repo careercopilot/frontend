@@ -5,13 +5,14 @@ import "@mantine/notifications/styles.css";
 
 import { Viewport } from "next";
 import { Manrope } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 
+import ClinetProvider from "@/app/clinetProvider";
 import config from "@/utils/config";
 import { ColorSchemeScript, MantineProvider, createTheme } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Analytics } from "@vercel/analytics/react";
-import ClinetProvider from "./clinetProvider";
 
 import type { Metadata } from "next";
 
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
 
       <body className={manropeFont.className}>
+        <NextTopLoader showSpinner={false} color="#0F89F9" />
         <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
           <MantineProvider
             theme={createTheme({
