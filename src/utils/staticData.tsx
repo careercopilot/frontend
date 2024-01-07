@@ -340,16 +340,31 @@ export const staticData = {
       },
     },
     profile: {
-      profileInfo: {
-        title: "Your Profile",
+      title: "Company Profile",
+      inputs: [
+        {
+          label: "Company Name",
+          placeholder: "Enter Company Name",
+          required: true,
+          key: "company",
+        },
+        {
+          label: "Admin First Name",
+          placeholder: "Enter Admin First Name",
+          required: true,
+          key: "firstName",
+        },
+        {
+          label: "Admin Last Name",
+          placeholder: "Enter Admin Last Name",
+          required: true,
+          key: "lastName",
+        },
+      ],
+      mail: {
+        label: "Email",
       },
-      history: {
-        title: "History",
-        pageSize: 5,
-        error:
-          "Something went wrong while fetching your history. Please try again later",
-        empty: "No history found",
-      },
+      save: "Save",
     },
     dashboard: {
       greetings: (name?: string) => `Hello, ${name || "there"} 👋!`,

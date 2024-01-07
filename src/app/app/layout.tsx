@@ -88,6 +88,8 @@ export default function Layout({ children }: { children: any }) {
               imageProps={{
                 referrerPolicy: "no-referrer",
               }}
+              component={Link}
+              href={"/app/profile"}
             >
               {userData.avatar
                 ? null

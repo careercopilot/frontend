@@ -4,6 +4,7 @@ interface IUser {
   lastName: string;
   avatar?: string;
   email: string;
+  company: string;
 }
 
 export default IUser;
