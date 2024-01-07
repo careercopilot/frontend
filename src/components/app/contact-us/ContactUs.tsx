@@ -39,7 +39,7 @@ function ContactUs() {
               "--animation-duration": `${index * 0.2 + 0.2}s`,
             }}
             leftSection={<Image src={benefit.src} alt={benefit.label} />}
-            variant="outline"
+            variant="light"
             size="lg"
           >
             <Text>{benefit.label}</Text>
