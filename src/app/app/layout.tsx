@@ -69,7 +69,10 @@ export default function Layout({ children }: { children: any }) {
           <Flex align="center" gap={30} className={styles.headerLinks}>
             {COMPONENT_DATA.header.links.map((link) => (
               <Link href={link.href} key={link.href}>
-                <Text fw={500} c="dark.4">
+                <Text
+                  fw={500}
+                  c={pathname === link.href ? "primary" : "dark.4"}
+                >
                   {link.label}
                 </Text>
               </Link>

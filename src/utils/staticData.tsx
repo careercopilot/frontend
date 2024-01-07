@@ -29,6 +29,9 @@ import FoooterLinkedinIcon from "@/assets/icons/footer/Linkedin.svg";
 import FooterPhoneIcon from "@/assets/icons/footer/Phone.svg";
 import FooterTwitterIcon from "@/assets/icons/footer/Twitter.svg";
 
+/** Interfaces */
+import Opening from "@/interfaces/Opening";
+
 /** Tabler Icons */
 import {
   IconAffiliate,
@@ -46,7 +49,6 @@ import {
   IconSettings,
   IconTrash,
 } from "@tabler/icons-react";
-import Opening from "@/interfaces/Opening";
 
 export const LINKEDIN_BASE_URL = "https://www.linkedin.com/in/";
 export const CHROME_EXTENSION_URL =
@@ -617,6 +619,33 @@ export const staticData = {
         "One-Click Candidate Evaluation",
         "Seamless Integration",
         "Smart Candidate Ranking",
+      ],
+    },
+    contactUs: {
+      title: ["Contact ", "Us"],
+      description:
+        "We are always happy to hear from you. Please feel free to reach out to us for any queries or feedback.",
+      links: [
+        {
+          src: FooterPhoneIcon,
+          href: "tel:+919374548784",
+          label: "Call",
+        },
+        {
+          src: FooterEmailIcon,
+          href: "mailto:business@careercopilot.in",
+          label: "Email",
+        },
+        {
+          src: FoooterLinkedinIcon,
+          href: "https://www.linkedin.com/company/careercopilot",
+          label: "LinkedIn",
+        },
+        {
+          src: FooterTwitterIcon,
+          href: "https://twitter.com/_careercopilot",
+          label: "Twitter",
+        },
       ],
     },
   },
