@@ -2,7 +2,7 @@ import { CHROME_EXTENSION_URL, staticData } from "@/utils/staticData";
 import { Button, Flex, Text, Title } from "@mantine/core";
 import { IconBrandLinkedin, IconCheck } from "@tabler/icons-react";
 import Image from "next/image";
-import styles from "./AddOpening.module.css";
+import styles from "./ChromeExtension.module.css";
 
 const { chromeExtension: COMPONENT_DATA } = staticData.pages;
 const { icons: ICONS } = staticData.general;
