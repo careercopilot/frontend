@@ -62,6 +62,9 @@ export const metadata: Metadata = {
   keywords:
     "Career Copilot, Hiring Copilot, AI Profile Insights, AI candidate Insights, AI candidate evaluation, AI, Artificial Intelligence, Hiring, Recruitment, Hiring Process, Hiring Platform, Hiring Software, AI Profile Comparison, AI Hiring, AI Hiring Platform, AI Hiring Software",
   metadataBase: new URL("https://www.careercopilot.in/"),
+  alternates: {
+    canonical: "https://www.careercopilot.in/",
+  },
 };
 
 export const viewport: Viewport = {
