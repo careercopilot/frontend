@@ -37,7 +37,9 @@ function PricingCard({ plan }: { plan: (typeof COMPONENT_DATA)["plans"][0] }) {
           style={{
             display: "grid",
             gridTemplateColumns: "auto 1fr",
+            gap: 16,
           }}
+          w="100%"
         >
           <Image height={60} width={60} src={plan.icon} alt={plan.title} />
           {/* </Grid.Col> */}
@@ -79,8 +81,8 @@ function PricingCard({ plan }: { plan: (typeof COMPONENT_DATA)["plans"][0] }) {
               <IconCheck
                 color={
                   plan.highlight
-                    ? "--mantine-color-primary-0"
-                    : "--mantine-color-primary-5"
+                    ? "var(--mantine-color-primary-0)"
+                    : "var(--mantine-color-primary-5)"
                 }
                 size={20}
               />
