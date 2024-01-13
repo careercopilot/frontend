@@ -1,29 +1,27 @@
-"use client";
+// "use client";
 
-import { AuthModal, Features, Hero } from "@/components/home";
 import styles from "@/styles/Home.module.css";
-import { Modal } from "@mantine/core";
-import { useRouter, useSearchParams } from "next/navigation";
 
-import { staticData } from "@/utils/staticData";
-import Pricing from "@/components/home/Pricing";
-import Header from "@/components/general/Header";
 import Footer from "@/components/general/Footer";
+import Header from "@/components/general/Header";
+import { Features, Hero } from "@/components/home";
+import Pricing from "@/components/home/Pricing";
+import { staticData } from "@/utils/staticData";
 const PAGE_DATA = staticData.pages.index;
 
 export default function Home() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  // const router = useRouter();
+  // const searchParams = useSearchParams();
 
-  const handleCloseModal = () => {
-    router.push("/");
-  };
+  // const handleCloseModal = () => {
+  //   router.push("/");
+  // };
 
   return (
     <>
       <Header />
       <main className={styles.main}>
-        <Modal
+        {/* <Modal
           size="auto"
           classNames={{
             body: styles.modal,
@@ -46,7 +44,7 @@ export default function Home() {
             }
             closeModal={handleCloseModal}
           />
-        </Modal>
+        </Modal> */}
         <Hero />
         <Pricing />
         <Features />

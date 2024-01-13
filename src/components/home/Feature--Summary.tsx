@@ -10,7 +10,7 @@ function FeatureSummary() {
   return (
     <div className={styles.container}>
       <Image
-        src={COMPONENT_DATA.image}
+        src={COMPONENT_DATA.image as string}
         alt={COMPONENT_DATA.firstName}
         className={styles.image}
       />

@@ -1,6 +1,7 @@
 import { staticData } from "@/utils/staticData";
 import {
   Badge,
+  Box,
   Button,
   Container,
   Flex,
@@ -9,11 +10,8 @@ import {
   Paper,
   Text,
   Title,
-  useMantineTheme,
 } from "@mantine/core";
-import {
-  IconCheck
-} from "@tabler/icons-react";
+import { IconCheck } from "@tabler/icons-react";
 import Image from "next/image";
 import styles from "./Hero.module.css";
 
@@ -22,7 +20,6 @@ const { content: GENERAL_CONTENT } = staticData.general;
 const { icons: ICONS } = staticData.general;
 
 function PricingCard({ plan }: { plan: (typeof COMPONENT_DATA)["plans"][0] }) {
-  const theme = useMantineTheme();
   return (
     <Paper
       shadow="xl"
@@ -34,25 +31,32 @@ function PricingCard({ plan }: { plan: (typeof COMPONENT_DATA)["plans"][0] }) {
       }}
     >
       <Flex direction="column" align="center" gap={28} w={280}>
-        <Grid columns={2} gutter={16} align="center" w="100%">
-          <Grid.Col span="content">
-            <Image height={60} width={60} src={plan.icon} alt={plan.title} />
-          </Grid.Col>
-          <Grid.Col span="content">
-            <Flex direction="column" gap={-5}>
-              <Text
-                fw={500}
-                size="sm"
-                c={plan.highlight ? "primary.1" : "dark.3"}
-              >
-                {plan.badge}
-              </Text>
-              <Text fw={600} size="lg" c={plan.highlight ? "white" : "dark"}>
-                {plan.title}
-              </Text>
-            </Flex>
-          </Grid.Col>
-        </Grid>
+        {/* <Grid columns={2} gutter={16} align="center" w="100%"> */}
+        {/* <Grid.Col span="content"> */}
+        <Box
+          style={{
+            display: "grid",
+            gridTemplateColumns: "auto 1fr",
+          }}
+        >
+          <Image height={60} width={60} src={plan.icon} alt={plan.title} />
+          {/* </Grid.Col> */}
+          {/* <Grid.Col span="content"> */}
+          <Flex direction="column" gap={-5}>
+            <Text
+              fw={500}
+              size="sm"
+              c={plan.highlight ? "primary.1" : "dark.3"}
+            >
+              {plan.badge}
+            </Text>
+            <Text fw={600} size="lg" c={plan.highlight ? "white" : "dark"}>
+              {plan.title}
+            </Text>
+          </Flex>
+        </Box>
+        {/* </Grid.Col> */}
+        {/* </Grid> */}
         <Text c={plan.highlight ? "primary.0" : "dark.3"} fw={500}>
           {plan.description}
         </Text>
@@ -75,8 +79,8 @@ function PricingCard({ plan }: { plan: (typeof COMPONENT_DATA)["plans"][0] }) {
               <IconCheck
                 color={
                   plan.highlight
-                    ? theme.colors.primary[0]
-                    : theme.colors.primary[5]
+                    ? "--mantine-color-primary-0"
+                    : "--mantine-color-primary-5"
                 }
                 size={20}
               />

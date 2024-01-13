@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { Button, Title } from "@mantine/core";
-import styles from "./Hero.module.css";
 import { staticData } from "@/utils/staticData";
+import { Button, Title } from "@mantine/core";
+import Image from "next/image";
+import styles from "./Hero.module.css";
 
 const { hero: COMPONENT_DATA } = staticData.pages.index;
 const { icons: ICONS } = staticData.general;

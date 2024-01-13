@@ -1,10 +1,12 @@
-import React from "react";
-import Link from "next/link";
-import { Button, Loader, Text, Title } from "@mantine/core";
-import styles from "./Features.module.css";
-import FeatureSummary from "./Feature--Summary";
-import FeatureScores from "./Feature--Scores";
+"use client";
+
 import { useUser } from "@/hooks/user.swr";
+import { Button, Loader, Text, Title } from "@mantine/core";
+import Link from "next/link";
+import React from "react";
+import FeatureScores from "./Feature--Scores";
+import FeatureSummary from "./Feature--Summary";
+import styles from "./Features.module.css";
 
 import { staticData } from "@/utils/staticData";
 const { features: COMPONENT_DATA } = staticData.pages.index;
