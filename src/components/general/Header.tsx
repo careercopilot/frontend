@@ -13,6 +13,8 @@ import { useCookies } from "react-cookie";
 import { mutate } from "swr";
 import notificationManager from "../helpers/NotificationManager";
 import styles from "./Header.module.css";
+
+
 const { navbar: COMPONENT_DATA } = staticData.components;
 const generalData = staticData.general;
 

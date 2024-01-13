@@ -15,6 +15,10 @@ class APIConstants {
   /** User Endpoints */
   GET_USER = this.USER + "/";
   GET_USER_HISTORY = this.USER + "/history";
+
+  /** Skill Endpoints */
+  SEARCH_SKILL = this.SKILL + "/searchskill";
+  CREATE_SKILL = this.SKILL + "/";
 }
 
 const API_CONSTANTS = new APIConstants();

@@ -1,0 +1,53 @@
+.main {
+  grid-template: auto 1fr / auto 1fr;
+}
+
+.header {
+  grid-column: 1 / -1;
+}
+
+.navbar {
+  flex-direction: column;
+}
+
+.navbarLinks {
+  flex-direction: column;
+}
+
+.logo {
+  display: block;
+}
+
+.logoIcon {
+  display: none;
+}
+
+@media (max-width: 40rem) {
+  .main {
+    grid-template: auto auto 1fr / 1fr;
+  }
+
+  .headerLinks {
+    display: none;
+  }
+
+  .navbar {
+    flex-direction: row;
+  }
+
+  .navbarLinks {
+    flex-direction: row;
+  }
+
+  .navbarLinksActive {
+    display: none;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .logoIcon {
+    display: block;
+  }
+}

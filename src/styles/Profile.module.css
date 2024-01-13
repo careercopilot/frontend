@@ -1,5 +1,5 @@
 .main {
-  padding: 2rem max(2rem, calc(50vw - 37.5rem));
+  /* padding: 2rem max(2rem, calc(50vw - 37.5rem)); */
   display: flex;
   flex-direction: column;
   gap: 3.5rem;

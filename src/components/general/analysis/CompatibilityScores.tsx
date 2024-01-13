@@ -1,4 +1,3 @@
-import CandidateScores from "@/interfaces/CandidateScores";
 import { staticData } from "@/utils/staticData";
 import { Divider, Progress, Text, Title } from "@mantine/core";
 import Image from "next/image";
@@ -6,7 +5,26 @@ import styles from "./CompatibilityScores.module.css";
 
 const { compatibilityScores: COMPONENT_DATA } = staticData.components.anylysis;
 
-function CompatibilityScores({ scores }: { scores: CandidateScores }) {
+function CompatibilityScores({
+  scores,
+}: {
+  scores: {
+    _id: string;
+    candidate: {
+      _id: string;
+      firstName: string;
+      lastName: string;
+      image: any;
+    };
+    position: string;
+    positionScore: number;
+    skillScores: {
+      name: string;
+      score: number;
+      icon: any;
+    }[];
+  };
+}) {
   return (
     <div className={styles.container}>
       <div className={styles.left}>

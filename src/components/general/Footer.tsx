@@ -1,5 +1,3 @@
-"use client";
-
 import { staticData } from "@/utils/staticData";
 import { ActionIcon } from "@mantine/core";
 import Image from "next/image";

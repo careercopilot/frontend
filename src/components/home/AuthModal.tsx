@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 import Image from "next/image";
 import React from "react";
@@ -81,7 +83,11 @@ function AuthModal({
     token: string,
     messageContents: (typeof COMPONENT_DATA.messages)[keyof typeof COMPONENT_DATA.messages]
   ) => {
-    setCookie("token", token);
+    setCookie("token", token, {
+      path: "/",
+      maxAge: 3600 * 24 * 30,
+      sameSite: true,
+    });
     axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
     notificationManager.showSuccess(

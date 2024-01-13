@@ -1,0 +1,33 @@
+.main {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  overflow-y: unset;
+}
+
+.wrapper {
+  display: grid;
+  grid-template: auto 1fr / 4fr 3fr 22rem;
+  transition: all 0.3s ease-out;
+  grid-gap: 1rem;
+  grid-template-areas:
+    "insights insights activity"
+    "openings candidates activity";
+}
+
+.wrapper > div:nth-child(1) {
+  grid-area: insights;
+}
+
+.wrapper > div:nth-child(2) {
+  grid-area: activity;
+}
+
+.wrapper > div:nth-child(3) {
+  grid-area: openings;
+}
+
+.wrapper > div:nth-child(4) {
+  grid-area: candidates;
+}

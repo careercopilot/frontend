@@ -1,18 +1,22 @@
-import Footer from "@/components/general/Footer";
-import Header from "@/components/general/Header";
 import "@/styles/globals.css";
+import "@mantine/core/styles.css";
+import "@mantine/dropzone/styles.css";
+import "@mantine/notifications/styles.css";
+
+import { Viewport } from "next";
+import { Manrope } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+
+import ClinetProvider from "@/app/clinetProvider";
 import config from "@/utils/config";
 import { ColorSchemeScript, MantineProvider, createTheme } from "@mantine/core";
-import "@mantine/core/styles.css";
 import { Notifications } from "@mantine/notifications";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Analytics } from "@vercel/analytics/react";
-import type { Metadata } from "next";
-import { Viewport } from "next";
-import { Manrope } from "next/font/google";
-import ClinetProvider from "./clinetProvider";
 
-const manropeFont = Manrope({ subsets: ["latin"] });
+import type { Metadata } from "next";
+
+const manropeFont = Manrope({ subsets: ["latin-ext"] });
 
 export const metadata: Metadata = {
   title:
@@ -86,15 +90,15 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
 
-      <body>
+      <body className={manropeFont.className}>
+        <NextTopLoader showSpinner={false} color="#0F89F9" />
         <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
           <MantineProvider
             theme={createTheme({
               /** Mantine theme override here */
-
               colors: {
                 primary: [
-                  "#E5F4FF",
+                  "#F5F9FF",
                   "#A8D9FF",
                   "#72C2FF",
                   "#43ADFF",
@@ -153,13 +157,37 @@ export default function RootLayout({ children }: { children: any }) {
                 xl: "1.25rem",
                 xxl: "1.5rem",
               },
+              other: {
+                box: {
+                  primary: {
+                    boxShadow: "0px 4px 25px 0px rgba(5, 102, 192, 0.20)",
+                    borderRadius: "var(--general-box-border-radius)",
+                    backgroundColor: "white",
+                  },
+                  secondary: {
+                    boxShadow: "5px 7px 23.6px 0px rgba(5, 102, 192, 0.05)",
+                    borderRadius: "var(--general-seconday-box-border-radius)",
+                    backgroundColor: "white",
+                    border: "1px solid #E4F0FF",
+                  },
+                },
+                sizes: {
+                  shell: {
+                    spacing: 10,
+                    header: {
+                      height: 60,
+                    },
+                    navbar: {
+                      width: 64,
+                    },
+                  },
+                },
+              },
             })}
           >
             <ClinetProvider>
               <Notifications />
-              <Header />
               {children}
-              <Footer />
               <Analytics />
             </ClinetProvider>
           </MantineProvider>
