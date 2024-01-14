@@ -17,6 +17,7 @@ class AuthService {
     password: string;
     firstName: string;
     lastName: string;
+    company: string;
   }) {
     try {
       const { data } = await axios.post(API_CONSTANTS.REGISTER, credentials);
@@ -27,9 +28,9 @@ class AuthService {
     }
   }
 
-  async google(code: string) {
+  async google(payload: { code: string; company: string }) {
     try {
-      const { data } = await axios.post(API_CONSTANTS.GOOGLE_LOGIN, { code });
+      const { data } = await axios.post(API_CONSTANTS.GOOGLE_LOGIN, payload);
       return data;
     } catch (err: any) {
       console.log("Error Logging In", err);
