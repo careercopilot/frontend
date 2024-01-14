@@ -19,10 +19,11 @@
 .header {
   display: flex;
   flex-direction: column;
+  gap: .5rem;
 }
 
 .title {
-  font-size: 1.85rem;
+  font-size: 1.6rem;
 }
 
 .body {
@@ -38,7 +39,7 @@
 }
 
 .cover {
-  max-width: 23.1875rem;
+  max-width: 20.1875rem;
   max-height: 17.125rem;
 }
 
@@ -54,4 +55,13 @@
   .cover {
     width: 100%;
   }
+}
+
+/* auth modal wrapper styles */
+.modalContent {
+  border-radius: 1.2rem;
+}
+
+.modal {
+  padding: calc(1rem + 2vw) calc(1.5rem + 1.5vw);
 }

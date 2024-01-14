@@ -1,26 +1,28 @@
 "use client";
 
+import { Button, Modal, Text, TextInput, Title } from "@mantine/core";
+import { UseFormReturnType, useForm } from "@mantine/form";
+import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { mutate } from "swr";
 import useSWRMutation from "swr/mutation";
-import Link from "next/link";
-import { Button, Title, Text, TextInput } from "@mantine/core";
-import { useForm, UseFormReturnType } from "@mantine/form";
-import { useGoogleLogin } from "@react-oauth/google";
 
 import notificationManager from "@/components/helpers/NotificationManager";
-import { useCookies } from "react-cookie";
-import API_CONSTANTS from "@/utils/apiConstants";
 import { authenticationFetcher } from "@/hooks/auth.swr";
+import API_CONSTANTS from "@/utils/apiConstants";
+import { useCookies } from "react-cookie";
 
 import styles from "./AuthModal.module.css";
 
 import { staticData } from "@/utils/staticData";
+import { useRouter, useSearchParams } from "next/navigation";
 const { authModal: COMPONENT_DATA } = staticData.pages.index;
 const { content: GENERAL_CONTENT } = staticData.general;
 const { icons: ICONS } = staticData.general;
+const PAGE_DATA = staticData.pages.index;
 
 const InputComponent = {
   text: TextInput,
@@ -28,11 +30,11 @@ const InputComponent = {
   password: TextInput,
 };
 
-function AuthModal({
+function AuthModalRenderer({
   variant,
   closeModal,
 }: {
-  variant: string;
+  variant: "register" | "login";
   closeModal: () => void;
 }) {
   const [, setCookie] = useCookies();
@@ -46,9 +48,14 @@ function AuthModal({
       email: "",
       password: "",
       confirmPassword: "",
+      company: "",
     },
 
     validate: {
+      company: (value: string) =>
+        value.length > 0 || currentVariant === "login"
+          ? null
+          : "Company name is required",
       email: (value: string) =>
         /^\S+@\S+$/.test(value) ? null : "Invalid email",
       password: (value: string) =>
@@ -105,6 +112,7 @@ function AuthModal({
     firstName: string;
     lastName: string;
     confirmPassword: string;
+    company: string;
   }) => {
     try {
       let token = await authenticate({
@@ -128,7 +136,7 @@ function AuthModal({
       try {
         let token = await authenticate({
           authType: "google",
-          data: codeResponse.code,
+          data: { code: codeResponse.code, company: mForm.values.company },
         });
 
         handleAuthSuccess(token, COMPONENT_DATA.messages.google);
@@ -146,6 +154,12 @@ function AuthModal({
     flow: "auth-code",
   });
   const loginWithGoogle = async () => {
+    if (currentVariant === "register") {
+      const rvalue = mForm.validateField("company");
+      if (rvalue.hasError) {
+        return;
+      }
+    }
     setGoogleAccountFetching(true);
     handleGoogleAuth();
   };
@@ -154,9 +168,22 @@ function AuthModal({
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.header}>
-          <Title order={3} className={styles.title}>
+          <Title order={3} className={styles.title} w="fit-content">
             {COMPONENT_DATA.titles[currentVariant].title}
           </Title>
+          {currentVariant === "register" && (
+            <TextInput
+              data-autofocus
+              type={COMPONENT_DATA.company.type}
+              placeholder={COMPONENT_DATA.company.placeholder}
+              name={COMPONENT_DATA.company.name}
+              key={COMPONENT_DATA.company.name}
+              autoComplete={COMPONENT_DATA.company.autoComplete}
+              // label={COMPONENT_DATA.company.label}
+              size="md"
+              {...mForm.getInputProps(COMPONENT_DATA.company.name)}
+            />
+          )}
           <Text size="sm" c="black.8">
             {COMPONENT_DATA.titles[currentVariant].subTitle}
           </Text>
@@ -170,20 +197,20 @@ function AuthModal({
                   InputComponent[input.type as keyof typeof InputComponent];
                 return (
                   <Component
-                    data-autofocus={index === 0}
+                    // data-autofocus={index === 0}
                     type={input.type}
                     placeholder={input.placeholder}
                     name={input.name}
                     key={input.name}
                     autoComplete={input.autoComplete}
-                    size="md"
+                    // size="md"
                     {...mForm.getInputProps(input.name)}
                   />
                 );
               })}
             <Button
               color="primary"
-              size="md"
+              size="sm"
               fullWidth
               className={styles.submitBtn}
               type="submit"
@@ -208,7 +235,7 @@ function AuthModal({
               />
             }
             fullWidth
-            size="md"
+            size="sm"
             onClick={loginWithGoogle}
           >
             {COMPONENT_DATA.buttons.google.label}
@@ -241,6 +268,42 @@ function AuthModal({
         />
       </div>
     </div>
+  );
+}
+
+function AuthModal() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleCloseModal = () => {
+    router.push("/");
+  };
+
+  return (
+    <Modal
+      size="auto"
+      classNames={{
+        body: styles.modal,
+        content: styles.modalContent,
+      }}
+      opened={
+        Object.keys(PAGE_DATA.modalAllowedRouteValues).includes(
+          searchParams.get("modal") as string
+        ) || false
+      }
+      onClose={handleCloseModal}
+      withCloseButton={false}
+      centered
+    >
+      <AuthModalRenderer
+        variant={
+          searchParams.get(
+            "modal"
+          ) as keyof typeof PAGE_DATA.modalAllowedRouteValues
+        }
+        closeModal={handleCloseModal}
+      />
+    </Modal>
   );
 }
 

@@ -66,7 +66,7 @@ export const staticData = {
           "Revolutionize your hiring process with AI-driven profile insights",
         cta: "Get Started Now ->",
         chip: "Get Chrome Extension for LinkedIn",
-        ctaLink: CHROME_EXTENSION_URL,
+        ctaLink: "/app",
         cover: {
           src: HomeHeroCover,
           alt: "Simplified hiring process",
@@ -233,6 +233,15 @@ export const staticData = {
             title: string;
             subTitle: string;
           };
+        },
+        company: {
+          name: "company",
+          label: "Company",
+          type: "text",
+          placeholder: "Enter your company name",
+          required: true,
+          for: ["register"],
+          autoComplete: "given-name",
         },
         inputs: [
           {

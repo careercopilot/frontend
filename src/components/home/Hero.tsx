@@ -1,4 +1,4 @@
-import { staticData } from "@/utils/staticData";
+import { CHROME_EXTENSION_URL, staticData } from "@/utils/staticData";
 import { Button, Title } from "@mantine/core";
 import Image from "next/image";
 import styles from "./Hero.module.css";
@@ -31,7 +31,7 @@ function Hero() {
               />
             }
             component="a"
-            href={COMPONENT_DATA.ctaLink}
+            href={CHROME_EXTENSION_URL}
             target="_blank"
             variant="outline"
           >
@@ -45,7 +45,6 @@ function Hero() {
             className={styles.button}
             component="a"
             href={COMPONENT_DATA.ctaLink}
-            target="_blank"
             mt={20}
           >
             {COMPONENT_DATA.cta}
