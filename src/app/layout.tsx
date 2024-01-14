@@ -3,6 +3,7 @@ import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 import "@mantine/notifications/styles.css";
 
+import type { Metadata } from "next";
 import { Viewport } from "next";
 import { Manrope } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
@@ -13,8 +14,6 @@ import { ColorSchemeScript, MantineProvider, createTheme } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Analytics } from "@vercel/analytics/react";
-
-import type { Metadata } from "next";
 
 const manropeFont = Manrope({ subsets: ["latin-ext"] });
 
@@ -73,9 +72,6 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
     },
-  },
-  alternates: {
-    canonical: "https://www.careercopilot.in/",
   },
 };
 
@@ -193,11 +189,11 @@ export default function RootLayout({ children }: { children: any }) {
               },
             })}
           >
-            <ClinetProvider>
+            {/* <ClinetProvider> */}
               <Notifications />
               {children}
               <Analytics />
-            </ClinetProvider>
+            {/* </ClinetProvider> */}
           </MantineProvider>
         </GoogleOAuthProvider>
       </body>
