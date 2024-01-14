@@ -189,11 +189,11 @@ export default function RootLayout({ children }: { children: any }) {
               },
             })}
           >
-            {/* <ClinetProvider> */}
+            <ClinetProvider>
               <Notifications />
               {children}
               <Analytics />
-            {/* </ClinetProvider> */}
+            </ClinetProvider>
           </MantineProvider>
         </GoogleOAuthProvider>
       </body>
