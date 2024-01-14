@@ -355,7 +355,7 @@ export const staticData = {
           label: "Company Name",
           placeholder: "Enter Company Name",
           required: true,
-          key: "company",
+          key: "organization",
         },
         {
           label: "Admin First Name",

@@ -30,11 +30,13 @@ function CompanyProfile() {
       firstName: userData?.firstName,
       lastName: userData?.lastName,
       email: userData?.email,
+      organization: userData?.organization?.name,
     },
     validate: {
       firstName: isNotEmpty(),
       lastName: isNotEmpty(),
       email: isEmail(),
+      organization: isNotEmpty(),
     },
   });
 
@@ -44,6 +46,7 @@ function CompanyProfile() {
         firstName: userDataDebounce.firstName,
         lastName: userDataDebounce.lastName,
         email: userDataDebounce.email,
+        organization: userDataDebounce.organization?.name,
       });
     }
   }, [userDataDebounce]);
