@@ -15,6 +15,7 @@ class APIConstants {
   /** User Endpoints */
   GET_USER = this.USER + "/";
   GET_USER_HISTORY = this.USER + "/history";
+  UPDATE_USER = this.USER + "/";
 
   /** Skill Endpoints */
   SEARCH_SKILL = this.SKILL + "/searchskill";
