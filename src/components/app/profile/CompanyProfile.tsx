@@ -120,8 +120,6 @@ function CompanyProfile() {
             }}
             radius={20}
             size={128}
-            component={Link}
-            href={"/app/profile"}
             ml={20}
             style={{
               transform: `translateY(calc(50%))`,
@@ -140,8 +138,7 @@ function CompanyProfile() {
         )}
       </Flex>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Flex px={52} direction="column" gap={20} pos="relative">
-          <LoadingOverlay visible={isMutating} />
+        <Flex px={52} direction="column" gap={20}>
           <SimpleGrid
             cols={{
               sm: 1,
@@ -149,7 +146,9 @@ function CompanyProfile() {
             }}
             maw={640}
             spacing={20}
+            pos="relative"
           >
+            <LoadingOverlay visible={isMutating} />
             {COMPONENT_DATA.inputs.map((input) => (
               <TextInput
                 key={input.key}
