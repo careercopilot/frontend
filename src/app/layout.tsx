@@ -69,10 +69,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot:{
+    googleBot: {
       index: true,
       follow: true,
-    }
+    },
+  },
+  alternates: {
+    canonical: "https://www.careercopilot.in/",
   },
 };
 
