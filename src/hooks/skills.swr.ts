@@ -9,7 +9,7 @@ export function useSkillsSearch(query: string) {
       "get",
       {
         params: query && {
-          keyword: query,
+          keyword: encodeURIComponent(query),
         },
       },
     ],

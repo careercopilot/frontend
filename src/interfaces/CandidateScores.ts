@@ -1,11 +1,11 @@
 import { StaticImageData } from "next/image";
 import CandidateProfile from "@/interfaces/CandidateProfile";
-import Opening from "./Opening";
+import IOpening from "./Opening";
 
 interface CandidateScores {
   _id: string;
   candidate: CandidateProfile;
-  opening: Opening;
+  opening: IOpening;
   positionScore: number;
   skillScores: {
     name: string;

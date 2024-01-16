@@ -30,7 +30,7 @@ import FooterPhoneIcon from "@/assets/icons/footer/Phone.svg";
 import FooterTwitterIcon from "@/assets/icons/footer/Twitter.svg";
 
 /** Interfaces */
-import Opening from "@/interfaces/Opening";
+import IOpening from "@/interfaces/Opening";
 
 /** Tabler Icons */
 import {
@@ -355,7 +355,7 @@ export const staticData = {
           label: "Company Name",
           placeholder: "Enter Company Name",
           required: true,
-          key: "company",
+          key: "organization",
         },
         {
           label: "Admin First Name",
@@ -496,6 +496,11 @@ export const staticData = {
           Icon: IconFileCheck,
           color: "teal",
         },
+        markAsOpen: {
+          label: "Mark as Open",
+          Icon: IconFileDescription,
+          color: "green",
+        },
         edit: {
           label: "Edit",
           Icon: IconEdit,
@@ -507,7 +512,7 @@ export const staticData = {
           color: "red",
         },
       },
-      empty: "No Openings",
+      empty: "No Openings Added",
       error:
         "Something went wrong while fetching your openings. Please try again later",
     },
@@ -515,17 +520,17 @@ export const staticData = {
       overview: [
         {
           label: "Company/Department",
-          renderValue: (data: Opening) => data.companyDepartment,
+          renderValue: (data: IOpening) => data.companyDepartment,
         },
-        { label: "Type", renderValue: (data: Opening) => data.type },
+        { label: "Type", renderValue: (data: IOpening) => data.type },
         {
           label: "YOE",
-          renderValue: (data: Opening) =>
-            `${data.requiredExperience.min} - ${data.requiredExperience.max} YOE`,
+          renderValue: (data: IOpening) =>
+            `${data.experienceRequired.min} - ${data.experienceRequired.max} YOE`,
         },
         {
           label: "Skills",
-          renderValue: (data: Opening) => `${data.skills.length} Skills`,
+          renderValue: (data: IOpening) => `${data.skills.length} Skills`,
         },
       ],
       progress: {
@@ -602,8 +607,9 @@ export const staticData = {
         ],
       },
     },
-    addOpening: {
+    addEditOpening: {
       title: "Add Opening",
+      editTitle: "Edit Opening",
       inputs: {
         title: {
           label: "Title",
@@ -631,6 +637,16 @@ export const staticData = {
           nothingFound: "No Skills Found for the given keyword",
           searchPlaceholder: "Search Skills by Keyword",
         },
+      },
+      newSkill: {
+        title: "Don't see the skill you are looking for?",
+        description:
+          "Add a new skill and we will automatically add it to our database",
+        input: {
+          label: "Skill Name",
+          placeholder: "Enter Skill Name",
+        },
+        submit: "Create",
       },
       submit: "Continue",
     },

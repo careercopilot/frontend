@@ -53,7 +53,7 @@ function AddApplications() {
         placeholder={COMPONENT_DATA.select.placeholder}
         data={openings?.map((item) => ({
           value: item._id,
-          label: item.title,
+          label: item.position,
         }))}
         value={searchParams.get("opening")}
         disabled={isLoadingOpenings}
