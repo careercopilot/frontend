@@ -249,6 +249,8 @@ function OpeningDetails() {
     // TODO: update and mutate selected candidates
   }, [selectedCandidates]);
 
+  if (!opening) return;
+
   return (
     <Flex direction="column" gap={32} w="100%">
       <Flex align="center" gap={12}>
@@ -264,11 +266,11 @@ function OpeningDetails() {
                 </Title>
               </Flex>
             </Link>
-            <Badge color={opening.status === "open" ? "green" : "yellow"}>
-              {opening.status}
+            <Badge color={opening?.status === "open" ? "green" : "yellow"}>
+              {opening?.status}
             </Badge>
             <Badge p={0} color="dark.2" variant="transparent">
-              {dayjs(opening.createdAt).format("MMM DD, YYYY")}
+              {dayjs(opening?.createdAt).format("MMM DD, YYYY")}
             </Badge>
           </>
         )}
@@ -284,7 +286,7 @@ function OpeningDetails() {
                 {isLoadingOpening || errorLoadingOpening ? (
                   <Skeleton h={24} />
                 ) : (
-                  <Text fw={600}>{item.renderValue(opening)}</Text>
+                  <Text fw={600}>{opening && item.renderValue(opening)}</Text>
                 )}
               </Flex>
             );
@@ -294,15 +296,15 @@ function OpeningDetails() {
           <Text>{COMPONENT_DATA.progress.label}</Text>
           <Flex align="center" gap={12}>
             <Progress
-              value={(opening.selected * 100) / opening.total}
+              value={(opening?.selected * 100) / opening?.total}
               size="md"
               color="green"
               w={180}
             />
             <Text>
               {COMPONENT_DATA.progress.filled({
-                filled: opening.selected,
-                total: opening.total,
+                filled: opening?.selected || 0,
+                total: opening?.total || 0,
               })}
             </Text>
           </Flex>
@@ -325,7 +327,8 @@ function OpeningDetails() {
                     <item.Icon size={18} stroke={1.5} />
                   </ThemeIcon>
                   <Text fz="sm" fw={500} c={item.color}>
-                    {opening.stats[item.key as keyof typeof opening.stats]}{" "}
+                    {opening?.stats?.[item.key as keyof typeof opening.stats] ||
+                      0}{" "}
                     {item.label}
                   </Text>
                 </Flex>
