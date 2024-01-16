@@ -25,7 +25,7 @@ function TopCandidateCard({ data }: { data: CandidateScores }) {
             {data.candidate.firstName}
           </Title>
           <Text fz="sm" c="dimmed">
-            {data.opening.title}
+            {data.opening.position}
           </Text>
         </Flex>
         <Flex align="center" gap={12}>

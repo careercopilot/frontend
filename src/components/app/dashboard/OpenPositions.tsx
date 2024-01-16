@@ -1,7 +1,7 @@
 "use client";
 
 import { useOpenings } from "@/hooks/openings.swr";
-import Opening from "@/interfaces/Opening";
+import IOpening from "@/interfaces/Opening";
 import { staticData } from "@/utils/staticData";
 import {
   Flex,
@@ -17,13 +17,13 @@ import SecondaryContainer from "../general/SecondaryContainer";
 
 const { openPositions: COMPONENT_DATA } = staticData.pages.dashboard;
 
-function OpenPositionCard({ data }: { data: Opening }) {
+function OpenPositionCard({ data }: { data: IOpening }) {
   return (
     <Flex justify="space-between" gap={10}>
       <Flex direction="column" gap={4}>
         <Flex direction="column">
           <Title order={5} fz={"lg"} c="dark" fw={600}>
-            {data.title}
+            {data.position}
           </Title>
           <Text fz="sm" c="dimmed">
             {dayjs(data.createdAt).format("MMMM DD, YYYY")}

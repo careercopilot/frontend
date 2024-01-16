@@ -15,6 +15,11 @@ class APIConstants {
   /** User Endpoints */
   GET_USER = this.USER + "/";
   GET_USER_HISTORY = this.USER + "/history";
+  GET_USER_OPENINGS = this.USER + "/openings";
+  DELETE_USER_OPENING = (id: string) => this.USER + "/opening/" + id;
+  UPDATE_OPENING_STATUS = (id: string) =>
+    this.USER + "/opening/" + id + "/status";
+  CREATE_OPENING = this.USER + "/opening";
   UPDATE_USER = this.USER + "/";
 
   /** Skill Endpoints */

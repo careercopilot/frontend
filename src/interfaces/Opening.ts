@@ -1,19 +1,22 @@
-interface Opening {
+export interface ISkill {
   _id: string;
-  title: string;
-  companyDepartment: string;
+  name: string;
+  link: string;
+}
+
+interface IOpening {
+  _id: string;
+  userId: string;
+  position: string;
   type: "Full Time" | "Part Time" | "Internship" | "Contract" | string;
-  total: number;
-  requiredExperience: {
+  experienceRequired: {
     min: number;
     max: number;
   };
-  skills: {
-    _id: string;
-    name: string;
-    link: string;
-  }[];
   status: "open" | "closed";
+  skills: ISkill[];
+  companyDepartment: string;
+  total: number;
   createdAt: string;
   stats: {
     success: number;
@@ -24,4 +27,4 @@ interface Opening {
   selected: number;
 }
 
-export default Opening;
+export default IOpening;

@@ -1,6 +1,10 @@
 "use client";
 
+import notificationManager from "@/components/helpers/NotificationManager";
 import { useSkillsSearch } from "@/hooks/skills.swr";
+import { ISkill } from "@/interfaces/Opening";
+import API_CONSTANTS from "@/utils/apiConstants";
+import { genericMutationFetcher } from "@/utils/helpers/swr.helper";
 import { staticData } from "@/utils/staticData";
 import {
   ActionIcon,
@@ -9,6 +13,7 @@ import {
   Button,
   Flex,
   Loader,
+  LoadingOverlay,
   NumberInput,
   RangeSlider,
   Select,
@@ -23,16 +28,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import useSWRMutation from "swr/mutation";
 import styles from "./AddOpening.module.css";
 
 interface FormValues {
-  title: string;
-  companyDepartment: string;
+  position: string;
   type: string;
-  total: number;
   requiredMinExperience: number;
   requiredMaxExperience: number;
-  skills: { _id: string; name: string; link?: string }[];
+  skills: ISkill[];
+  companyDepartment: string;
+  total: number;
 }
 
 interface TransformedFormValues
@@ -40,7 +46,7 @@ interface TransformedFormValues
     FormValues,
     "requiredMinExperience" | "requiredMaxExperience" | "skills"
   > {
-  requiredExperience: {
+  experienceRequired: {
     min: number;
     max: number;
   };
@@ -52,15 +58,22 @@ const { addOpening: COMPONENT_DATA } = staticData.pages;
 function AddOpening() {
   const { push } = useRouter();
   const [searchValue, setSearchValue] = useState("");
+  const [newSkill, setNewSkill] = useState("");
   const { skills, errorFetchingSkills, isSkillsLoading } =
     useSkillsSearch(searchValue);
+  const { trigger: createSkill, isMutating: isCreatingSkill } = useSWRMutation(
+    API_CONSTANTS.CREATE_SKILL,
+    genericMutationFetcher
+  );
+  const { trigger: createOpening, isMutating: isCreatingOpening } =
+    useSWRMutation(API_CONSTANTS.CREATE_OPENING, genericMutationFetcher);
 
   const form = useForm<
     FormValues,
     (values: FormValues) => TransformedFormValues
   >({
     initialValues: {
-      title: "",
+      position: "",
       companyDepartment: "",
       type: COMPONENT_DATA.inputs.type.suggestions[0],
       total: COMPONENT_DATA.inputs.total.default,
@@ -69,17 +82,21 @@ function AddOpening() {
       skills: [],
     },
     validate: {
-      title: isNotEmpty("Name is required"),
+      position: isNotEmpty("Name is required"),
       companyDepartment: isNotEmpty("Company Department is required"),
       type: isNotEmpty("Type is required"),
-      total: (value) => value !== 0 || "Total is required",
+      total: (value) =>
+        value <= 0 ? "Positions must be greater than 0" : null,
       requiredMaxExperience: (value, values) =>
-        values.requiredMaxExperience >= values.requiredMinExperience ||
-        "Max Experience must be greater than Min Experience",
+        values.requiredMaxExperience < values.requiredMinExperience
+          ? "Max Experience must be greater than Min Experience"
+          : null,
+      skills: (value) =>
+        value.length === 0 ? "At least one skill is required" : null,
     },
     transformValues: (values) => ({
       ...values,
-      requiredExperience: {
+      experienceRequired: {
         min: values.requiredMinExperience,
         max: values.requiredMaxExperience,
       },
@@ -87,21 +104,60 @@ function AddOpening() {
     }),
   });
 
-  const handleSubmit = (values: TransformedFormValues) => {};
+  const handleCreateSkill = async () => {
+    try {
+      const createdSkill = await createSkill<{ data: ISkill }>({
+        type: "post",
+        rest: [
+          {
+            name: newSkill,
+          },
+        ],
+      });
+      form.setValues({
+        skills: [...form.values.skills, createdSkill.data],
+      });
+      setNewSkill("");
+      notificationManager.showSuccess("Skill created successfully");
+    } catch (e) {
+      console.log(e);
+      notificationManager.showError("Error creating skill");
+    }
+  };
 
+  const handleSubmit = async (values: TransformedFormValues) => {
+    try {
+      const createdOpening = await createOpening<{ data: string }>({
+        type: "post",
+        rest: [
+          {
+            ...values,
+          },
+        ],
+      });
+      notificationManager.showSuccess("Opening created successfully");
+      push(`/app/openings/${createdOpening.data}`);
+    } catch (e) {
+      console.log(e);
+      notificationManager.showError("Error creating opening");
+    }
+  };
+
+  console.log(form.errors);
   return (
-    <Flex direction="column" gap={28}>
-      <Flex>
-        <Link href={"/app/openings"}>
-          <Flex align="center" gap={10}>
-            <IconChevronLeft />
-            <Title order={2} size={20}>
-              {COMPONENT_DATA.title}
-            </Title>
-          </Flex>
-        </Link>
-      </Flex>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
+    <form onSubmit={form.onSubmit(handleSubmit)}>
+      <Flex direction="column" gap={28}>
+        <LoadingOverlay visible={isCreatingOpening} />
+        <Flex>
+          <Link href={"/app/openings"}>
+            <Flex align="center" gap={10}>
+              <IconChevronLeft />
+              <Title order={2} size={20}>
+                {COMPONENT_DATA.title}
+              </Title>
+            </Flex>
+          </Link>
+        </Flex>
         <SimpleGrid
           maw={600}
           cols={{
@@ -113,7 +169,7 @@ function AddOpening() {
             required
             label={COMPONENT_DATA.inputs.title.label}
             placeholder={COMPONENT_DATA.inputs.title.placeholder}
-            {...form.getInputProps("title")}
+            {...form.getInputProps("position")}
           />
           <TextInput
             required
@@ -164,13 +220,7 @@ function AddOpening() {
             />
           </Flex>
           <Box />
-          <Flex
-            direction="column"
-            gap={12}
-            // style={{
-            //   gridColumn: "span 2",
-            // }}
-          >
+          <Flex direction="column" gap={12}>
             <Title order={6} size="var(--h6-ext)" fw={500}>
               {COMPONENT_DATA.inputs.skill.title}
             </Title>
@@ -230,6 +280,7 @@ function AddOpening() {
                   ? COMPONENT_DATA.inputs.skill.nothingFound
                   : COMPONENT_DATA.inputs.skill.searchPlaceholder
               }
+              error={form.errors.skills}
               searchable
               rightSection={isSkillsLoading ? <Loader size={16} /> : null}
               onChange={(value) => {
@@ -253,14 +304,47 @@ function AddOpening() {
               maxDropdownHeight={400}
               onSearchChange={setSearchValue}
               searchValue={searchValue}
+              disabled={errorFetchingSkills}
             />
           </Flex>
+          <Flex
+            direction="column"
+            gap={10}
+            style={{
+              gridColumn: "span 2",
+            }}
+          >
+            <Flex direction="column">
+              <Text fw={500}>{COMPONENT_DATA.newSkill.title}</Text>
+              <Text c="dimmed" fz="sm">
+                {COMPONENT_DATA.newSkill.description}
+              </Text>
+            </Flex>
+            <Flex gap={10} align="center">
+              <TextInput
+                disabled={isCreatingSkill || errorFetchingSkills}
+                placeholder={COMPONENT_DATA.newSkill.input.placeholder}
+                value={newSkill}
+                onChange={(event) => setNewSkill(event.currentTarget.value)}
+              />
+              <Button
+                loading={isCreatingSkill}
+                variant="light"
+                onClick={handleCreateSkill}
+                disabled={!newSkill}
+              >
+                {COMPONENT_DATA.newSkill.submit}
+              </Button>
+            </Flex>
+          </Flex>
         </SimpleGrid>
-      </form>
-      <Flex>
-        <Button size="md">{COMPONENT_DATA.submit}</Button>
+        <Flex>
+          <Button type="submit" size="md">
+            {COMPONENT_DATA.submit}
+          </Button>
+        </Flex>
       </Flex>
-    </Flex>
+    </form>
   );
 }
 

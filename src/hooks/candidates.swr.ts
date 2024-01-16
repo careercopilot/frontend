@@ -15,11 +15,11 @@ export function useTopCandidates() {
       },
       opening: {
         _id: "1234",
-        title: "Frontend Developer",
+        position: "Frontend Developer",
         companyDepartment: "Engineering",
         type: "Full-time",
         total: 3,
-        requiredExperience: {
+        experienceRequired: {
           min: 2,
           max: 4,
         },
@@ -65,11 +65,11 @@ export function useTopCandidates() {
       },
       opening: {
         _id: "!234",
-        title: "Backend Developer",
+        position: "Backend Developer",
         companyDepartment: "Engineering",
         type: "Full-time",
         total: 2,
-        requiredExperience: {
+        experienceRequired: {
           min: 3,
           max: 6,
         },
@@ -109,11 +109,11 @@ export function useTopCandidates() {
       },
       opening: {
         _id: "2345",
-        title: "UI/UX Designer",
+        position: "UI/UX Designer",
         companyDepartment: "Design",
         type: "Contract",
         total: 1,
-        requiredExperience: {
+        experienceRequired: {
           min: 2,
           max: 5,
         },
@@ -175,11 +175,11 @@ export function useOpeningCandidates(openingId: string) {
       },
       opening: {
         _id: "1234",
-        title: "Frontend Developer",
+        position: "Frontend Developer",
         companyDepartment: "Engineering",
         type: "Full-time",
         total: 3,
-        requiredExperience: {
+        experienceRequired: {
           min: 2,
           max: 4,
         },
@@ -225,11 +225,11 @@ export function useOpeningCandidates(openingId: string) {
       },
       opening: {
         _id: "!234",
-        title: "Backend Developer",
+        position: "Backend Developer",
         companyDepartment: "Engineering",
         type: "Full-time",
         total: 2,
-        requiredExperience: {
+        experienceRequired: {
           min: 3,
           max: 6,
         },
@@ -269,11 +269,11 @@ export function useOpeningCandidates(openingId: string) {
       },
       opening: {
         _id: "2345",
-        title: "UI/UX Designer",
+        position: "UI/UX Designer",
         companyDepartment: "Design",
         type: "Contract",
         total: 1,
-        requiredExperience: {
+        experienceRequired: {
           min: 2,
           max: 5,
         },

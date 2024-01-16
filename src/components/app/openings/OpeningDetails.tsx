@@ -260,7 +260,7 @@ function OpeningDetails() {
               <Flex align="center" gap={10}>
                 <IconChevronLeft />
                 <Title order={2} size={20}>
-                  {opening.title}
+                  {opening.position}
                 </Title>
               </Flex>
             </Link>
