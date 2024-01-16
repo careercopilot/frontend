@@ -133,28 +133,31 @@ export function useOpenings(query: { open?: boolean }) {
 }
 
 export function useOpeningData(id: string) {
-  const fakeOpening: IOpening = {
-    userId: "123",
-    _id: "123",
-    position: "Software Engineer",
-    companyDepartment: "Engineering",
-    type: "Full-Time",
-    total: 5,
-    experienceRequired: { min: 2, max: 5 },
-    skills: [
-      { _id: "1", name: "JavaScript", link: "https://example.com/js" },
-      { _id: "2", name: "React", link: "https://example.com/react" },
-      { _id: "3", name: "Node.js", link: "https://example.com/nodejs" },
-    ],
-    createdAt: "2024-01-01T10:00:00Z",
-    status: "open",
-    stats: { success: 2, processing: 1, error: 0, total: 3 },
-    selected: 1,
-  };
+  // const fakeOpening: IOpening = {
+  //   userId: "123",
+  //   _id: "123",
+  //   position: "Software Engineer",
+  //   companyDepartment: "Engineering",
+  //   type: "Full-Time",
+  //   total: 5,
+  //   experienceRequired: { min: 2, max: 5 },
+  //   skills: [
+  //     { _id: "1", name: "JavaScript", link: "https://example.com/js" },
+  //     { _id: "2", name: "React", link: "https://example.com/react" },
+  //     { _id: "3", name: "Node.js", link: "https://example.com/nodejs" },
+  //   ],
+  //   createdAt: "2024-01-01T10:00:00Z",
+  //   status: "open",
+  //   stats: { success: 2, processing: 1, error: 0, total: 3 },
+  //   selected: 1,
+  // };
 
+  const { data, isLoading, error } = useSWR<{
+    data: IOpening;
+  }>([API_CONSTANTS.GET_OPENING(id), "get"], genericAPIFetcher);
   return {
-    opening: fakeOpening,
-    isLoadingOpening: false,
-    errorLoadingOpening: false,
+    opening: data?.data,
+    isLoadingOpening: isLoading,
+    errorLoadingOpening: error,
   };
 }

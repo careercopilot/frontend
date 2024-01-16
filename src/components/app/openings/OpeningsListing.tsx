@@ -147,6 +147,8 @@ function OpeningCard({
                   leftSection={
                     <COMPONENT_DATA.menu.edit.Icon size={16} stroke={1.5} />
                   }
+                  component={Link}
+                  href={"/app/openings/" + data._id + "/edit"}
                 >
                   {COMPONENT_DATA.menu.edit.label}
                 </Menu.Item>

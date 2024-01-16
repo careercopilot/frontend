@@ -1,6 +1,7 @@
 "use client";
 
 import notificationManager from "@/components/helpers/NotificationManager";
+import { useOpeningData } from "@/hooks/openings.swr";
 import { useSkillsSearch } from "@/hooks/skills.swr";
 import { ISkill } from "@/interfaces/Opening";
 import API_CONSTANTS from "@/utils/apiConstants";
@@ -23,11 +24,12 @@ import {
   Title,
 } from "@mantine/core";
 import { isNotEmpty, useForm } from "@mantine/form";
+import { useDebouncedValue } from "@mantine/hooks";
 import { IconChevronLeft, IconSparkles, IconX } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import useSWRMutation from "swr/mutation";
 import styles from "./AddOpening.module.css";
 
@@ -55,7 +57,9 @@ interface TransformedFormValues
 
 const { addEditOpening: COMPONENT_DATA } = staticData.pages;
 
-function AddOpening() {
+function EditOpening() {
+  const params = useParams();
+  const OPENING_ID = params.openingId as string;
   const { push } = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const [newSkill, setNewSkill] = useState("");
@@ -65,8 +69,11 @@ function AddOpening() {
     API_CONSTANTS.CREATE_SKILL,
     genericMutationFetcher
   );
-  const { trigger: createOpening, isMutating: isCreatingOpening } =
-    useSWRMutation(API_CONSTANTS.CREATE_OPENING, genericMutationFetcher);
+  const { trigger: udpateOpening, isMutating: isUpdatingOpening } =
+    useSWRMutation(
+      API_CONSTANTS.UPDATE_OPENING(OPENING_ID),
+      genericMutationFetcher
+    );
 
   const form = useForm<
     FormValues,
@@ -104,6 +111,24 @@ function AddOpening() {
     }),
   });
 
+  const { opening, errorLoadingOpening, isLoadingOpening } =
+    useOpeningData(OPENING_ID);
+  const [openingData] = useDebouncedValue(opening, 100);
+
+  useEffect(() => {
+    if (openingData) {
+      form.setValues({
+        position: openingData.position,
+        companyDepartment: openingData.companyDepartment,
+        type: openingData.type,
+        total: openingData.total,
+        requiredMinExperience: openingData.experienceRequired.min,
+        requiredMaxExperience: openingData.experienceRequired.max,
+        skills: openingData.skills,
+      });
+    }
+  }, [openingData]);
+
   const handleCreateSkill = async () => {
     try {
       const createdSkill = await createSkill<{ data: ISkill }>({
@@ -127,33 +152,35 @@ function AddOpening() {
 
   const handleSubmit = async (values: TransformedFormValues) => {
     try {
-      const createdOpening = await createOpening<{ data: string }>({
-        type: "post",
+      await udpateOpening<{ data: string }>({
+        type: "put",
         rest: [
           {
+            _id: OPENING_ID,
             ...values,
           },
         ],
       });
       notificationManager.showSuccess("Opening created successfully");
-      push(`/app/openings/${createdOpening.data}`);
+      push(`/app/openings/${OPENING_ID}`);
     } catch (e) {
       console.log(e);
       notificationManager.showError("Error creating opening");
     }
   };
 
-  console.log(form.errors);
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <Flex direction="column" gap={28}>
-        <LoadingOverlay visible={isCreatingOpening} />
+        <LoadingOverlay
+          visible={isUpdatingOpening || errorLoadingOpening || isLoadingOpening}
+        />
         <Flex>
           <Link href={"/app/openings"}>
             <Flex align="center" gap={10}>
               <IconChevronLeft />
               <Title order={2} size={20}>
-                {COMPONENT_DATA.title}
+                {COMPONENT_DATA.editTitle}
               </Title>
             </Flex>
           </Link>
@@ -348,4 +375,4 @@ function AddOpening() {
   );
 }
 
-export default AddOpening;
+export default EditOpening;

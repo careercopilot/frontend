@@ -607,8 +607,9 @@ export const staticData = {
         ],
       },
     },
-    addOpening: {
+    addEditOpening: {
       title: "Add Opening",
+      editTitle: "Edit Opening",
       inputs: {
         title: {
           label: "Title",
