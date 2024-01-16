@@ -114,7 +114,7 @@ function CompanyProfile() {
           <Avatar
             src={userData.avatar}
             alt={userData.firstName + " " + userData.lastName}
-            color="secondary"
+            color="primary"
             imageProps={{
               referrerPolicy: "no-referrer",
             }}
@@ -132,7 +132,7 @@ function CompanyProfile() {
                   userData.firstName?.charAt(0).toUpperCase(),
                   userData.lastName?.charAt(0).toUpperCase(),
                 ]
-                  .map(Boolean)
+                  .filter(Boolean)
                   .join("")}
           </Avatar>
         )}
