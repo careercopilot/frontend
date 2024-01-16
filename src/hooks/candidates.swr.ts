@@ -14,6 +14,7 @@ export function useTopCandidates() {
         source: "resume",
       },
       opening: {
+        userId: "vdvd",
         _id: "1234",
         position: "Frontend Developer",
         companyDepartment: "Engineering",
@@ -64,6 +65,7 @@ export function useTopCandidates() {
         source: "resume",
       },
       opening: {
+        userId: "cd",
         _id: "!234",
         position: "Backend Developer",
         companyDepartment: "Engineering",
@@ -108,6 +110,7 @@ export function useTopCandidates() {
         // image: "https://picsum.photos/200?id=3",
       },
       opening: {
+        userId: "cd",
         _id: "2345",
         position: "UI/UX Designer",
         companyDepartment: "Design",
@@ -174,6 +177,7 @@ export function useOpeningCandidates(openingId: string) {
         source: "resume",
       },
       opening: {
+        userId: "cd",
         _id: "1234",
         position: "Frontend Developer",
         companyDepartment: "Engineering",
@@ -224,6 +228,7 @@ export function useOpeningCandidates(openingId: string) {
         source: "resume",
       },
       opening: {
+        userId: "cd",
         _id: "!234",
         position: "Backend Developer",
         companyDepartment: "Engineering",
@@ -268,6 +273,7 @@ export function useOpeningCandidates(openingId: string) {
         // image: "https://picsum.photos/200?id=3",
       },
       opening: {
+        userId: "cd",
         _id: "2345",
         position: "UI/UX Designer",
         companyDepartment: "Design",
