@@ -32,6 +32,7 @@ function ContactUs() {
           <Button
             component={Link}
             href={benefit.href}
+            target="_blank"
             key={index}
             passHref
             className={styles.animatedIntro}
