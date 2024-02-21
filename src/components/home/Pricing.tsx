@@ -14,6 +14,7 @@ import {
 import { IconCheck } from "@tabler/icons-react";
 import Image from "next/image";
 import styles from "./Hero.module.css";
+import PricingPlanButton from "./PricingPlanButton";
 
 const { pricing: COMPONENT_DATA } = staticData.pages.index;
 const { content: GENERAL_CONTENT } = staticData.general;
@@ -91,16 +92,7 @@ function PricingCard({ plan }: { plan: (typeof COMPONENT_DATA)["plans"][0] }) {
           ))}
         </Flex>
         <Flex direction="column" w="100%">
-          <Button
-            variant={plan.highlight ? "white" : "filled"}
-            size="lg"
-            style={{
-              borderRadius: 990,
-            }}
-            mt={20}
-          >
-            {COMPONENT_DATA.getStarted}
-          </Button>
+          <PricingPlanButton plan={plan} />
         </Flex>
         {plan.popular && (
           <Badge

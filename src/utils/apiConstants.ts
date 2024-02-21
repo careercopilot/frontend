@@ -6,6 +6,7 @@ class APIConstants {
   USER = this.BASE_URL + "/user";
   SKILL = this.BASE_URL + "/skill";
   PREDICTION = this.BASE_URL + "/prediction";
+  PLAN = this.BASE_URL + "/plan";
 
   /** Auth Endpoints */
   LOGIN = this.AUTH + "/login";
@@ -27,6 +28,9 @@ class APIConstants {
   /** Skill Endpoints */
   SEARCH_SKILL = this.SKILL + "/searchskill";
   CREATE_SKILL = this.SKILL + "/";
+
+  /** Plans Endpoints */
+  CHECKOUT_PLAN = this.PLAN + "/checkout";
 }
 
 const API_CONSTANTS = new APIConstants();

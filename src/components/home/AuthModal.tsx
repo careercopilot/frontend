@@ -90,7 +90,7 @@ function AuthModalRenderer({
     token: string,
     messageContents: (typeof COMPONENT_DATA.messages)[keyof typeof COMPONENT_DATA.messages]
   ) => {
-    setCookie("token", token, {
+    setCookie("cc-token", token, {
       path: "/",
       maxAge: 3600 * 24 * 30,
       sameSite: true,

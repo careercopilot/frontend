@@ -1,19 +1,26 @@
 "use client";
 
+import PlanValidator from "@/components/app/PlanValidator";
+import notificationManager from "@/components/helpers/NotificationManager";
 import { useUser } from "@/hooks/user.swr";
+import API_CONSTANTS from "@/utils/apiConstants";
 import { staticData } from "@/utils/staticData";
 import {
   ActionIcon,
   Avatar,
   Box,
   Flex,
+  Menu,
   Skeleton,
   Text,
   useMantineTheme,
 } from "@mantine/core";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
+import { mutate } from "swr";
 import styles from "./layout.module.css";
 
 const { appShell: COMPONENT_DATA } = staticData.components;
@@ -21,9 +28,19 @@ const { logo: LOGO, logoIcon: LOGO_ICON } = staticData.general;
 
 export default function Layout({ children }: { children: any }) {
   const pathname = usePathname();
+  const router = useRouter();
   const { userData, isUserDataLoading, errorFetchingUserData } = useUser();
   const theme = useMantineTheme();
   const SHELL_SIZES = theme.other.sizes.shell;
+  const [, , removeCookie] = useCookies();
+
+  const handleLogout = async () => {
+    removeCookie("cc-token");
+    axios.defaults.headers.common["Authorization"] = null;
+    mutate(API_CONSTANTS.GET_USER);
+    notificationManager.showSuccess("Logged out successfully");
+    router.push("/");
+  };
 
   const activeIndex = COMPONENT_DATA.navbar.links.findIndex((link) =>
     link.isActive(pathname)
@@ -78,7 +95,7 @@ export default function Layout({ children }: { children: any }) {
               </Link>
             ))}
           </Flex>
-          {isUserDataLoading || errorFetchingUserData ? (
+          {isUserDataLoading || errorFetchingUserData || !userData ? (
             <Skeleton height={38} circle />
           ) : (
             <Avatar
@@ -159,23 +176,28 @@ export default function Layout({ children }: { children: any }) {
           align="center"
           px={SHELL_SIZES.spacing * 1.5}
         >
-          <ActionIcon
-            component={Link}
-            href={COMPONENT_DATA.navbar.settings.href}
-            variant="transparent"
-            color={
-              COMPONENT_DATA.navbar.settings.isActive(pathname)
-                ? "primary"
-                : "dark.2"
-            }
-            p={0}
-          >
-            <COMPONENT_DATA.navbar.settings.Icon size={22} />
-          </ActionIcon>
+          <Menu shadow="md" width={200} position="top-start">
+            <Menu.Target>
+              <ActionIcon variant="transparent" color={"dark.2"} p={0}>
+                <COMPONENT_DATA.navbar.settings.Icon size={22} />
+              </ActionIcon>
+            </Menu.Target>
+
+            <Menu.Dropdown>
+              <Menu.Item
+                c="red"
+                leftSection={
+                  <COMPONENT_DATA.navbar.settings.menu.logout.Icon size={14} />
+                }
+                onClick={handleLogout}
+              >
+                {COMPONENT_DATA.navbar.settings.menu.logout.label}
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
         </Flex>
       </Flex>
-
-      {children}
+      <PlanValidator>{children}</PlanValidator>
     </Box>
   );
 }

@@ -2,6 +2,8 @@ import { CHROME_EXTENSION_URL, staticData } from "@/utils/staticData";
 import { Button, Title } from "@mantine/core";
 import Image from "next/image";
 import styles from "./Hero.module.css";
+import Link from "next/link";
+import { HeroCTA } from "./HeroClientComps";
 
 const { hero: COMPONENT_DATA } = staticData.pages.index;
 const { icons: ICONS } = staticData.general;
@@ -40,15 +42,16 @@ function Hero() {
           <Title order={1} fw={800} ta="center">
             {COMPONENT_DATA.title}
           </Title>
-          <Button
+          {/* <Button
             size="md"
             className={styles.button}
-            component="a"
+            component={Link}
             href={COMPONENT_DATA.ctaLink}
             mt={20}
           >
             {COMPONENT_DATA.cta}
-          </Button>
+          </Button> */}
+          <HeroCTA />
         </div>
         <Image
           src={COMPONENT_DATA.cover.src}

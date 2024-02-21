@@ -52,10 +52,10 @@ const CustomAvatarTrigger = forwardRef<HTMLButtonElement, CustomAvatarProps>(
 
 function HeaderAvatar() {
   const { userData, isUserDataLoading, errorFetchingUserData } = useUser();
-  const [, setCookie, removeCookie] = useCookies();
+  const [, , removeCookie] = useCookies();
 
   const handleLogout = async () => {
-    removeCookie("token");
+    removeCookie("cc-token");
     axios.defaults.headers.common["Authorization"] = null;
     mutate(API_CONSTANTS.GET_USER);
     notificationManager.showSuccess("Logged out successfully");

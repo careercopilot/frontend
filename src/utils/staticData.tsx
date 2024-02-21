@@ -45,6 +45,7 @@ import {
   IconLayoutDashboard,
   IconListDetails,
   IconLoader3,
+  IconLogout,
   IconReportAnalytics,
   IconSettings,
   IconTrash,
@@ -64,9 +65,15 @@ export const staticData = {
       hero: {
         title:
           "Revolutionize your hiring process with AI-driven profile insights",
-        cta: "Get Started Now ->",
+        cta: {
+          authenticated: "Explore Dashboard ->",
+          default: "Get Started Now ->",
+        },
         chip: "Get Chrome Extension for LinkedIn",
-        ctaLink: "/app",
+        ctaLink: {
+          authenticated: "/app/",
+          default: "/?modal=register",
+        },
         cover: {
           src: HomeHeroCover,
           alt: "Simplified hiring process",
@@ -85,6 +92,7 @@ export const staticData = {
           {
             scale: 0.95,
             title: "Free",
+            id: "free",
             badge: "For Trial",
             icon: PricingPlanIcon1,
             description:
@@ -101,6 +109,7 @@ export const staticData = {
           {
             scale: 1,
             title: "Pro",
+            id: "pro",
             badge: "For SMEs",
             icon: PricingPlanIcon2,
             description:
@@ -108,10 +117,11 @@ export const staticData = {
             features: [
               "All analytics features",
               "Complete Application Tracking",
-              "2K Applications then .25$/profile",
+              // "2K Applications then .25$/profile",
+              "2K Applications",
               "Unlimited Roles",
             ],
-            price: "499",
+            price: "199",
             priceUnit: "month",
             highlight: true,
             popular: true,
@@ -119,16 +129,18 @@ export const staticData = {
           {
             scale: 0.95,
             title: "Enterprise",
+            id: "enterprise",
             badge: "Custom",
             icon: PricingPlanIcon3,
             description: "Need something customized for your organization?",
             features: [
               "All analytics features",
               "Complete Application Tracking",
-              "5k Applications then .2$/profile",
+              // "5k Applications then .2$/profile",
+              "10k Applications",
               "Up to 50 team members",
             ],
-            price: "999",
+            price: "499",
             priceUnit: "",
             additionalButtons: {
               contact: {
@@ -139,6 +151,7 @@ export const staticData = {
           },
         ],
         getStarted: "Get Started",
+        subscribe: "Subscribe",
       },
       features: {
         title: "Let Us Streamline Your Candidate Selection Process",
@@ -700,7 +713,7 @@ export const staticData = {
       login: { name: "Login", path: "login" },
       register: { name: "Schedule a Demo", path: "register" },
       menuOptions: {
-        profile: { key: "profile", name: "Profile", path: "/profile" },
+        profile: { key: "profile", name: "Profile", path: "/app/profile" },
         logout: { key: "logout", name: "Logout" },
       },
     },
@@ -775,10 +788,20 @@ export const staticData = {
         ],
         settings: {
           Icon: IconSettings,
-          href: "/app/settings",
-          isActive: (path: string) => path.startsWith("/app/settings"),
+          menu: {
+            logout: {
+              Icon: IconLogout,
+              label: "Logout",
+            },
+          },
+          // href: "/app/settings",
+          // isActive: (path: string) => path.startsWith("/app/settings"),
         },
       },
+    },
+    planHander: {
+      error:
+        "Something went wrong while fetching your details. Please try again later",
     },
   },
   general: {

@@ -5,15 +5,16 @@ import IUser from "@/interfaces/User";
 import HistoryItem from "@/interfaces/HistoryItem";
 
 export function useUser() {
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading, mutate } = useSWR<IUser>(
     API_CONSTANTS.GET_USER,
     userService.getUserData
   );
 
   return {
-    userData: data as IUser,
+    userData: data,
     isUserDataLoading: isLoading as boolean,
     errorFetchingUserData: error,
+    mutateUserData: mutate,
   };
 }
 
